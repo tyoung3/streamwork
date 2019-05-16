@@ -44,6 +44,7 @@ Components are designed to be reentrant with a common interface.  The same
 component may be invoked any number of times, but  with a different, unique, process name each time.   Component memory will be reused.  Go creates a small stack for each process.  
 
 The current list of components include 
+
 	1. Comp1(Generates N IPs), 
 	2. Comp2(sends input to the terminal), 
 	3. Split(sends input to N output channels),  
