@@ -44,11 +44,11 @@ Components are designed to be reentrant with a common interface.  The same
 component may be invoked any number of times, but  with a different, unique, process name each time.   Component memory will be reused.  Go creates a small stack for each process.  
 
 The current list of components include 
-	* Comp1(Generates N IPs), 
-	* Comp2(sends input to the terminal), 
-	* Split(sends input to N output channels),  
-	* Concat(sends N inputs in order to its output channel), and  			
-	* Collate(compares IPs from channels 0 and 1,  
+	1. Comp1(Generates N IPs), 
+	2. Comp2(sends input to the terminal), 
+	3. Split(sends input to N output channels),  
+	4. Concat(sends N inputs in order to its output channel), and  			
+	5. Collate(compares IPs from channels 0 and 1,  
 	  sends matches to channels 2 and 3 respectively, 
 	  and mismatches to channels 4 and 5 respectively. 
 
