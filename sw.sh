@@ -122,7 +122,12 @@ NotesFBP() {
 	* git branch -a   [Check branch]
 	
 	
-
+	* git commit -m "Good commit message"
+	* git add --all
+	* git status
+	* git push origin Fix_Comp_names
+	
+	
 https://githubflow.github.io/	
 	
 	* Anything in the master branch is deployable
