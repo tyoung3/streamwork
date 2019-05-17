@@ -46,22 +46,63 @@ component may be invoked any number of times, but  with a different, unique, pro
 
 The current list of components include 
 
-	1. Comp1(Generates N IPs), 
-	2. Comp2(sends input to the terminal), 
+	1. Gen1(Generates N IPs), 
+	2. Print1(sends input to the terminal), 
 	3. Split(sends input to N output channels),  
-	4. Concat(sends N inputs in order to its output channel), and  			
+	4. Concat(sends N inputs in order to its 
+	   output channel) 		  			
 	5. Collate(compares IPs from channels 0 and 1,  
 	  sends matches to channels 2 and 3 respectively, 
 	  and mismatches to channels 4 and 5 respectively. 
 
 Each process runs as a separate goroutine, which may well invoke more go routines.  
- 
+
+QuickStart
+----------
+
+	* Download and install Go
+		* Check GOPATH and GOROOT	
+	* Create a new directory in $GOPATH/mod.  
+	* Change directory to $GOPATH/mod/foo  
+	* Create main.go:
+```	
+package  main
+
+import "fmt"
+import "sync"
+import "github.com/tyoung3/streamwork"
+import "github.com/tyoung3/streamwork/strings"
+
+func main() {
+        var cs []chan interface{}
+        var wg sync.WaitGroup
+        
+        fmt.Println("Testgo Start")
+        cs = append(cs, make(chan interface{}))
+
+        go fbp.Launch(&wg, []string{"Testgo"}, strings.Print1, cs)
+        fbp.Launch(&wg, []string{"Comp1","11"}, strings.Gen1, cs)
+        wg.Wait()
+        fmt.Println("Testgo end")
+}
+
+```
+	* Run 'go mod init foo/foo'
+	* Run 'go run main.go'
+	
+	Go should find and install 
+	"github.com/tyoung3/streamwork/strings latest"
+    then compile and run the program, Testgo.
+    
 Why another FBP Golang framework?
 ---------------------------------
 
-Streamwork will interpret and run a network definition text file.   No other 
-project seems to do this.  Streamwork also defines a standard component
-interface(currently subject to change), such that each process knows its name. 
+	* Streamwork will interpret and run a network definition 
+	  text file. No other project seems to do this.  
+
+	* Streamwork defines a standard component 
+	  interface(currently subject to change), such that each
+	  process knows its name. 
       
 Author
 ------
