@@ -125,9 +125,13 @@ NotesFBP() {
 	* git commit -m "Good commit message"
 	* git add --all
 	* git status
-	* git push origin Fix_Comp_names
-	
-	
+	* git push origin Fix_Comp_names 
+	* git checkout master
+    * $git pull origin master
+	* git merge --no-ff Fix_Comp_names
+
+	*  git config --global merge.ff false  [ one time ]
+
 https://githubflow.github.io/	
 	
 	* Anything in the master branch is deployable

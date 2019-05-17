@@ -22,7 +22,7 @@ func TestFBP(t *testing.T) {
 	  Launch(&wg1,[]string{"Q2","2"}, strings.Gen1, cs[1:2]) 
 	  Launch(&wg1,[]string{"Q3","3"}, strings.Gen1, cs[2:3])  
 	  		wg1.Add(1)
-           internal.Merge(&wg1,cs[0], cs[1], cs[2]) 
+           internal.MergeInt(&wg1,cs[0], cs[1], cs[2]) 
   
 	  wg1.Wait()
  
