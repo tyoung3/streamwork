@@ -21,12 +21,12 @@ func TestMerge(t *testing.T) {
 		cs = append(cs,make(chan interface{},1024))
 	}	
 	
-	fmt.Println("Testing Merge")
-	fbp.Launch(&wg, []string{"Join"},    std.Merge, cs[0:4])
-	fbp.Launch(&wg, []string{"G2","2"},  strings.Comp1, cs[1:2])
-	fbp.Launch(&wg, []string{"G3","3"},  strings.Comp1, cs[2:3]) 
-	fbp.Launch(&wg, []string{"G5","5"},  strings.Comp1, cs[3:4])  
-	fbp.Launch(&wg, []string{"Sink"},    strings.Comp2, cs[0:1])
+	fmt.Println("Testing Merge-x")
+	fbp.Launch(&wg, []string{"Join"},    std.Merge,    cs[0:4])
+	fbp.Launch(&wg, []string{"G2","2"},  strings.Gen1, cs[1:2])
+	fbp.Launch(&wg, []string{"G3","3"},  strings.Gen1, cs[2:3]) 
+	fbp.Launch(&wg, []string{"G5","5"},  strings.Gen1, cs[3:4])  
+	fbp.Launch(&wg, []string{"Sink"},    strings.Gen1, cs[0:1])
 	  
 	wg.Wait()	
 

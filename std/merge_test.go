@@ -1,9 +1,9 @@
 package  std
 
 		/*  	Network
-			(G2 comp1 "2")out -> in1(M merge) -> in(Sink comp2)
-	        (G3 comp1 "3")out -> in2(M)
-	        (G5 comp1 "5")out -> in3(M)
+			(G2 Gen1 "2")out -> in1(M merge) -> in(Sink Print1)
+	        (G3 Gen1 "3")out -> in2(M)
+	        (G5 Gen1 "5")out -> in3(M)
 	    */ 
 	
 import "testing"
@@ -17,18 +17,19 @@ func TestMerge(t *testing.T) {
 	var wg  sync.WaitGroup
 	
 	for i:=0; i<4; i++ {
-		cs = append(cs,make(chan interface{},1024))
+		cs = append(cs,make(chan interface{}))
 	}	
 	
-	fmt.Println("Testing Merge")
-	wg.Add(1)
-    Merge(&wg, []string{"Join"},   cs[0:4])
-	fbp.Launch(&wg, []string{"G2","2"},  strings.Comp1, cs[1:2])
-	fbp.Launch(&wg, []string{"G3","3"},  strings.Comp1, cs[2:3]) 
-	fbp.Launch(&wg, []string{"G5","5"},  strings.Comp1, cs[3:4])  
-	fbp.Launch(&wg, []string{"Sink"},    strings.Comp2, cs[0:1])
-	  
+	fmt.Println("Testing Merge-0.0.2")
+	wg.Add(1)  
+      go Merge(&wg, []string{"Join"},                    cs[0:4])
+	fbp.Launch(&wg, []string{"G2","2"},  strings.Gen1,   cs[1:2])
+	fbp.Launch(&wg, []string{"G3","3"},  strings.Gen1,   cs[2:3]) 
+	fbp.Launch(&wg, []string{"G5","5"},  strings.Gen1,   cs[3:4])  
+	fbp.Launch(&wg, []string{"Sink"},    strings.Print1, cs[0:1])
+	 
+	fmt.Println("TestMerge waiting") 
 	wg.Wait()	
-
+	fmt.Println("TestMerge ended") 
 }
 	

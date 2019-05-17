@@ -2,7 +2,7 @@
 
 # FBPGO.sh
 pgm=fbpgo
-version="0.0.3"  ; 
+version="0.0.4"  ; 
 
 # NOTE: Go ignores files and directories beginning with '_', as in _OLD/
 
@@ -26,10 +26,16 @@ NotesFBP() {
 	
 ###Quick Start
 
-	* Install go 
-		* Check GOPATH and GOROOT
-	* Create git directory
-	* git init 
+	* Download and install Go
+		* Check GOPATH and GOROOT	
+	* Create a directory in $GOPATH/mod.  Ex . mkdir $GOPATH/mod/foo
+	* Change directory to $GOPATH/mod/foo
+	* Create main.go with package foo and import "github/tyoung3/streamwork"
+	* Run 'go mod init'
+	* run 'go run'
+
+### Ignore this 
+	 
 	* git clone https://github.com/tyoung3/streamwork 
 	* Run test 'go test ./..
 	* To update: 'git pull origin master' 
@@ -60,7 +66,7 @@ NotesFBP() {
 	
 ###Frontend
 
-	* Develop in .../internal
+	* Develop as a separate module
 	
 	* networkDefinition conversion to running program.  
 		* networkDefinition > (AddSemiColons) > (expand variables)
@@ -68,7 +74,7 @@ NotesFBP() {
 	
 		  
 ###Backend 
-	Backend prototype is done. 
+	Backend prototype is working. 
  		  
 		    	
 ##Signals
@@ -81,7 +87,12 @@ NotesFBP() {
 
 ##Publish 
 	
-	* go mod tidy [Clean up  go.sum]
+	* go mod tidy 					   [Clean up  go.sum]
+	* go list [-u] -m all				. See all dependencies
+	* go get -u=patch					. Update to latest patch version(s)
+
+
+		Check branch!!
 	* git status  [must be master branch]
 	* git pull origin master
 	* git add --all 
@@ -99,6 +110,18 @@ NotesFBP() {
 	* Collate component
 	
 ##GitHub Flow
+
+###New branch 
+
+	* git pull origin master 
+	* git checkout -b "Usefull Branch Name"
+	* git push origin "Usefull Branch Name"
+		   https://github.com/tyoung3/streamwork/pull/new/Fix_Comp_names
+	* Make changes
+	* git push --set-upstream origin Fix_Comp_names
+	* git branch -a   [Check branch]
+	
+	
 
 https://githubflow.github.io/	
 	

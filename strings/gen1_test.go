@@ -5,11 +5,11 @@ import "testing"
 import "fmt"
 import "sync"
 
-func TestComp1(t *testing.T) {
+func TestGen1(t *testing.T) {
 	var cs []chan interface{}
 	var wg sync.WaitGroup
 
-	arg := []string{"TestComp1", "7"}
+	arg := []string{"TestGen1", "7"}
 
 	fmt.Println(arg[0])
 	cs = append(cs, make(chan interface{}))
@@ -19,16 +19,16 @@ func TestComp1(t *testing.T) {
 		for  {
 			s, ok := <-c
 			if ok == true {
-				fmt.Println("TestCompcomp1.go1", s)
+				fmt.Println("TestGen1.go1", s)
 			} else {
-				fmt.Println("TestComp1 Ended")
+				fmt.Println("TestGen1 Ended")
 				return
 			}
 		}
 	}()
 
 	wg.Add(1)
-	go Comp1(&wg, arg, cs)
+	go Gen1(&wg, arg, cs)
 	wg.Wait()
 
 }
