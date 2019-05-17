@@ -5,10 +5,10 @@ import "fmt"
 
 /* Merge sends all input from channels cs[1:] to channel cs[0] 
 */
-func Merge(wg1 *sync.WaitGroup,cs ...chan interface{})   {
+func MergeInt(wg1 *sync.WaitGroup,cs ...chan interface{})   {
 	var wg sync.WaitGroup
 
-	// fmt.Println("Merge start")
+	// fmt.Println("Merge stgit checkout -b art")
     defer   wg1.Done()
 	wg.Add(len(cs)-1)
 
@@ -16,7 +16,7 @@ func Merge(wg1 *sync.WaitGroup,cs ...chan interface{})   {
 		go func(c <- chan interface{}) {
 			defer wg.Done()
 			for v := range c {
-				fmt.Println("Merge:".v)
+				fmt.Println("Merge:",v)
 				cs[0] <- v
 			}
 		}(c)
