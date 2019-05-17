@@ -22,40 +22,52 @@ NotesFBP() {
 * * * * * * * * * * * 
 #TODO
 
-##Upload to github/tyoung3
+##Tutorials 
+	
+###Quick Start
 
-	* Find good name
-		* fgbase, flogo, flow, flowcontrol,goflow, flow2go, appgo (taken)
-		 by trustmaster, etc.
-		 flo, flow,  dataflow, cogoflow 
-		 graph, chart, flowgraph
-		 lego, plumbing, snap together, tab/slot, link, plug/socket 
-		 goplug, gograph 
-		 GOLINK, glink, gflow, fountain , fount, 
-		 port, goport, node, flowport, PORTAGO
-		 river, delta, oxflow,  
-		 pipework, plumbery, pipeline, tubing, canals, 
-		 STREAMWORKS, bitstream, bitflow, data current 
-		 GoG(Go Graph)  [noun: Haste; ardent desire to go.]
-		 net, network,  nodelink 
-		 
-	* Fix copyright
-	* Fix README.md 
-	* git push (add to fbpgo.sh)
+	* Install go 
+		* Check GOPATH and GOROOT
+	* Create streamwork directory 
+	* git init 
+	* git clone streamwork
+	* Run test 'go test ./..
+	
+###Build a component 
 
+####Component Skeleton Generation	
+	* Run script with import path and component name(initial lower case letter). Ex. '... std foo' creates a new component, foo.go, and test, foo_test.go in .../std/   
+	* Modify foo_test.go (test driven development) 
+	* cd .../std;  run 'go test foo*'  
+	* Modify foo.go 
+	* repeat until working	
+		
+####Guidelines
+
+	* defer wg.Done() at the beginning 
+	* Test w/-race before committing
+	* Avoid global variables
+	* Include process name in messages (standard error code @TODO)
+			  
 ##Trials
-	. Try nesting fbp calls in a component. Callit Nest
-	. Try method calls.
+
+	* Try nesting fbp calls within a component.  
+	* Try method calls.
 	
 ##Roadmap 
-	###Collate component
 	
-	###Frontend
-	. .net conversion to running program.  
-		. .net > (AddSemiColons) > (expand variables) > (tokeninize) >
-		  (interpret) > (buildGo) > (Launch) 
+###Frontend
+
+	* Develop in .../internal
+	
+	* networkDefinition conversion to running program.  
+		* networkDefinition > (AddSemiColons) > (expand variables)
+		 > (tokeninize) > (interpret) > (buildGo) > (Launch) 
+	
 		  
-##Guidelines		  
+###Backend 
+	Backend prototype is done. 
+ 		  
 		    	
 ##Signals
 	. Trap signals
@@ -64,10 +76,17 @@ NotesFBP() {
 
 ##Publish 
 
-##Run Go doc
-
 ##Changes
 
+
+#DONE
+
+	* Run Go doc
+	* Replace Launch4
+	* Collate component
+	
+	
+	
 #$pgm
 What follows are some thoughts on designing a comprehensive FBP-based Go language program, $pgm.  
 
@@ -115,17 +134,13 @@ FOO.go will connect component ports as specified in FOO.net.   FOO.go will inter
 
 ###Nodes
 FOO.go will also connect with external nodes and processes as specified(or not) in FOO.go.
-
-#Done
-	Replace Launch4
-	
-	
 EOF
 	
 }
 
 Notesx() { 
 	cat <<- EOF
+		Workflow: https://gist.github.com/blackfalcon/8428401
 		Code generation from BNF: https://github.com/goccmack/gocc
 		Using gocc: https://medium.freecodecamp.org/write-a-compiler-in-go-quick-guide-30d2f33ac6e0
 	Tutorial: https://tour.golang.org/welcome/1

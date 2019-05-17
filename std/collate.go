@@ -1,6 +1,6 @@
 package std
 
-import "fmt"
+// import "fmt"
 import "sync"
 import "reflect"
 
@@ -10,8 +10,8 @@ func get0(state *int, c chan interface{} )  (interface{}) {
 		 *state += 1
 		 return ip 
 	} else {
-		*state += 4 
-		return  nil
+		 *state += 4 
+		 return  nil
 	}
 } 
 
@@ -36,10 +36,10 @@ func Collate(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 	ip1 := *new(interface{})
 
 	defer wg.Done()
-	fmt.Println("Running", arg[0])
+	// fmt.Println("Running", arg[0])
 	 
 	for {
-		fmt.Println(state, ip0, ip1)
+		// fmt.Println(state, ip0, ip1)
 		switch  state { 
 		case 0,2,8:   /* get 0 and add 1 to state. If EOF, add 4 to state */
 				ip0 = get0(&state, cs[0]) 			
@@ -68,12 +68,10 @@ func Collate(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 				state=8
 		case 12: 
 			close(cs[2]); close(cs[3]); close(cs[4]); close (cs[5]) 
-			fmt.Println("Ended", arg[0])
+			// fmt.Println("Ended", arg[0])
 			return
 		
 		}
 	}
 	
-        
-   /* ?? Cloase outputs */
 }
