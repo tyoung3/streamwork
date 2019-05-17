@@ -9,12 +9,12 @@ import "testing"
 import "fmt"
 import "sync"
 
-func TestComp2(t *testing.T) {
+func TestPrint1(t *testing.T) {
 	var cs []chan interface{}
 	var wg sync.WaitGroup
-	arg := []string{"TestComp2", "xx"}
+	arg := []string{"TestPrint1", "xx"}
 
-	fmt.Println("TestComp2")
+	fmt.Println("TestPrint1")
 	cs = append(cs, make(chan interface{}))
 	c := cs[0]
 
@@ -26,8 +26,8 @@ func TestComp2(t *testing.T) {
 	}()
 
 	wg.Add(1)
-	go Comp2(&wg, arg, cs)
-	fmt.Println("TestComp2 wait c ")
+	go Print1(&wg, arg, cs)
+	fmt.Println("TestPrint1 wait c ")
 	wg.Wait()
-	fmt.Println("TestComp2 done.")
+	fmt.Println("TestPrint1 done.")
 }

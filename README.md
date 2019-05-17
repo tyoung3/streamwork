@@ -31,7 +31,8 @@ create, test, and benchmark working programs.
 
 The frontend(to be developed) will process the network definition.
 
-Everything here(including the project name) is subject to change, until after the frontend has been developed.   There is no guarantee of backward compatibility.  
+Everything here(including the project name) is subject to change, until after the frontend has been developed.  Versions will be backward compatible within the same major version. Ex. your code depending on v0.0.1 will still work on v0.8.7, but may fail on v1.0.0.  Streamwork is developed using 
+the Go module facility, so that dependencies are clear.   
 
 Contributors are encouraged.  Comments are particularly welcome.   
 Please do not submit code before contacting the project by e-mailing streamwork@twyoung.com.     
@@ -53,7 +54,7 @@ The current list of components include
 	  sends matches to channels 2 and 3 respectively, 
 	  and mismatches to channels 4 and 5 respectively. 
 
-Each process runs as a separate goroutine, which may possibly invoke more go routines.  
+Each process runs as a separate goroutine, which may well invoke more go routines.  
  
 Why another FBP Golang framework?
 ---------------------------------

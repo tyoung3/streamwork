@@ -18,14 +18,10 @@ limitations under the License.
 
 /* 
 TODO(ty): Document  code 
-TODO(ty): make flowfib public 
-TODO(ty): fix 'r t' -race errors 
 
 */ 
  
-// import "fmt"
 import "sync"
-// import "os"
 
 
 /* 
@@ -40,12 +36,14 @@ import "sync"
 	   prior to returning. This is easily and reliably 
 	   accomplished by issuing 'defer wg.Done()' at the 
 	   start of the process.    
+	   
 	2)arg, a slice of argument strings. 
 	    
 	    THe first string is 
 		required to be the unique process name.  Developers should 
 		strive to standardize argument meanings within their 
 		own packages.
+		
 	3)f, the component's function signature. 
 		
 		Launch passes on wg, arg, and cs to the process.  
@@ -87,6 +85,6 @@ func Launch(
 	} */
 	wg.Add(1)
 	go f(wg, arg, cs)  
-	/* DO NOT put code here.*/
+	/* DO NOT put code here.  It will most likely not run.*/
 }
 
