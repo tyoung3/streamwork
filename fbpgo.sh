@@ -547,7 +547,9 @@ EOF
 } 
 SeeDocs() {
 
-	URLS="https://appliedgo.net/flow/ 
+	URLS="
+	https://gist.github.com/blackfalcon/8428401/
+	https://appliedgo.net/flow/ 
 	https://golang.org/
 	https://medium.com/@benbjohnson/standard-package-layout-7cdbc8391fc1
 	http://reo.project.cwi.nl/v2/projects/
@@ -624,7 +626,7 @@ func TestSkel_$name(t *testing.T) {
 	cs = append(cs,make(chan interface{}))
 	c  := cs[0]
 	
-	go func() {
+	go func() {https://gist.github.com/blackfalcon/8428401
 	 for 1 == 1 {
 		s, ok := <-c
 		if ok == true {
