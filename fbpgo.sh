@@ -2,7 +2,7 @@
 
 # FBPGO.sh
 pgm=fbpgo
-version="0.0.2"  ; 
+version="0.0.3"  ; 
 
 # NOTE: Go ignores files and directories beginning with '_', as in _OLD/
 
@@ -81,6 +81,7 @@ NotesFBP() {
 
 ##Publish 
 	
+	* go mod tidy [Clean up  go.sum]
 	* git status  [must be master branch]
 	* git pull origin master
 	* git add --all 
