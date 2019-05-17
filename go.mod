@@ -1,4 +1,4 @@
-module fbp
+module streamwork
 
 go 1.11
 
