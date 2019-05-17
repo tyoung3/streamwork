@@ -1,4 +1,4 @@
-Copyright (C) 2019 Thomas W. Young, fbp@twyoung.com 
+Copyright (C) 2019 Thomas W. Young, streamwork@twyoung.com 
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file or its derivitaves except in compliance with the License.
@@ -52,19 +52,22 @@ The current list of components include
 	4. Concat(sends N inputs in order to its 
 	   output channel) 		  			
 	5. Collate(compares IPs from channels 0 and 1,  
-	  sends matches to channels 2 and 3 respectively, 
-	  and mismatches to channels 4 and 5 respectively. 
-
-Each process runs as a separate goroutine, which may well invoke more go routines.  
-
+	   sends matches to channels 2 and 3 respectively, 
+	   and mismatches to channels 4 and 5 respectively. 
+	   Note that channels 2 and 3 may actually and usefully be the same channel.
+	   Other combinations would not be so useful.
+	    
+Each process runs as a separate goroutine, which may well invoke more goroutines.  
+In such cases, the component is responsible for waiting until all its goroutines are
+finished, before returning.
+ 
 QuickStart
 ----------
 
-	* Download and install Go
-		* Check GOPATH and GOROOT	
+	* Download and install Go	
 	* Create a new directory in $GOPATH/mod.  
 	* Change directory to $GOPATH/mod/foo  
-	* Create main.go:
+	* Create $GOPATH/mod/foo/main.go:
 ```	
 package  main
 
@@ -77,22 +80,26 @@ func main() {
         var cs []chan interface{}
         var wg sync.WaitGroup
         
-        fmt.Println("Testgo Start")
+        fmt.Println("foo Start")
         cs = append(cs, make(chan interface{}))
 
-        go fbp.Launch(&wg, []string{"Testgo"}, strings.Print1, cs)
-        fbp.Launch(&wg, []string{"Comp1","11"}, strings.Gen1, cs)
+        fbp.Launch(&wg, []string{"TestPrint1"}, strings.Print1, cs)
+        fbp.Launch(&wg, []string{"TestGen1","11"}, strings.Gen1, cs)
         wg.Wait()
-        fmt.Println("Testgo end")
+        fmt.Println("foo end")
 }
 
 ```
 	* Run 'go mod init foo/foo'
+	  This should create .../mod/foo/go.mod 
+
 	* Run 'go run main.go'
-	
-	Go should find and install 
-	"github.com/tyoung3/streamwork/strings latest"
-    then compile and run the program, Testgo.
+		Go should find and install 
+	"github.com/tyoung3/streamwork/strings latest"; 
+	 creating .../mod/foo/go.sum, 
+     and compile and run the program, Foo. 
+
+    * Run 'go build' to create the executable, foo (or foo.exe). 
     
 Why another FBP Golang framework?
 ---------------------------------

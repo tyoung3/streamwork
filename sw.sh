@@ -26,13 +26,7 @@ NotesFBP() {
 	
 ###Quick Start
 
-	* Download and install Go
-		* Check GOPATH and GOROOT	
-	* Create a directory in $GOPATH/mod.  Ex . mkdir $GOPATH/mod/foo
-	* Change directory to $GOPATH/mod/foo
-	* Create main.go with package foo and import "github/tyoung3/streamwork"
-	* Run 'go mod init'
-	* run 'go run'
+See
 
 ### Ignore this 
 	 
