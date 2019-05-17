@@ -86,6 +86,7 @@ NotesFBP() {
 	* git add --all 
 	* git commit -m "Good commit message"
 	* git tag -a v1.2.3 -m "Version_Notice_wo_spaces"
+	* git push origin v0.0.1
 
 ##Changes
 
