@@ -8,9 +8,9 @@ package unit
 	
 import "testing"
 import "fmt"
-import "fbp"
-import "fbp/strings"
-import "fbp/std"
+import "github.com/tyoung3/streamwork"
+import "github.com/tyoung3/streamwork/strings"
+import "github.com/tyoung3/streamwork/std"
 import "sync"
 
 func TestConcat(t *testing.T) {

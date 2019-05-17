@@ -8,9 +8,9 @@ package unit
 	
 import (
 	"testing"
-	"fbp"
-	"fbp/strings"
-	"fbp/std"
+	"github.com/tyoung3/streamwork"
+	"github.com/tyoung3/streamwork/strings"
+	"github.com/tyoung3/streamwork/std"
 	"sync"
 )
 

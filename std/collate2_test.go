@@ -2,9 +2,9 @@ package std
 
 import (
 	"fmt"
-	"fbp"
+	"github.com/tyoung3/streamwork"
 	"sync"
-	"fbp/strings"
+	"github.com/tyoung3/streamwork/strings"
 	"testing"
 )
 

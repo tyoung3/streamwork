@@ -8,8 +8,8 @@ package  std
 	
 import "testing"
 import "fmt"
-import "fbp"
-import "fbp/strings"
+import "github.com/tyoung3/streamwork"
+import "github.com/tyoung3/streamwork/strings"
 import "sync"
 
 func TestMerge(t *testing.T) {

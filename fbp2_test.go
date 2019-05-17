@@ -2,8 +2,8 @@ package fbp
 
 import (
 	"testing"
-	"fbp/strings"
-	"fbp/internal"
+	"github.com/tyoung3/streamwork/strings"
+	"github.com/tyoung3/streamwork/internal"
 	"sync"
 )
 

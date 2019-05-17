@@ -8,8 +8,8 @@ package std
 	
 import (
 	"testing"
-	"fbp"
-	"fbp/strings"
+	"github.com/tyoung3/streamwork"
+	"github.com/tyoung3/streamwork/strings"
 	"sync"
 )
 
