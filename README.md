@@ -64,9 +64,10 @@ finished, before returning.
 QuickStart
 ----------
 
-	* Download and install Go	
+	* Download and install Go [v1.11.0 or better is best. 1.9.7 and up should also work. 
+	  Previous versions will need to run under $GOPATH/src without module/version support].   	
 	* Create a new directory in $GOPATH/mod.  
-	* Change directory to $GOPATH/mod/foo  
+	* Change directory to $GOPATH/mod/foo.  
 	* Create $GOPATH/mod/foo/main.go:
 ```	
 package  main
@@ -104,12 +105,18 @@ func main() {
 Why another FBP Golang framework?
 ---------------------------------
 
-	* Streamwork will interpret and run a network definition 
-	  text file. No other project seems to do this.  
+	* Streamwork will eventually be able to interpret and run a program
+	  generated from a network definition text file. 
+	  No other project seems to do this, so far.  
 
 	* Streamwork defines a standard component 
 	  interface(currently subject to change), such that each
-	  process knows its name. 
+	  process knows its name; very useful for reporting errors, etc.. 
+	  
+	* Streamwork uses precompiled code(unless the source is changed or 
+	  recently imported).  Compilation, when it is required, is 
+	  transparent unless errors occur.
+	  
       
 Author
 ------
