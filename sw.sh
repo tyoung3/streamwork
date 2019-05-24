@@ -115,7 +115,7 @@ Remove Branch:
     * git pull origin master	
 	* go get -u=patch					. Update to latest patch version(s)
 	* go mod tidy 					     [Clean up  go.sum]
-    * make check 						. Start over if not OK 
+    * go test OR make check 						. Start over if not OK 
 	* go list [-u] -m all				. See all dependencies
 	* git status						. Everything committed before?  If not, start over
 	* git checkout master 	 			. Leave branch
