@@ -2,7 +2,7 @@
 
 # FBPGO.sh
 pgm=fbpgo
-version="0.0.4"  ; 
+version="0.0.5"  ; 
 
 # NOTE: Go ignores files and directories beginning with '_', as in _OLD/
 
@@ -24,7 +24,6 @@ NotesFBP() {
 
 ##Tutorials 
 	
-###Quick Start
 
 See
 
@@ -99,6 +98,7 @@ See
 
 #DONE
 
+    * Quick Start [in README.md]
 	* Run Go doc
 	* Replace Launch4
 	* Collate component
@@ -108,23 +108,30 @@ See
 ###New branch 
 
 	* git pull origin master 
-	* git checkout -b "Usefull Branch Name"
-	* git push origin "Usefull Branch Name"
+	* git checkout -b "Usefull Branch Name" 
+	* git push --set-upstream origin fix_go_channels
 		   https://github.com/tyoung3/streamwork/pull/new/Fix_Comp_names
-	* Make changes
-	* git push --set-upstream origin Fix_Comp_names
+	* Make changes 
+	* git status
+		* git add --all
+		* git commit -m "Good commit message"
+		* git push 
 	* git branch -a   [Check branch]
 	
-	
-	* git commit -m "Good commit message"
-	* git add --all
-	* git status
-	* git push origin Fix_Comp_names 
-	* git checkout master
-    * $git pull origin master
-	* git merge --no-ff Fix_Comp_names
+	* release:
+		[*	git tag VERSION ; git commit -m "v0.0.?";git push tag ??
+		* git push origin VERSION (Ex. git push origin v.0.0.2 )
+					OR
+		  git push origin --tags  (Pushes all tags to remote)			
+		* git checkout master
+    	* git pull origin master
+		* git merge --no-ff BRANCH_NAME(Ex. Fix_Comp_names)
 
-	*  git config --global merge.ff false  [ one time ]
+	?  git config --global merge.ff false  [ one time ]
+	
+	* OK?  * git branch -d branchname 
+	       * git push origin --delete branchname
+		   * git branch	       	
 
 https://githubflow.github.io/	
 	
@@ -239,13 +246,14 @@ MakeDir() {
 SeeDocs() {
 
 	URLS="
-	https://gist.github.com/blackfalcon/8428401/
-	https://appliedgo.net/flow/ 
 	https://golang.org/
-	https://medium.com/@benbjohnson/standard-package-layout-7cdbc8391fc1
-	http://reo.project.cwi.nl/v2/projects/
-	http://scipipe.org/
 	https://www.commonwl.org/
+	https://gist.github.com/blackfalcon/8428401/
+	https://githubflow.github.io/	
+	https://appliedgo.net/flow/ 
+	https://medium.com/@benbjohnson/standard-package-layout-7cdbc8391fc1
+	http://scipipe.org/
+	http://reo.project.cwi.nl/v2/projects/
 	"
 	
 	$BROWSER $* $URLS
