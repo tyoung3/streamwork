@@ -77,21 +77,72 @@ See
 
 ##Git 
 	
+###################################################################################
+On Branch:	
+					Release Checklist 
+    	 	* git pull origin master	
+		* make check OK?
+		* git status
+		* git push  	
+
+On Master 				
+		* git checkout master
+    	 	* git pull origin master	
+    	 	* make check OK?	
+		* git merge --no-ff BRANCH_NAME(Ex. Fix_Comp_names)
+
+New version?:		
+		* git tag	
+		* [git tag -a  New_VERSION ] 
+		* git commit -m "v0.0.?"
+		* git push origin VERSION (Ex. git push origin v.0.0.2 )
+					OR
+		  git push origin --tags  (Pushes all tags to remote)
+
+Remove Branch:		
+	  * git branch -d branchname 
+	       * git push origin --delete branchname
+		   * git branch	       	  
+
+
+	
+###################################################################################
 
 ##Publish 
 	
-	* go mod tidy 					   [Clean up  go.sum]
-	* go list [-u] -m all				. See all dependencies
+###While in branch [example_branch_name]	
+
+    * git pull origin master	
 	* go get -u=patch					. Update to latest patch version(s)
+	* go mod tidy 					     [Clean up  go.sum]
+    * make check 						. Start over if not OK 
+	* go list [-u] -m all				. See all dependencies
+	* git status						. Everything committed before?  If not, start over
+	* git checkout master 	 			. Leave branch
 
-
-		Check branch!!
+###While in master 
+	* git pull origin master			. Start over if error. 
 	* git status  [must be master branch]
-	* git pull origin master
+	* git merge --no-ff  example_branch_name
 	* git add --all 
+	
+###If no version change	
 	* git commit -m "Good commit message"
-	* git tag -a v1.2.3 -m "Version_Notice_wo_spaces"
-	* git push origin v0.0.1
+	* git push 
+	
+###If New version		
+	* git tag	
+	* git tag     -a v0.0.? -m "Version_Notice_wo_spaces"
+	* git commit -m "v0.0.?"
+	* git push origin v0.0.? (Ex. git push origin v.0.0.2 )
+					OR
+	* git push origin --tags  (Pushes all tags to remote)
+
+
+###Remove Branch if not needed 	
+	  * git branch -d branchname 
+	  * git push origin --delete branchname
+	  * git branch	       	  
 
 ##Changes
 
