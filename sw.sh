@@ -23,10 +23,39 @@ NotesFBP() {
 * * * * * * * * * * * 
 #TODO
 
+###Create Components
+
+####Gen1 
+
+	<- 0(_ Gen1 -i  [NBR_INT [FIRST_INT [INCREMENT]]]); 
+	 
+Component to generate test data for collate.sw. 
+Gen1 emits NBR_INT integer IPs, starting with FIRST_INT and 
+increasing the value by INCREMENT on each subsequent IP. 
+
+
+#####Examples
+		(Gen1) will send:
+		1 2 3 4 5 6 7
+		
+	 	(Gen1 "-i" "9" "2" "3") will send: 
+	2 5 8 11 14 17 20 23 26   
+
+	    (Gen1 "-i" "3" "17") will send:
+	17 18 19  	       
+	
+		(Gen1 "-i" "4" "-2" "-1") will send:
+	-2 -3 -4 -5
+
+###Generate Skeleton Components and tests
+
+	* See script, sw.sh
+	* See mod/sw, SW frontend
+	
 ##Tutorials 
 	
 
-See
+See>
 
 ### Ignore this 
 	 
@@ -59,57 +88,40 @@ See
 ##Roadmap 
 	
 ###Frontend
-
-	* Develop as a separate module
-	
-	* networkDefinition conversion to running program.  
-		* networkDefinition > (AddSemiColons) > (expand variables)
-		 > (tokeninize) > (interpret) > (buildGo) > (Launch) 
-	
+See github.com/tyoung3/sw for converting a network definition to:
+	* A Go module, 				(works)
+	* A Graphviz .DOT file 		(works)
+	* An abstract syntax tree 	(works)
+	* A linearized tree 		(works)
+	* A JavaFBP network 		(in progress)
+	* A C language frontend		(in progress)
 		  
 ###Backend 
-	Backend prototype is working. 
- 		  
+	Backend prototype is working. 		  
 		    	
 ##Signals
 	. Trap signals
 	
 ##Copyright 
 
-##Git 
-	
-###################################################################################
-On Branch:	
-					Release Checklist 
-    	 	* git pull origin master	
-		* make check OK?
-		* git status
-		* git push  	
+##GitHub Flow
 
-On Master 				
-		* git checkout master
-    	 	* git pull origin master	
-    	 	* make check OK?	
-		* git merge --no-ff BRANCH_NAME(Ex. Fix_Comp_names)
+###New branch 
 
-New version?:		
-		* git tag	
-		* [git tag -a  New_VERSION ] 
-		* git commit -m "v0.0.?"
-		* git push origin VERSION (Ex. git push origin v.0.0.2 )
-					OR
-		  git push origin --tags  (Pushes all tags to remote)
-
-Remove Branch:		
-	  * git branch -d branchname 
-	       * git push origin --delete branchname
-		   * git branch	       	  
-
-
-	
-###################################################################################
-
-##Publish 
+	* git pull origin master 
+	* git checkout -b "Usefull Branch Name" 
+	* git push --set-upstream origin fix_go_channels
+		   https://github.com/tyoung3/streamwork/pull/new/Fix_Comp_names
+		   
+###Commit changes
+		   
+	* Make changes 
+	* git status
+		* git add --all
+		* git commit -m "Good commit message"
+		* git push 
+	* git branch -a   [Check branch]
+	 
 	
 ###While in branch [example_branch_name]	
 
@@ -155,36 +167,7 @@ Remove Branch:
 	* Replace Launch4
 	* Collate component
 	
-##GitHub Flow
-
-###New branch 
-
-	* git pull origin master 
-	* git checkout -b "Usefull Branch Name" 
-	* git push --set-upstream origin fix_go_channels
-		   https://github.com/tyoung3/streamwork/pull/new/Fix_Comp_names
-	* Make changes 
-	* git status
-		* git add --all
-		* git commit -m "Good commit message"
-		* git push 
-	* git branch -a   [Check branch]
-	
-	* release:
-		[*	git tag VERSION ; git commit -m "v0.0.?";git push tag ??
-		* git push origin VERSION (Ex. git push origin v.0.0.2 )
-					OR
-		  git push origin --tags  (Pushes all tags to remote)			
-		* git checkout master
-    	* git pull origin master
-		* git merge --no-ff BRANCH_NAME(Ex. Fix_Comp_names)
-
-	?  git config --global merge.ff false  [ one time ]
-	
-	* OK?  * git branch -d branchname 
-	       * git push origin --delete branchname
-		   * git branch	       	
-
+	 
 https://githubflow.github.io/	
 	
 	* Anything in the master branch is deployable
