@@ -1,11 +1,12 @@
 #!/bin/bash
 
-# FBPGO.sh
-pgm=fbpgo
-version="0.0.5"  ; 
+# SW.sh
+pgm=github/tyoung3/StreamWork/sw.sh
+version="0.1.0"  ; 
 
 # NOTE: Go ignores files and directories beginning with '_', as in _OLD/
 
+# NOTE: See github/tyoung3/sw for a better  approach  to generating a skeleton component -- and test code.
 Die() {
 		echo "$0/Die $*"
 		exit 1
@@ -256,7 +257,7 @@ EOF
 
 }
 
-src=~/streamwork
+src=~/go/mod/streamwork
 
 MakeDir2() {
 	dir2=$1
@@ -409,7 +410,7 @@ case $1 in
 	 	gd			. Run and view 'godocs'
 	 	gs PKG	COMPNAME [INPORTS [OUTPORTS]] . Generate skeleton components
 					COMPNAME must begin with an upper case letter
-					PKG directory mus exist
+					PKG directory must exist
 	 	n			. Browse $pgm notes
 	 	r			. Run fbpgo.go
 	 	t			. Test fbp packages 
