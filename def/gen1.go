@@ -25,7 +25,7 @@ func Gen1(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 	c := cs[0]
 
 	for n = 1; n < n0+1; n++ {
-		c <- fmt.Sprintf("%s-%d", arg[0], n)
+		c <- fmt.Sprintf("%s", arg[0])
 	}
 
 	close(c)
