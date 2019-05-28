@@ -1,5 +1,4 @@
-package strings
-
+package def 
 
 import "testing"
 import "fmt"
@@ -9,7 +8,7 @@ func TestGen1(t *testing.T) {
 	var cs []chan interface{}
 	var wg sync.WaitGroup
 
-	arg := []string{"TestGen1", "7"}
+	arg := []string{"TestGen1", "3"}
 
 	fmt.Println(arg[0])
 	cs = append(cs, make(chan interface{}))

@@ -1,4 +1,4 @@
-package strings
+package def 
 
 import "fmt"
 import "sync"
