@@ -1,6 +1,6 @@
 package std
 
-// Fix -race bug 
+// Fix -race bug
 
 import "testing"
 
@@ -11,7 +11,7 @@ import "sync"
 func TestMergeI(t *testing.T) {
 	fmt.Println("TestMerge Start ")
 	var wg sync.WaitGroup
-	
+
 	cs := *new([]chan interface{})
 
 	cs = append(cs, make(chan interface{}))
@@ -27,13 +27,13 @@ func TestMergeI(t *testing.T) {
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		c1 <- "A:IP1"  
-		c3 <- "C:IP1"  
+		c1 <- "A:IP1"
+		c3 <- "C:IP1"
 		c1 <- "A:IP2"
 		c4 <- "D:IP1"
 		c2 <- "B:IP1"
 		c2 <- "B:IP2"
-			fmt.Println("End of input")
+		fmt.Println("End of input")
 		close(c1)
 		close(c2)
 		close(c3)
@@ -45,7 +45,7 @@ func TestMergeI(t *testing.T) {
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		for   {
+		for {
 			i, ok := <-cs[0]
 			if ok != true {
 				return
@@ -55,8 +55,8 @@ func TestMergeI(t *testing.T) {
 	}()
 
 	wg.Add(1)
-	Merge(&wg,cs[0], cs[1], cs[2], cs[3], cs[4])
-	
+	Merge(&wg, cs[0], cs[1], cs[2], cs[3], cs[4])
+
 	wg.Wait()
 	fmt.Println("TestMerge Ended")
 }

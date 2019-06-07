@@ -330,7 +330,7 @@ GenSkel() {
 		import "fmt"
 		import "sync"
 		
-		var Version string="v$version"
+		var version string="v$version"
 		
 	    func $uname(wg *sync.WaitGroup, arg []string, cs []chan interface{} ){
 	    	
@@ -378,7 +378,7 @@ func TestSkel_$name(t *testing.T) {
 	}() 
 	
 	wg.Add(2)
-	go $uname(&wg, arg,  cs)
+	go $name(&wg, arg,  cs)
 	wg.Wait()	
 
 }

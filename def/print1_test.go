@@ -1,4 +1,4 @@
-package def 
+package def
 
 import "testing"
 import "fmt"

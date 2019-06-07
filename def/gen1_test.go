@@ -1,4 +1,4 @@
-package def 
+package def
 
 import "testing"
 import "fmt"
@@ -15,7 +15,7 @@ func TestGen1(t *testing.T) {
 	c := cs[0]
 
 	go func() {
-		for  {
+		for {
 			s, ok := <-c
 			if ok == true {
 				fmt.Println("TestGen1.go1", s)

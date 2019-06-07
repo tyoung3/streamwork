@@ -3,8 +3,8 @@ package std
 import (
 	"fmt"
 	"github.com/tyoung3/streamwork"
-	"sync"
 	"github.com/tyoung3/streamwork/strings"
+	"sync"
 	"testing"
 )
 
@@ -12,20 +12,19 @@ func TestCollate(t *testing.T) {
 	var cs []chan interface{}
 	var wg sync.WaitGroup
 
-	fmt.Println("TestCollate2:", )
+	fmt.Println("TestCollate2:")
 	cs = append(cs, make(chan interface{}))
 	cs = append(cs, make(chan interface{}))
 	cs = append(cs, make(chan interface{}))
 	cs = append(cs, make(chan interface{}))
 	cs = append(cs, make(chan interface{}))
 	cs = append(cs, make(chan interface{}))
-	
-	 
+
 	fbp.Launch(&wg, []string{"Match0"}, strings.Print1, cs[2:3])
 	fbp.Launch(&wg, []string{"Match1"}, strings.Print1, cs[3:4])
-	fbp.Launch(&wg, []string{"Miss0"},  strings.Print1, cs[4:5])
-	fbp.Launch(&wg, []string{"Miss1"},  strings.Print1, cs[5:6])
-	 
+	fbp.Launch(&wg, []string{"Miss0"}, strings.Print1, cs[4:5])
+	fbp.Launch(&wg, []string{"Miss1"}, strings.Print1, cs[5:6])
+
 	wg.Add(1)
 	go func() {
 		cs[1] <- 3
@@ -38,11 +37,11 @@ func TestCollate(t *testing.T) {
 		fmt.Println("End1")
 		wg.Done()
 	}()
-	
+
 	wg.Add(1)
 	go func() {
 		cs[0] <- 2
-		cs[0] <- 4	
+		cs[0] <- 4
 		cs[0] <- 6
 		cs[0] <- 6
 		cs[0] <- 8
@@ -55,7 +54,7 @@ func TestCollate(t *testing.T) {
 	}()
 
 	//wg.Add(1)
-    go fbp.Launch(&wg, []string{"Collate"},      Collate, cs[0:6])
+	go fbp.Launch(&wg, []string{"Collate"}, Collate, cs[0:6])
 	wg.Wait()
 
 }

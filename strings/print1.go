@@ -6,11 +6,11 @@ import "sync"
 func Print1(wg *sync.WaitGroup,
 	arg []string,
 	cs []chan interface{}) {
-	
+
 	defer wg.Done()
 	c := cs[0]
 	s := arg[0]
-	
+
 	for {
 		ip, ok := <-c
 		if ok != true {
