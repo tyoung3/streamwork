@@ -23,8 +23,7 @@ TODO(ty): Document  code
 
 import "sync"
 
-/*
-	Launch starts a standard fbp process as a goroutine.
+/*Launch starts a standard fbp process as a goroutine.
 
 	Launch requires four arguments:
 
