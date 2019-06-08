@@ -5,28 +5,34 @@ import "sync"
 import "reflect"
 
 func get0(state *int, c chan interface{}) interface{} {
+
 	ip, ok := <-c
+	
 	if ok {
-		*state += 1
+		*state++
 		return ip
-	} else {
-		*state += 4
-		return nil
-	}
+	}  
+	
+	*state += 4
+	return nil
 }
 
 func get1(state *int, c chan interface{}) interface{} {
+	
 	ip, ok := <-c
+	
 	if ok {
 		*state += 2
 		return ip
-	} else {
-		*state += 8
-		return nil
-	}
+	} 
+		
+	*state += 8
+	return nil
+	 
 }
 
-/* Collate compares IPs from two channels(0,1).  Matching IPs are
+/* 
+Collate compares IPs from two channels(0,1).  Matching IPs are
    sent to channels 2 and 3, while mismatches from (0,1) are sent to (4,5)
    respectively.
 */

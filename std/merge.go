@@ -3,7 +3,8 @@ package std
 import "sync"
 import "fmt"
 
-/* Merge sends all input from channels [1:n] to channel [0], port 0.
+/* 
+Merge sends all input from channels [1:n] to channel [0], port 0.
  */
 func Merge(wg1 *sync.WaitGroup, arg []string, cs []chan interface{}) {
 	var wg sync.WaitGroup

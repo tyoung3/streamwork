@@ -293,6 +293,7 @@ SeeDocs() {
 	https://godoc.org/github.com/tyoung3/streamwork#Github
 	https://github.com/tyoung3/sw/
 	http://localhost:6060/std
+	https://goreportcard.com/report/github.com/tyoung3/streamwork
 	$HTML
 	"
 	$BROWSER $* $URLS &

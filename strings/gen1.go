@@ -11,14 +11,15 @@ import "strconv"
 
 // var Version string = "0.0.1"
 
-/* Gen1 sends arg[1],  arg[2] long strings to channel cs[0] (out1)
+/* 
+Gen1 sends arg[1],  arg[2] long strings to channel cs[0] (out1)
     Strings consist of the process name
    and seq. no; i.e. G3-1, G3-2, etc.
 
    BUG cannot set length, yet.
 */
 func Gen1(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
-	var n0 int = 7
+	var n0 = 7
 	var n int
 	//var nb int = 80
 

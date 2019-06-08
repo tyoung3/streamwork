@@ -5,7 +5,8 @@ package internal
 import "sync"
 import "fmt"
 
-/* Merge sends all input from channels cs[1:] to channel cs[0]
+/* 
+MergeInt sends all input from channels cs[1:] to channel cs[0]
  */
 func MergeInt(wg1 *sync.WaitGroup, cs ...chan interface{}) {
 	var wg sync.WaitGroup

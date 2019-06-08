@@ -4,9 +4,10 @@ import "fmt"
 import "sync"
 import "strconv"
 
-var version string = "v0.0.0"
+var version = "v0.0.0"
 
-/* Gen1 sends 'nbr' integers, beginning with 'start', incremented
+/* 
+Gen1 sends 'nbr' integers, beginning with 'start', incremented
 by 'inc';  argcuments 1, 2, and 3 respectively over port 0.
 
 #####Examples

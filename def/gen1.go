@@ -4,14 +4,15 @@ import "fmt"
 import "sync"
 import "strconv"
 
-var Version string = "0.0.2"
+//var version = "0.0.2"
 
-/* Gen1 sends arg[1],  arg[2] long strings to channel cs[0] (out1)
+/* 
+Gen1 sends arg[1],  arg[2] long strings to channel cs[0] (out1)
    Strings consist of the process name only
    i.e. G3  G3 , etc
 */
 func Gen1(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
-	var n0 int = 1
+	var n0 = 1
 	var n int
 
 	defer wg.Done()
