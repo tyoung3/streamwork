@@ -12,7 +12,7 @@ func Split(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 
 	defer wg.Done()
 
-	for _ = range cs[1:] {
+	for range cs[1:] {
 		c2s = append(c2s, make(chan interface{}))
 	}
 

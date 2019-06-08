@@ -12,13 +12,13 @@ by 'inc';  argcuments 1, 2, and 3 respectively over port 0.
 #####Examples
 		(Gen1) will send:
 		1 2 3 4 5 6 7
-		
-	 	(Gen1 "-i" "9" "2" "3") will send: 
-	2 5 8 11 14 17 20 23 26   
+
+	 	(Gen1 "-i" "9" "2" "3") will send:
+	2 5 8 11 14 17 20 23 26
 
 	    (Gen1 "-i" "3" "17") will send:
-	17 18 19  	       
-	
+	17 18 19
+
 		(Gen1 "-i" "4" "-2" "-1") will send:
 	-2 -3 -4 -5
 */
