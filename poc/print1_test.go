@@ -14,7 +14,7 @@ func TestPrint1(t *testing.T) {
 	var wg sync.WaitGroup
 	arg := []string{"TestPrint1", "xx"}
 
-	fmt.Println("TestPrint1")
+	fmt.Println("\nTestPrint1")
 	cs = append(cs, make(chan interface{}))
 	c := cs[0]
 
@@ -27,7 +27,6 @@ func TestPrint1(t *testing.T) {
 
 	wg.Add(1)
 	go Print1(&wg, arg, cs)
-	fmt.Println("TestPrint1 wait c ")
 	wg.Wait()
 	fmt.Println("TestPrint1 done.")
 }

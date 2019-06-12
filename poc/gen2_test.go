@@ -4,7 +4,7 @@ import "testing"
 import "fmt"
 import "sync"
 
-func TestGen1(t *testing.T) {
+func TestGen2(t *testing.T) {
 	var cs []chan interface{}
 	var wg sync.WaitGroup
 
@@ -27,7 +27,7 @@ func TestGen1(t *testing.T) {
 	}()
 
 	wg.Add(1)
-	go Gen1(&wg, arg, cs)
+	go Gen2(&wg, arg, cs)
 	wg.Wait()
 
 }
