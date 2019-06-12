@@ -18,7 +18,6 @@ func Print1(wg *sync.WaitGroup,
 	for {
 		ip, ok := <-c
 		if ok != true {
-			// fmt.Println(s,"ended.")
 			return
 		}
 		switch ip.(type) {

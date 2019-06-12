@@ -1,4 +1,4 @@
-package strings
+package poc
 
 /* /home/tyoung3/go/mod/fbp/comp1/comp1.go
  *		 	 DO NOT EDIT!!!
@@ -18,7 +18,7 @@ Gen1 sends arg[1],  arg[2] long strings to channel cs[0] (out1)
 
    BUG cannot set length, yet.
 */
-func Gen1(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
+func Gen2(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 	var n0 = 7
 	var n int
 	//var nb int = 80

@@ -1,4 +1,4 @@
-package std
+package poc
 
 /*  	Network
 		(G2 Gen1 "2")out -> in1(M merge) -> in(Sink Print1)
@@ -8,9 +8,9 @@ package std
 
 import "testing"
 import "fmt"
-import "github.com/tyoung3/streamwork"
-import "github.com/tyoung3/streamwork/strings"
 import "sync"
+import "github.com/tyoung3/streamwork/fbp"
+//import "github.com/tyoung3/streamwork/poc"
 
 func TestMerge(t *testing.T) {
 	var cs []chan interface{}
@@ -23,10 +23,10 @@ func TestMerge(t *testing.T) {
 	fmt.Println("Testing Merge-0.0.2")
 	wg.Add(1)
 	go Merge(&wg, []string{"Join"}, cs[0:4])
-	fbp.Launch(&wg, []string{"G2", "2"}, strings.Gen1, cs[1:2])
-	fbp.Launch(&wg, []string{"G3", "3"}, strings.Gen1, cs[2:3])
-	fbp.Launch(&wg, []string{"G5", "5"}, strings.Gen1, cs[3:4])
-	fbp.Launch(&wg, []string{"Sink"}, strings.Print1, cs[0:1])
+	fbp.Launch(&wg, []string{"G2", "2"},  Gen2, cs[1:2])
+	fbp.Launch(&wg, []string{"G3", "3"},  Gen2, cs[2:3])
+	fbp.Launch(&wg, []string{"G5", "5"},  Gen2, cs[3:4])
+	fbp.Launch(&wg, []string{"Sink"},    Print1, cs[0:1])
 
 	fmt.Println("TestMerge waiting")
 	wg.Wait()

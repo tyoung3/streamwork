@@ -1,6 +1,5 @@
-package internal
+package poc
 
-// github/tyoung3/streamwork/internal
 
 import "sync"
 import "fmt"
@@ -11,7 +10,6 @@ MergeInt sends all input from channels cs[1:] to channel cs[0]
 func MergeInt(wg1 *sync.WaitGroup, cs ...chan interface{}) {
 	var wg sync.WaitGroup
 
-	// fmt.Println("Merge stgit checkout -b art")
 	defer wg1.Done()
 	wg.Add(len(cs) - 1)
 
@@ -27,9 +25,7 @@ func MergeInt(wg1 *sync.WaitGroup, cs ...chan interface{}) {
 
 	go func() {
 		wg.Wait()
-		// fmt.Println("Merge done")
 		close(cs[0])
 	}()
 
-	// return cs[0]
 }
