@@ -1,4 +1,4 @@
-package std
+package poc
 
 import "fmt"
 import "sync"

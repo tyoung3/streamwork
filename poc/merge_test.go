@@ -1,4 +1,4 @@
-package std
+package poc
 
 /*  	Network
 		(G2 Gen1 "2")out -> in1(M merge) -> in(Sink Print1)
@@ -8,9 +8,9 @@ package std
 
 import "testing"
 import "fmt"
-import "github.com/tyoung3/streamwork"
-import "github.com/tyoung3/streamwork/strings"
 import "sync"
+import "github.com/tyoung3/streamwork"
+import "github.com/tyoung3/streamwork/poc"
 
 func TestMerge(t *testing.T) {
 	var cs []chan interface{}

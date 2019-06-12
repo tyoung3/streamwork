@@ -1,4 +1,4 @@
-package std
+package poc
 
 /* NETWORK:
    (Q Gen1)out1 -> in1(S split)out1 -> in1(A1 Print1)

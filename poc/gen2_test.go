@@ -1,4 +1,4 @@
-package strings
+package poc
 
 import "testing"
 import "fmt"

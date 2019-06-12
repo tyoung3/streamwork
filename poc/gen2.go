@@ -1,4 +1,4 @@
-package strings
+package poc
 
 /* /home/tyoung3/go/mod/fbp/comp1/comp1.go
  *		 	 DO NOT EDIT!!!
