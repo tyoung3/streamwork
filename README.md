@@ -12,8 +12,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-STREAMWORK
-==========
+STREAMWORK-0.2.0
+================
 
 Name
 ----
@@ -24,15 +24,20 @@ Name
 Description
 -----------
 
-StreamWork is a proof-of-concept for a Go language flow-based system which will be able to read and execute a network definition consisting of Go processes and links passing information packets(IPs) between them.  The IPs are designed as nil(empty) interfaces to be filled by the source components.    
+StreamWork is a proof-of-concept for a Go language flow-based system 
+which reads and executes a network definition consisting of 
+Go processes and connectionss, passing information packets(IPs) 
+between them. 
+The IPs are designed as nil(empty) interfaces to be filled by 
+the source components.    
 
 The backend provided here has a minimal set of components, but enough to 
 create, test, and benchmark working programs.  
 
-The frontend(to be developed) will process the network definition.
+The frontend, sw, will process the network definition and generate the Go
+code.
 
-Everything here(including the project name) is subject to change, until after the frontend has been developed.  Versions will be backward compatible within the same major version. Ex. your code depending on v0.0.1 will still work on v0.8.7, but may fail on v1.0.0.  Streamwork is developed using 
-the Go module facility, so that dependencies are clear.   
+Everything here(including the project name) is subject to change, until after the frontend has been more fully developed.  Versions will be backward compatible within the same major version. Ex. your code depending on v0.0.1 will still work on v0.8.7, but may fail on v1.0.0.  Streamwork is developed using the Go module facility, so that dependencies are clear.   
 
 Contributors are encouraged.  Comments are particularly welcome.   
 Please do not submit code before contacting the project by e-mailing streamwork@twyoung.com.     
@@ -46,7 +51,8 @@ component may be invoked any number of times, but  with a different, unique, pro
 
 The current list of components include 
 
-	1. Gen1(Generates N IPs), 
+	1. Gen1(Generates N integer IPs), 
+	2. Gen2(Generates N string IPs),
 	2. Print1(sends input to the terminal), 
 	3. Split(sends input to N output channels),  
 	4. Concat(sends N inputs in order to its 
@@ -105,9 +111,11 @@ func main() {
 Why another FBP Golang framework?
 ---------------------------------
 
-	* Streamwork will eventually be able to interpret and run a program
+	* Streamwork is able to interpret and run a program
 	  generated from a network definition text file. 
-	  No other project seems to do this, so far.  
+	  No other project seems to do this, so far. 
+	  
+	* Streamwork ensures clear component interfaces.    
 
 	* Streamwork defines a standard component 
 	  interface(currently subject to change), such that each
