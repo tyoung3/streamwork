@@ -115,7 +115,11 @@ Why another FBP Golang framework?
 	  generated from a network definition text file. 
 	  No other project seems to do this, so far. 
 	  
-	* Streamwork ensures clear component interfaces.    
+	* Streamwork ensures clear component interfaces.  
+	
+	* Streamwork components are contained in separately compiled 
+	  members of separately tested packages, rather than being 
+	  mashed together in a single program.
 
 	* Streamwork defines a standard component 
 	  interface(currently subject to change), such that each
