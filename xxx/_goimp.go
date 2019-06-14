@@ -1,3 +1,5 @@
+/* This package is local and experimental.  Nothing here can be counted on.  
+*/
 package xxx
 
 import (

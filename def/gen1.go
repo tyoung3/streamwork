@@ -1,3 +1,6 @@
+/*Package def contains default StreamWork Flow-based components. 
+Contents of this package are subject to change.
+*/
 package def
 
 import "fmt"
