@@ -1,3 +1,5 @@
+/* Package poc contains a small set of flow-based, Proof Of Concept, components.  
+*/ 
 package poc
 
 // import "fmt"
