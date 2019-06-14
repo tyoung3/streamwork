@@ -286,14 +286,12 @@ SeeDocs() {
 	http://reo.project.cwi.nl/v2/projects/
 	"
 	URLS=" 
-	file:///home/tyoung3/go/mod/streamwork/fbpgo.html
-	https://godoc.org/github.com/tyoung3/streamwork/std#Github
 	https://godoc.org/github.com/tyoung3/streamwork/def#Github
-	https://godoc.org/github.com/tyoung3/streamwork/strings#Github
-	https://godoc.org/github.com/tyoung3/streamwork#Github
+	https://godoc.org/github.com/tyoung3/streamwork/poc#Github
 	https://github.com/tyoung3/sw/
-	http://localhost:6060/std
 	https://goreportcard.com/report/github.com/tyoung3/streamwork
+	file:///home/tyoung3/go/mod/streamwork/ 
+	http://localhost:6060/poc
 	$HTML
 	"
 	$BROWSER $* $URLS &
@@ -306,27 +304,45 @@ SeeDocs() {
 
 IdSkel() {
 	cat << EOF
-	/*  Generated skeleton fbp component by fbpgo.sh on `date` 
-		input  ports: "$inp"
-		output ports: "$outp"
+	/*  Generated StreamWork component, $name, 
+	    by sw.sh on `date` 
+		$inp  input  ports 
+		$outp output ports 
 	*/ 
 EOF
 }
 
-#  Generate a skeleton component
-GenSkel() {
-	pkg=$1; shift; 
-	name=$1
-	inp=$2
-	outp=$3
-	shift 3
-	[ -z $pkg ] && Die  Usage: $0 gs PKG NAME ... 
-	[ -z $name ] && Die Usage: $0 gs PKG NAME ...
-	[ -d $src/$pkg ] || Die $src/$pkg is missing.
-	src2=$src/$pkg
-	pushd $src2 || Die Cannot cd  $src2
-	uname=name
-	[ -f ${name}.go ]  || cat << EOF > ${name}.go 
+lb='{'
+rb='}'
+for="for"
+
+GenOutP() {	 
+	 if [ $po -eq 1 ]; then 
+	 	cat << EOFX >> ${name}.go	
+	 	
+			cs[$inp] <- $inp
+			
+EOFX
+	 else 	
+	 	
+	 	cat << EOFX >> ${name}.go
+	 	
+	 	i := $po
+	 	
+		$for i >= $inp $lb
+			cs[i] <- i
+			close(cs[i])
+			i--
+		$rb
+
+EOFX
+	fi
+}
+
+GenGo() {	
+	 echo GenGo $inp $outp
+	 
+	 cat << EOF > ${name}.go 
 	 	package $pkg
 	 	
 		`IdSkel` 
@@ -334,22 +350,59 @@ GenSkel() {
 		import "fmt"
 		import "sync"
 		
-		var version string="v$version"
+		var version string="v0.0.0"
 		
-	    func $uname(wg *sync.WaitGroup, arg []string, cs []chan interface{} ){
+	    func $name(wg *sync.WaitGroup, arg []string, cs []chan interface{} ){
 	    	
 	    	defer wg.Done()
 	    	fmt.Println("Running",arg[0])
-	    	c := cs[0]
-	    	c <- "out1 IP1"
-	    	c <- "out1 IP2"
-			close(c)
-	    }
-	    
 EOF
+	    	
+	 # For each output port, send one ip and close the port.
+	 
+	 if [ $outp -gt 0 ]; then  
+		outp=$(($outp-1))
+	 	po=$(($outp+$inp))
+	 	GenOutP
+	 fi
+	 
+	 # For each input port, receive one ip.
+	 if [ $inp -gt  0 ]; then
+	 	inp=$(($inp-1))
+	 	pi=$inp
+	 	cat << EOFZ >> ${name}.go  
+	 	
+	 	j := $inp
+	 	$for j >=0 $lb
+	    	_ = <- cs[j]
+	    	j--
+	    $rb	  
+EOFZ
+	 fi
+	    	
+	 cat << EOF >> ${name}.go 
+	    }
+EOF
+
 	go fmt ${name}.go
-	
-	[ -f ${name}_test.go ]  ||cat << EOFY > ${name}_test.go
+}
+
+GenTestOutP() {	 	
+	 	cat << EOFX >> ${name}_test.go
+	 	
+	 	i := $ni
+		$for i >= 0 $lb
+			cs[i] <- i
+			close(cs[i])
+			i--
+		$rb
+EOFX
+}
+
+GenTestGo() {	
+	 ni=$1
+	 no=$2
+	 cat << EOFY > ${name}_test.go
 		package $pkg
 
 	`IdSkel`
@@ -358,27 +411,69 @@ import "testing"
 import "fmt"
 import "sync"
 
-func TestSkel_$name(t *testing.T) {
+func TestSkel_${name}(t *testing.T) {
 	var cs  []chan interface{}
 	var wg  sync.WaitGroup
 	
-	arg := []string{"$name","dummy arg[1]","dummy arg[2]"}
+	arg := []string{"$name"}
 	
 	fmt.Println(arg[0])
-	cs = append(cs,make(chan interface{}))
-	c  := cs[0]
+EOFY
+    
+    nports=$(($no + $ni))
+    if [ $nports -gt 0 ]; then      
+	 	cat << EOFY >> ${name}_test.go	
+		$for i :=0; i < $no + $ni; i++ $lb
+			cs = append(cs,make(chan interface{}))
+		$rb
+EOFY
+	fi
 	
+	 cat << EOFY >> ${name}_test.go
 	go func() { 
-	 for  {
-		s, ok := <-c
-		if ok == true {
-			fmt.Println("Out1", s)
-		} else {
-			fmt.Println("Test_$name Ended")
+EOFY
+			 # For each input port, receive one ip.
+	 if [ $no -gt  0 ]; then
+	 	no=$(($no-1))
+	 	po=$(($no+$ni))
+	 	cat << EOFZ >> ${name}_test.go  
+ 
+	 	j := $po
+	 	$for j >= $ni $lb
+	    	_ = <- cs[j]
+	    	j--
+	    $rb	  
+	    
+EOFZ
+	 fi
+
+
+	 #while [ $no -gt 0 ]; do 
+	 #	no=$(($no-1))
+	 #	po=$(($no+$ni))
+	 #	cat << EOFY >> ${name}_test.go 
+	 #   	_ = <- cs[$po]  
+#EOFY
+#	done
+     
+     if [ $ni -gt 0 ];  then
+     	ni=$(($ni-1))
+     	echo ni=$ni
+	 	GenTestOutP
+	 fi
+	 
+#	 while [ $ni -gt  0 ]; do 
+#	 	ni=$(($ni-1))
+#	 	pi=$ni
+#	 	cat << EOF >> ${name}_test.go 
+#	    	cs[$pi] <- $pi  
+#EOF
+#	 done
+	 
+	 cat << EOFY >> ${name}_test.go
+			fmt.Println("TestSkel_${name} Ended")
 			wg.Done()
 			return
-		}
-	  }	
 	}() 
 	
 	wg.Add(2)
@@ -388,6 +483,28 @@ func TestSkel_$name(t *testing.T) {
 }
 	
 EOFY
+	go fmt ${name}_test.go
+}
+	
+#  Generate a skeleton component
+GenSkel() {
+	pkg=$1; shift; 
+	name=$1
+	inp=$2
+	outp=$3
+	[ -z $inp ] && inp=0
+	[ -z $outp ] && outp=0
+	shift 3
+	[ -z $pkg ] && Die  Usage: $0 gs PKG NAME ... 
+	[ -z $name ] && Die Usage: $0 gs PKG NAME ...
+	[ -d $src/$pkg ] 	\
+	|| mkdir $src/$pkg 	\
+	|| Die Cannot create $src/$pkg.
+	src2=$src/$pkg
+	pushd $src2 || Die Cannot cd  $src2
+	[ -f ${name}_test.go ]  || GenTestGo $inp $outp
+	[ -f ${name}.go ]  		|| GenGo 	 $inp $outp
+	go test 
 }
 
 
@@ -416,7 +533,7 @@ case $1 in
 	 	gd			. Run and view 'godocs'
 	 	gs PKG	COMPNAME [INPORTS [OUTPORTS]] . Generate skeleton components
 					COMPNAME must begin with an upper case letter
-					PKG directory must exist
+					PKG directory will be created if missing.
 	 	n			. Browse $pgm notes
 	 	r			. Run fbpgo.go
 	 	t			. Test fbp packages 
