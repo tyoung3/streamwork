@@ -80,7 +80,7 @@ package  main
 
 import "fmt"
 import "sync"
-import "github.com/tyoung3/streamwork"
+import "github.com/tyoung3/streamwork/fbp"
 import "github.com/tyoung3/streamwork/strings"
 
 func main() {

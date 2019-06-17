@@ -52,7 +52,7 @@ Launch requires four arguments:
 	Launch passes on wg, arg, and cs to the process.
 	Packages using Launch will need
 	to import the function's package.  (Ex. to launch split, import
-	"fbp/std" and specify  fbp.Launch(&wg,arg, std.Split,cs).)
+	"fbp/poc" and specify  fbp.Launch(&wg,arg, poc.Split,cs).)
 	A bash script, 'fbpgo.sh -gs', is available to generate
 	component skeleton code.
 

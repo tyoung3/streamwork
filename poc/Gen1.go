@@ -28,7 +28,7 @@ func Gen1(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 	defer wg.Done()
 	c := cs[0]
 
-	fmt.Println(arg[0], " std.Gen1", arg[1], arg[2], arg[3])
+	fmt.Println(arg[0], " poc.Gen1", arg[1], arg[2], arg[3])
 	nbr, _ := strconv.Atoi(arg[1])
 	start, _ := strconv.Atoi(arg[2])
 	inc, _ := strconv.Atoi(arg[3])

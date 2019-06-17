@@ -2,8 +2,9 @@
 */ 
 package poc
 
-// import "fmt"
+import "fmt"
 import "sync"
+import "strings"
 import "reflect"
 
 func get0(state *int, c chan interface{}) interface{} {
@@ -33,25 +34,18 @@ func get1(state *int, c chan interface{}) interface{} {
 	 
 }
 
-/* 
-Collate compares IPs from two channels(0,1).  Matching IPs are
-   sent to channels 2 and 3, while mismatches from (0,1) are sent to (4,5)
-   respectively.
-*/
-func Collate(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
+func match(cs []chan interface{}) {
 	var state = 0
+
 	ip0 := *new(interface{})
 	ip1 := *new(interface{})
-
-	defer wg.Done()
-	// fmt.Println("Running", arg[0])
-
+	10:30am
 	for {
-		// fmt.Println(state, ip0, ip1)
+		fmt.Println("Cstate:",state, ip0, ip1)
 		switch state {
-		case 0, 2, 8: /* get 0 and add 1 to state. If EOF, add 4 to state */
+		case 0, 2: /* get 0 and add 1 to state. If EOF, add 4 to state */
 			ip0 = get0(&state, cs[0])
-		case 1, 4: /* get 1 and state=3. if EOF state=8 */
+		case 1, 4: /* get 1 and state+=2. if EOF state=8 */
 			ip1 = get1(&state, cs[1])
 		case 3:
 			if ip0 == ip1 {
@@ -72,6 +66,8 @@ func Collate(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 		case 6: /*Output 1 to missed1.  */
 			cs[5] <- ip1
 			state = 4
+		case 8:
+			ip0 = get0(&state, cs[0])		
 		case 9: /*Output 0 to missed0. */
 			cs[4] <- ip0
 			state = 8
@@ -80,10 +76,77 @@ func Collate(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 			close(cs[3])
 			close(cs[4])
 			close(cs[5])
-			// fmt.Println("Ended", arg[0])
 			return
 
 		}
 	}
+}
 
+func merge(cs []chan interface{}) {
+	var state = 0
+	
+	ip0 := *new(interface{})
+	ip1 := *new(interface{})
+	
+	for {
+		fmt.Println("Mstate:",state, ip0, ip1)
+		switch state {
+		case 0, 2, 8: /* get 0 and add 1 to state. If EOF, add 4 to state */
+			ip0 = get0(&state, cs[0])
+		case 1, 4: /* get 1 and add 2 to state. if EOF state+=8 */
+			ip1 = get1(&state, cs[1])
+		case 3:
+			if ip0 == ip1 {
+				cs[2] <- ip0  
+				state--
+			} else {
+				val0 := reflect.ValueOf(ip0).Int()
+				val1 := reflect.ValueOf(ip1).Int()
+				if val0 > val1 {
+					cs[2] <- ip1
+					state = 1
+				} else {
+					cs[2] <- ip0
+					state = 2
+				}
+			}
+		case 6:  
+			cs[2] <- ip1
+			state = 4
+		case 9: 
+			cs[2] <- ip0
+			state = 8
+		case 12:
+			close(cs[2])
+			return
+
+		}
+	}
+		
+}
+
+/* 
+Collate compares IPs from two channels(0,1).  Matching IPs are
+   sent to channels 2 and 3, while mismatches from (0,1) are sent to (4,5)
+   respectively.
+   if argument 1 equals "--merge", all input will be merged and 
+   sent to channel 2. 
+*/
+func Collate(wg *sync.WaitGroup, 
+			 arg []string, 
+			 cs []chan interface{}) {
+			 
+	defer wg.Done()
+	
+		fmt.Println("len=",len(arg)) 
+	    if len(arg) > 1  { 
+			if strings.Compare(arg[1], "--merge") == 0 {
+				merge(cs)	
+			} else {
+				match(cs)
+			}	
+		} else {
+		    match(cs)
+		}
+	
 }
