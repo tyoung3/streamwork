@@ -39,7 +39,7 @@ func match(cs []chan interface{}) {
 
 	ip0 := *new(interface{})
 	ip1 := *new(interface{})
-	10:30am
+	
 	for {
 		fmt.Println("Cstate:",state, ip0, ip1)
 		switch state {
