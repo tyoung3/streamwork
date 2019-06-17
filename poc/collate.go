@@ -2,7 +2,6 @@
 */ 
 package poc
 
-import "fmt"
 import "sync"
 import "strings"
 import "reflect"
@@ -136,15 +135,14 @@ func Collate(wg *sync.WaitGroup,
 			 
 	defer wg.Done()
 	
-		fmt.Println("len=",len(arg)) 
-	    if len(arg) > 1  { 
+	if len(arg) > 1  { 
 			if strings.Compare(arg[1], "--merge") == 0 {
 				merge(cs)	
 			} else {
 				match(cs)
 			}	
-		} else {
+	} else {
 		    match(cs)
-		}
+	}
 	
 }
