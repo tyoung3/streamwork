@@ -41,7 +41,6 @@ func match(cs []chan interface{}) {
 	ip1 := *new(interface{})
 	
 	for {
-		fmt.Println("Cstate:",state, ip0, ip1)
 		switch state {
 		case 0, 2: /* get 0 and add 1 to state. If EOF, add 4 to state */
 			ip0 = get0(&state, cs[0])
@@ -89,7 +88,6 @@ func merge(cs []chan interface{}) {
 	ip1 := *new(interface{})
 	
 	for {
-		fmt.Println("Mstate:",state, ip0, ip1)
 		switch state {
 		case 0, 2, 8: /* get 0 and add 1 to state. If EOF, add 4 to state */
 			ip0 = get0(&state, cs[0])
