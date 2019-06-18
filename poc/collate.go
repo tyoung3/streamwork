@@ -3,7 +3,6 @@
 package poc
 
 import "sync"
-import "strings"
 import "reflect"
 
 func get0(state *int, c chan interface{}) interface{} {
@@ -80,54 +79,10 @@ func match(cs []chan interface{}) {
 	}
 }
 
-func merge(cs []chan interface{}) {
-	var state = 0
-	
-	ip0 := *new(interface{})
-	ip1 := *new(interface{})
-	
-	for {
-		switch state {
-		case 0, 2, 8: /* get 0 and add 1 to state. If EOF, add 4 to state */
-			ip0 = get0(&state, cs[0])
-		case 1, 4: /* get 1 and add 2 to state. if EOF state+=8 */
-			ip1 = get1(&state, cs[1])
-		case 3:
-			if ip0 == ip1 {
-				cs[2] <- ip0  
-				state--
-			} else {
-				val0 := reflect.ValueOf(ip0).Int()
-				val1 := reflect.ValueOf(ip1).Int()
-				if val0 > val1 {
-					cs[2] <- ip1
-					state = 1
-				} else {
-					cs[2] <- ip0
-					state = 2
-				}
-			}
-		case 6:  
-			cs[2] <- ip1
-			state = 4
-		case 9: 
-			cs[2] <- ip0
-			state = 8
-		case 12:
-			close(cs[2])
-			return
-
-		}
-	}
-		
-}
-
 /* 
 Collate compares IPs from two channels(0,1).  Matching IPs are
    sent to channels 2 and 3, while mismatches from (0,1) are sent to (4,5)
    respectively.
-   if argument 1 equals "--merge", all input will be merged and 
-   sent to channel 2. 
 */
 func Collate(wg *sync.WaitGroup, 
 			 arg []string, 
@@ -135,14 +90,6 @@ func Collate(wg *sync.WaitGroup,
 			 
 	defer wg.Done()
 	
-	if len(arg) > 1  { 
-			if strings.Compare(arg[1], "--merge") == 0 {
-				merge(cs)	
-			} else {
-				match(cs)
-			}	
-	} else {
-		    match(cs)
-	}
+	match(cs)
 	
 }
