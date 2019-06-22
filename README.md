@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 [![Go Report Card](https://goreportcard.com/badge/tyoung3/streamwork)](https://goreportcard.com/report/tyoung3/streamwork)
-[![GoDoc](https://godoc.org/tyoung3/streamwork/fbp?status.svg)](https://godoc.org/tyoung3/streamwork/fbp)
+[![GoDoc](https://godoc.org/github.com/tyoung3/streamwork?status.svg)](https://godoc.org/github.com/tyoung3/streamwork)
 
 STREAMWORK-0.3.0 
 ================
