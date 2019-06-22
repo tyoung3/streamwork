@@ -14,7 +14,7 @@ limitations under the License.
 
 STREAMWORK-0.3.0 
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/tyoung3/streamwork](https://goreportcard.com/report/github.com/tyoung3/streamwork)
+[![Go Report Card](https://goreportcard.com/badge/tyoung3/streamwork](https://goreportcard.com/report/tyoung3/streamwork)
 ================
 
 Name
