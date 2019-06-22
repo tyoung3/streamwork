@@ -12,7 +12,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-STREAMWORK-0.3.0 [![Go Report Card](https://goreportcard.com/badge/github.com/tyoung3/streamwork](https://goreportcard.com/report/github.com/tyoung3/streamwork)
+STREAMWORK-0.3.0 
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/tyoung3/streamwork](https://goreportcard.com/report/github.com/tyoung3/streamwork)
 ================
 
 Name
