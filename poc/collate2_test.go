@@ -19,10 +19,10 @@ func TestCollate(t *testing.T) {
 	cs = append(cs, make(chan interface{}))
 	cs = append(cs, make(chan interface{}))
 
-	fbp.Launch(&wg, []string{"Match0"},  Print1, cs[2:3])
-	fbp.Launch(&wg, []string{"Match1"},  Print1, cs[3:4])
-	fbp.Launch(&wg, []string{"Miss0"},  Print1, cs[4:5])
-	fbp.Launch(&wg, []string{"Miss1"},  Print1, cs[5:6])
+	fbp.Launch(&wg, []string{"Match0"}, Print1, cs[2:3])
+	fbp.Launch(&wg, []string{"Match1"}, Print1, cs[3:4])
+	fbp.Launch(&wg, []string{"Miss0"}, Print1, cs[4:5])
+	fbp.Launch(&wg, []string{"Miss1"}, Print1, cs[5:6])
 
 	wg.Add(1)
 	go func() {

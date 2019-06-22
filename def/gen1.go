@@ -1,4 +1,4 @@
-/*Package def contains default StreamWork Flow-based components. 
+/*Package def contains default StreamWork Flow-based components.
 Contents of this package are subject to change.
 */
 package def
@@ -9,7 +9,7 @@ import "strconv"
 
 //var version = "0.0.2"
 
-/* 
+/*
 Gen1 sends arg[1],  arg[2] long strings to channel cs[0] (out1)
    Strings consist of the process name only
    i.e. G3  G3 , etc

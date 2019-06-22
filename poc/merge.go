@@ -5,10 +5,10 @@ import "reflect"
 
 func merge(cs []chan interface{}) {
 	var state = 0
-	
+
 	ip0 := *new(interface{})
 	ip1 := *new(interface{})
-	
+
 	for {
 		switch state {
 		case 0, 2, 8: /* get 0 and add 1 to state. If EOF, add 4 to state */
@@ -17,7 +17,7 @@ func merge(cs []chan interface{}) {
 			ip1 = get1(&state, cs[1])
 		case 3:
 			if ip0 == ip1 {
-				cs[0] <- ip0  
+				cs[0] <- ip0
 				state--
 			} else {
 				val0 := reflect.ValueOf(ip0).Int()
@@ -30,10 +30,10 @@ func merge(cs []chan interface{}) {
 					state = 2
 				}
 			}
-		case 6:  
+		case 6:
 			cs[0] <- ip1
 			state = 4
-		case 9: 
+		case 9:
 			cs[0] <- ip0
 			state = 8
 		case 12:
@@ -42,19 +42,19 @@ func merge(cs []chan interface{}) {
 
 		}
 	}
-		
+
 }
 
-/* 
+/*
 Merge compares input from channels 1 and 2 sending
-   the lowest data to channel 0. 
+   the lowest data to channel 0.
 */
-func Merge(wg *sync.WaitGroup, 
-			 arg []string, 
-			 cs []chan interface{}) {
-			 
+func Merge(wg *sync.WaitGroup,
+	arg []string,
+	cs []chan interface{}) {
+
 	defer wg.Done()
-	
-	merge(cs)	
-	
+
+	merge(cs)
+
 }

@@ -2,9 +2,9 @@ package poc
 
 import "sync"
 
-/* 
+/*
 Join sends all input from channels [1:n] to channel [0], port 0.
- */
+*/
 func Join(wg1 *sync.WaitGroup, arg []string, cs []chan interface{}) {
 	var wg sync.WaitGroup
 

@@ -4,7 +4,7 @@ import "fmt"
 import "sync"
 
 /*
-Print1 displays integer and string data from port 0 on the 
+Print1 displays integer and string data from port 0 on the
 console, prefixed by the process name(arg[0].
 */
 func Print1(wg *sync.WaitGroup,

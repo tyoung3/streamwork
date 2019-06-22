@@ -3,7 +3,7 @@ package def
 import "fmt"
 import "sync"
 
-/* 
+/*
 Print1 prints integers and strings received from port 0, prefixed
 with the process identifier(arg[0]) string,
 */

@@ -22,10 +22,10 @@ func TestSplit2(t *testing.T) {
 
 	// wg1.Add(1)
 	go fbp.Launch(&wg1, []string{"S"}, Split, cs[0:4])
-	fbp.Launch(&wg1, []string{"Q", "3"},  Gen2, cs[0:1])
-	fbp.Launch(&wg1, []string{"A2"},  Print1, cs[1:2])
-	fbp.Launch(&wg1, []string{"A1"},  Print1, cs[2:3])
-	fbp.Launch(&wg1, []string{"A3"},  Print1, cs[3:4])
+	fbp.Launch(&wg1, []string{"Q", "3"}, Gen2, cs[0:1])
+	fbp.Launch(&wg1, []string{"A2"}, Print1, cs[1:2])
+	fbp.Launch(&wg1, []string{"A1"}, Print1, cs[2:3])
+	fbp.Launch(&wg1, []string{"A3"}, Print1, cs[3:4])
 
 	wg1.Wait()
 

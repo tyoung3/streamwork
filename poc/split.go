@@ -4,9 +4,9 @@ import "sync"
 
 // var version string = "v0.0.1"
 
-/* 
+/*
 Split copies all input from port 0, to all active ports 1,..N
- */
+*/
 func Split(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 	var wg2 sync.WaitGroup
 	var c2s []chan interface{}

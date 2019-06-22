@@ -6,7 +6,7 @@ import "strconv"
 
 var version = "v0.0.0"
 
-/* 
+/*
 Gen1 sends 'nbr' integers, beginning with 'start', incremented
 by 'inc';  argcuments 1, 2, and 3 respectively over port 0.
 

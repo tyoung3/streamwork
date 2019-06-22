@@ -16,7 +16,7 @@ func TestMerge(t *testing.T) {
 	cs = append(cs, make(chan interface{}))
 	cs = append(cs, make(chan interface{}))
 
-	fbp.Launch(&wg, []string{"PrintM"},  Print1, cs[0:1])
+	fbp.Launch(&wg, []string{"PrintM"}, Print1, cs[0:1])
 
 	wg.Add(1)
 	go func() {
@@ -45,8 +45,8 @@ func TestMerge(t *testing.T) {
 		wg.Done()
 	}()
 
-	go fbp.Launch(&wg, []string{"Merge" }, Merge, cs[0:3])
+	go fbp.Launch(&wg, []string{"Merge"}, Merge, cs[0:3])
 	wg.Wait()
-	fmt.Println("TestMerge ended");
+	fmt.Println("TestMerge ended")
 
 }
