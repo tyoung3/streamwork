@@ -20,26 +20,35 @@ STREAMWORK-0.3.0
 Name
 ----
 
-         StreamWork - a flow based program(FBP) Go language  'backend' framework.
+         StreamWork - a flow based, Go language framework.
          
 
 Description
 -----------
 
-StreamWork is a proof-of-concept for a Go language flow-based system 
-which reads and executes a network definition consisting of 
-Go processes and connectionss, passing information packets(IPs) 
-between them. 
-The IPs are designed as nil(empty) interfaces to be filled by 
-the source components.    
+StreamWork is a proof-of-concept for a Go language 
+flow-based system which reads and executes a network 
+definition consisting of goroutines and channel connections
+between them.  
+The channels pass information packets(IPs) designed as 
+nil(empty) interfaces.     
+
+The network definition is a simple, graphable way of 
+clearly describing process connections. Sw creates the code
+that makes and assigns the channels, and lauches the goroutines.   
 
 The backend provided here has a minimal set of components, but enough to 
 create, test, and benchmark working programs.  
 
-The frontend, sw, will process the network definition and generate the Go
-code.
+The frontend, sw, processes the network definition and 
+generates the Go code.  Sw can also produce an .svg or 
+.jpeg image of the network definition.
 
-Everything here(including the project name) is subject to change, until after the frontend has been more fully developed.  Versions will be backward compatible within the same major version. Ex. your code depending on v0.0.1 will still work on v0.8.7, but may fail on v1.0.0.  Streamwork is developed using the Go module facility, so that dependencies are clear.   
+Versions will be backward compatible within the same major version. 
+Ex. your code depending on v0.0.1 will still work on v0.8.7, 
+but may fail on v1.0.0.  
+Streamwork is developed using the Go module facility, 
+so that dependencies are clear.   
 
 Contributors are encouraged.  Comments are particularly welcome.   
 Please do not submit code before contacting the project by e-mailing streamwork@twyoung.com.     
@@ -48,18 +57,21 @@ Please do not submit code before contacting the project by e-mailing streamwork@
 Components
 ----------
 
-Components are designed to be reentrant with a common interface.  The same 
-component may be invoked any number of times, but  with a different, unique, process name each time.   Component memory will be reused.  Go creates a small stack for each process.  
+Components are designed to be reentrant with a common interface. 
+The same component may be invoked any number of times, but 
+with a different,
+unique, process name each time.   Component memory will be reused. 
+Go creates a small stack for each process.  
 
-The current list of components include 
+An incomplete list of components includes:
 
 	1. Gen1(Generates N integer IPs), 
 	2. Gen2(Generates N string IPs),
-	2. Print1(sends input to the terminal), 
-	3. Split(sends input to N output channels),  
-	4. Concat(sends N inputs in order to its 
-	   output channel) 		  			
-	5. Collate(compares IPs from channels 0 and 1,  
+	3. Print1(sends input to the terminal), 
+	4. Split(sends input to N output channels),  
+	5. Concat(sends N inputs in order to its 
+	   output channel)		  			
+	6. Collate(compares IPs from channels 0 and 1,  
 	   sends matches to channels 2 and 3 respectively, 
 	   and mismatches to channels 4 and 5 respectively. 
 	   Note that channels 2 and 3 may actually and usefully be the same channel.
@@ -72,9 +84,11 @@ finished, before returning.
 QuickStart
 ----------
 
-	* Download and install Go [v1.11.0 or better is best. 1.9.7 and up should also work. 
-	  Previous versions will need to run under $GOPATH/src without module/version support].   	
-	* Create a new directory in $GOPATH/mod.  
+	* Download and install Go [v1.11.0 or better is best. 
+	  1.9.7 and up may also work. 
+	  Previous versions will need to run under $GOPATH/src 
+	  without module/version support].   	
+	* Create a new directory, $GOPATH/mod/foo.  
 	* Change directory to $GOPATH/mod/foo.  
 	* Create $GOPATH/mod/foo/main.go:
 ```	
@@ -83,7 +97,7 @@ package  main
 import "fmt"
 import "sync"
 import "github.com/tyoung3/streamwork/fbp"
-import "github.com/tyoung3/streamwork/strings"
+import "github.com/tyoung3/streamwork/def"
 
 func main() {
         var cs []chan interface{}
@@ -92,8 +106,8 @@ func main() {
         fmt.Println("foo Start")
         cs = append(cs, make(chan interface{}))
 
-        fbp.Launch(&wg, []string{"TestPrint1"}, strings.Print1, cs)
-        fbp.Launch(&wg, []string{"TestGen1","11"}, strings.Gen1, cs)
+        fbp.Launch(&wg, []string{"TestPrint1"},    def.Print1, cs)
+        fbp.Launch(&wg, []string{"TestGen1","11"}, def.Gen1, cs)
         wg.Wait()
         fmt.Println("foo end")
 }
@@ -110,7 +124,7 @@ func main() {
 
     * Run 'go build' to create the executable, foo (or foo.exe). 
     
-Why another FBP Golang framework?
+Why another FBP Go framework?
 ---------------------------------
 
 	* Streamwork is able to interpret and run a program
@@ -124,11 +138,13 @@ Why another FBP Golang framework?
 	  mashed together in a single program.
 
 	* Streamwork defines a standard component 
-	  interface(currently subject to change), such that each
-	  process knows its name; very useful for reporting errors, etc.. 
+	  interface, such that each
+	  process knows its name; very useful for 
+	  reporting errors, etc.. 
 	  
-	* Streamwork uses precompiled code(unless the source is changed or 
-	  recently imported).  Compilation, when it is required, is 
+	* Streamwork uses precompiled code(unless the source
+	  is changed or recently imported).  
+	  Compilation, when it is required, is 
 	  transparent unless errors occur.
 	  
       
