@@ -21,13 +21,13 @@ func Controller(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 	var version string = "v0.0.0"
 
 	defer wg.Done()
-	cfg := pkgConfig("/home/tyoung3/.sw/foo2.toml")
+	cfg := pkgConfig("/home/tyoung3/.sw/edit.toml")
 	seqno, _ := cfg.IntOr("edit.seqno", 1)
 	bs, _ := cfg.IntOr("edit.buffersize", 1)
 	fmt.Println(
 		"Running", arg[0], version, "bs =", bs)
 
-	if seqno != 1234 {
+	if seqno != 050 {
 		fmt.Println(
 			"Seqno not = 1234.  Missing config file?")
 	}

@@ -17,16 +17,9 @@ func View(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 
 	defer wg.Done()
 	cfg := pkgConfig("/home/tyoung3/.sw/edit.toml")
-	seqno, _ := cfg.IntOr("edit.seqno", 1)
 	bs, _ := cfg.IntOr("edit.buffersize", 1)
 	fmt.Println(
 		"Running", arg[0], version, "bs =", bs)
-
-	if seqno != 1234 {
-		fmt.Println(
-			"Seqno not = 1234.  Missing config file?")
-	}
-
 	cs[1] <- 1
 
 	j := 0

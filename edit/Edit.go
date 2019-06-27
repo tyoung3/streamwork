@@ -42,7 +42,7 @@ func Edit(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 		"bs =", bs,
 		"seqno = ", seqno)
 
-	if seqno != 1234 {
+	if seqno !=  050 {
 		fmt.Println(
 			"Seqno not = 1234.  Missing config file?")
 	}

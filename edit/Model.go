@@ -23,11 +23,6 @@ func Model(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 	fmt.Println(
 		"Running", arg[0], version, "bs =", bs)
 
-	if seqno != 1234 {
-		fmt.Println(
-			"Seqno not = 1234.  Missing config file?")
-	}
-
 	cs[1] <- 1
 
 	j := 0

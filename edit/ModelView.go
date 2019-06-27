@@ -22,11 +22,6 @@ func ModelView(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 	fmt.Println(
 		"Running", arg[0], version, "bs =", bs)
 
-	if seqno != 1234 {
-		fmt.Println(
-			"Seqno not = 1234.  Missing config file?")
-	}
-
 	i := 3
 
 	for i >= 2 {
