@@ -457,7 +457,11 @@ EOF
 	 	
 	 	j := $inp
 	 	$for j >=0 $lb
-	    	_ = <- cs[j]
+			ip, ok := <-cs[j]
+			if ok != true {
+				break
+			}
+			fmt.Println(arg[0], "chan:", j, "IP:", ip)
 	    	j--
 	    $rb	  
 EOFZ

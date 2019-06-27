@@ -16,23 +16,26 @@ func ModelView(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 	var version string = "v0.0.0"
 
 	defer wg.Done()
-	cfg := pkgConfig("/home/tyoung3/.sw/foo2.toml")
-	seqno, _ := cfg.IntOr("edit.seqno", 1)
+	cfg := pkgConfig("/home/tyoung3/.sw/edit.toml")
 	bs, _ := cfg.IntOr("edit.buffersize", 1)
 	fmt.Println(
 		"Running", arg[0], version, "bs =", bs)
 
+
+	j := 1
+	for j >= 0 {
+			ip, ok := <-cs[j]
+			if ok != true {
+				break
+			}
+			fmt.Println(arg[0], "chan:", j, "IP:", ip)
+		j--
+	}
 	i := 3
 
 	for i >= 2 {
 		cs[i] <- i
 		close(cs[i])
 		i--
-	}
-
-	j := 1
-	for j >= 0 {
-		_ = <-cs[j]
-		j--
 	}
 }

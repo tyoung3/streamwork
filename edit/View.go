@@ -19,12 +19,17 @@ func View(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 	cfg := pkgConfig("/home/tyoung3/.sw/edit.toml")
 	bs, _ := cfg.IntOr("edit.buffersize", 1)
 	fmt.Println(
-		"Running", arg[0], version, "bs =", bs)
-	cs[1] <- 1
+		"RunningV", arg[0], version, "bs =", bs)
 
 	j := 0
 	for j >= 0 {
-		_ = <-cs[j]
+			ip, ok := <-cs[j]
+			if ok != true {
+				break
+			}
+			fmt.Println(arg[0], "chan::", j, "IP:", ip)
 		j--
 	}
+	cs[1] <- 1
+	fmt.Println("View done.")
 }

@@ -18,7 +18,6 @@ func Model(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 
 	defer wg.Done()
 	cfg := pkgConfig("/home/tyoung3/.sw/edit.toml")
-	seqno, _ := cfg.IntOr("edit.seqno", 1)
 	bs, _ := cfg.IntOr("edit.buffersize", 1)
 	fmt.Println(
 		"Running", arg[0], version, "bs =", bs)
@@ -27,7 +26,11 @@ func Model(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 
 	j := 0
 	for j >= 0 {
-		_ = <-cs[j]
+			ip, ok := <-cs[j]
+			if ok != true {
+				break
+			}
+			fmt.Println(arg[0], "chan:", j, "IP:", ip)
 		j--
 	}
 }

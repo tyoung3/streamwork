@@ -32,26 +32,12 @@ func Edit(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 	defer wg.Done()
 	cfg := pkgConfig("/home/tyoung3/.sw/edit.toml")
 	bs, _ := cfg.IntOr("edit.buffersize", 1)
-	seqno, _ := cfg.IntOr("edit.seqno", 1)
 	title, _ := cfg.StringOr("edit.title", "n/a")
 
 	fmt.Println(title,
 		"Running",
 		arg[0],
 		version,
-		"bs =", bs,
-		"seqno = ", seqno)
+		"bs =", bs)
 
-	if seqno !=  050 {
-		fmt.Println(
-			"Seqno not = 1234.  Missing config file?")
-	}
-
-	cs[1] <- 1
-
-	j := 0
-	for j >= 0 {
-		_ = <-cs[j]
-		j--
-	}
 }

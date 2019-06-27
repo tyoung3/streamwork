@@ -24,6 +24,13 @@ func TestSkel_View(t *testing.T) {
 	wg.Add(2)
 	go func() {
 
+		i := 0
+		for i >= 0 {
+			cs[i] <- i
+			close(cs[i])
+			i--
+		}
+		
 		j := 1
 		for j >= 1 {
 			ip, ok := <-cs[j]
@@ -34,12 +41,6 @@ func TestSkel_View(t *testing.T) {
 			j--
 		}
 
-		i := 0
-		for i >= 0 {
-			cs[i] <- i
-			close(cs[i])
-			i--
-		}
 		fmt.Println("TestSkel_View Ended")
 		wg.Done()
 		return

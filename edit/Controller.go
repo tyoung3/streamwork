@@ -27,7 +27,7 @@ func Controller(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 	fmt.Println(
 		"Running", arg[0], version, "bs =", bs)
 
-	if seqno != 050 {
+	if seqno != 50 {
 		fmt.Println(
 			"Seqno not = 1234.  Missing config file?")
 	}
@@ -42,7 +42,11 @@ func Controller(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 
 	j := 1
 	for j >= 0 {
-		_ = <-cs[j]
+			ip, ok := <-cs[j]
+			if ok != true {
+				break
+			}
+			fmt.Println(arg[0], "chan:", j, "IP:", ip)
 		j--
 	}
 }
