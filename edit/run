@@ -1,0 +1,2 @@
+cc     gv.c -lgvc -lcgraph  -o gv 
+./gv collate.dot 

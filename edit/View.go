@@ -13,14 +13,35 @@ import (
 )
 
 func View(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
-	var version string = "v0.0.0"
-
+	
+	var domore bool = true
+	
 	defer wg.Done()
 	cfg := pkgConfig("/home/tyoung3/.sw/edit.toml")
 	bs, _ := cfg.IntOr("edit.buffersize", 1)
 	fmt.Println(
-		"RunningV", arg[0], version, "bs =", bs)
-
+		"\u001b[33mRunning", arg[0], version, 
+		"bs =", bs,"\u001b[0m")
+	
+	for domore   {
+		select {
+		case 	cs[1] <- 1:
+			fmt.Println("\u001b[33mclosing\u001b[0m")
+			//close (cs[1]) 
+		case ip, ok := <-cs[0]:
+			if ok != true {
+				domore = false
+			} else {
+				fmt.Println("\u001b[33mView/chan:", 0, "IP:", ip,"\u001b[0m")
+			}
+		}
+	}	
+		
+		
+	// cs[1] <- 5
+	// close (cs[1])
+		
+/*
 	j := 0
 	for j >= 0 {
 			ip, ok := <-cs[j]
@@ -31,5 +52,6 @@ func View(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 		j--
 	}
 	cs[1] <- 1
-	fmt.Println("View done.")
+*/	
+	fmt.Println("\u001b[33mView done.\u001b[0m")
 }

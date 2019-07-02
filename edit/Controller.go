@@ -18,7 +18,6 @@ import (
    Channel 3 Output to ModelVies	
 */
 func Controller(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
-	var version string = "v0.0.0"
 
 	defer wg.Done()
 	cfg := pkgConfig("/home/tyoung3/.sw/edit.toml")
@@ -27,9 +26,9 @@ func Controller(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
 	fmt.Println(
 		"Running", arg[0], version, "bs =", bs)
 
-	if seqno != 50 {
+	if seqno < 50 || seqno > 10000 {
 		fmt.Println(
-			"Seqno not = 1234.  Missing config file?")
+			"Seqno < 50 or > 10000.  Missing config file?")
 	}
 
 	i := 3

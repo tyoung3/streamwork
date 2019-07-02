@@ -8,24 +8,22 @@ package edit
 
 import "testing"
 import "fmt"
-import "sync"
 
 func TestSkel_Edit(t *testing.T) {
-	var cs []chan interface{}
-	var wg sync.WaitGroup
 
-	arg := []string{"TestSkel_Edit"}
+	cfg := pkgConfig("/home/tyoung3/.sw/edit.toml")
+	bs, _ := cfg.IntOr("edit.buffersize", 1)
+	title, _ := cfg.String("edit.title")
+	seqno, _ := cfg.IntOr("edit.seqno", 0)
+	fmt.Println(title,
+		"\u001b[34mRunning", version, "bs =", bs, "seqno =", seqno,
+		"\u001b[0m")
+	
+	if seqno < 50 || seqno > 10000 {
+		fmt.Println("\u001b[34mseqno < 50 or > 10000\u001b[0m")
+	}	
 
-	fmt.Println(arg[0])
 
-	wg.Add(2)
-	go func() {
-		fmt.Println("TestSkel_Edit Ended")
-		wg.Done()
-		return
-	}()
 
-	go Edit(&wg, arg, cs)
-	wg.Wait()
 
 }

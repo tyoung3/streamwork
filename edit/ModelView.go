@@ -13,7 +13,6 @@ import (
 )
 
 func ModelView(wg *sync.WaitGroup, arg []string, cs []chan interface{}) {
-	var version string = "v0.0.0"
 
 	defer wg.Done()
 	cfg := pkgConfig("/home/tyoung3/.sw/edit.toml")
