@@ -1,5 +1,5 @@
 #
-# SWEDIT
+# DOTTY
 #
 dotty = [
     'keys' = [
@@ -141,10 +141,10 @@ dotty = [
         '36x50'  = ['x' = 35.5; 'y' = 49.5;];
     ];
 ];
-load ('swedit_draw.lefty');
-load ('swedit_edit.lefty');
-load ('swedit_layout.lefty');
-load ('swedit_ui.lefty');
+load ('dotty_draw.lefty');
+load ('dotty_edit.lefty');
+load ('dotty_layout.lefty');
+load ('dotty_ui.lefty');
 #
 # initialization functions
 #
