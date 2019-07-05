@@ -1,0 +1,66 @@
+digraph v {
+	concentrate=true;
+	graph [
+		name="Network Definition Edit Panel",
+		label="untitled.ndl",
+#	 	style=bold,
+	 	style="filled",
+		center=0,
+ 		color="navy",
+##		bgcolor="ivory",
+		bgcolor="lightgray",
+#		fillcolor="black",
+		fillcolor="whitesmoke",
+# not in xDot		layers="l1:l2:l3:l4:l5:l6"
+		margin=0.0,
+		rankdir="TB",
+ 		ranksep=0.75,
+ 		nodesep=0.75,
+# 		size="4,5",
+ 		size="8.5,11",
+		page="4,5",
+		ratio=auto,
+ 		fontsize="30",
+  		fontcolor="black",
+  		concentrate=false,       
+# Can be weird on reverse direction. 
+#		ordering=out,        # Retains edge ordering.
+		remincross=1,
+##		###?? xdotversion=1,   
+#		# bb=[0,0,100,200],
+#		orientation=landscape,
+# 		fontname="Times-Roman"
+ 		fontname="Helvetica"
+
+#	  Layers causes warning messages in dotty. 
+#		layers="spec:design:code:test:debug:ship" 
+# Spec:		- set up gates and picked a language
+# Design:	- skeleton generated 
+# Code:		- initial coding through compilation
+# Test:		- Tested -- may be in error or incomplete
+# Debug:	- Known bugs removed
+# Ship:		- We think it is working.
+ 	   ]
+ 		node [  shape=record,
+ 			fontsize="26",
+ 	        	fontcolor=black,
+# 		       	fontname="Times-Roman",
+ 		       	fontname="Helvetica",
+         		fillcolor=tan,
+         		color=black,
+         		style="filled,rounded,bold",
+ 	        	height=.2,
+			host="localhost"
+     		 ];
+# 		edge [ color=slategray,
+ 		edge [ color=black,
+			arrowsize=2.0,
+			constraint=true,
+         		style=bold,
+ 			fontsize="26",
+ 	        	fontcolor=black,
+# 		       	fontname="Times-Roman"
+ 		       	fontname="Helvetica"
+      		]
+
+}

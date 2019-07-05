@@ -1,0 +1,4 @@
+PATH=.:$PATH
+SWEDITPATH=.:/usr/share/graphviz/lefty/
+
+./swedit graphs/collate.dot &

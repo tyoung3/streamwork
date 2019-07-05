@@ -1,0 +1,61 @@
+sw_default = [
+        'timer'         ='/usr/bin/time ';
+        'selectsubcolor'='#FFFFB1';
+         'selectcolor'   = 'orange';
+		'version'	= '4.0.0';
+		'host'  	= 'localhost';
+		'debuglevel' 	= 1;
+		'plabel' 	= 1;
+		'gin' 		= [ 0 = 'in.0'; ] ; 
+		'gout' 		= [ 0 = 'out.1';]; 
+		'xin' 		= [ 0 = 'in.0'; ] ; 
+		'xout'		= [ 0 = 'out.1';]; 
+		'filename' 	= 'untitled.sw';
+		'pname'    	= 'P';
+		'ncomponent' 	= 'Pass';
+		'component' 	= 'Pass';
+		'nodecolor' = [
+				'sub' 	  = 'gold';
+				'file' 	  = 'limegreen';
+				'filein'  = 'blue';
+				'process' = 'tan1';
+		];
+
+		# Modifiable values
+	'color' = [  
+	    '1' = '#FF0000';   
+	    '2' = '#FFD890';     
+	    '3' = 'yellow'; 
+	    '4' = 'blue';         
+	    '5' = 'green'; 
+	    'spec'   = '#FF0000';    # Red 
+	    'design' = '#FFD890';    # My lightOrange
+	    'code'   = 'yellow'; 
+	    'test'  = 'blue';       # Blue   
+	    'debug'   = 'green';
+	];
+	'orphancolor' = [ 0 = 'lightblue'; 1 = 'lightblue1';  ];
+	'higold'  = '#ffff64';
+	'rank'  = 0;
+	'fnseq'	= 0;
+	'idser' = 1; vdfd.fdctl
+	'sizex' = 400;
+	'sizexd' = 400;
+	'sizey' = 400;
+	'size' = 400;
+	'groupno' = 0;
+	'spec_color'   = '#FF0000';    # Red
+	'design_color' = '#FFD890';    # My light Orange
+	'code_color'   = 'yellow'; 
+	'test_color'  = 'blue';       # Blue   
+	'debug_color'   = 'green'; 
+	'removeonswap'  = 1;
+];
+
+'acolor' = [  
+	    1 = '#FF0000';     
+	    2 = '#FFD890';     
+	    3 = 'yellow'; 
+	    4 = 'blue';         
+	    5 = 'green';  
+	];

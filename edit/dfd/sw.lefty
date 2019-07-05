@@ -1,0 +1,5291 @@
+#line 5 "stdin"
+# SW.LEFTY-4.0.0  Generated from sw.lefty.in with m4
+
+#Begin: 
+load ('dotty.lefty');
+load ('sw_default.lefty'); 
+# TODO:
+#	. Replace unpacklayout function so as to return node.fields.
+
+sw = [
+	'defaults' = [ 
+		'version'	= '4.0.0';
+		'host'  	= 'localhost';
+		'delayedlayout' = 0;
+		'loosematchok'  = 1;   
+		'labelmode'  	= 1;
+		'plabel' 	= 1;
+		'gin' 		= [ 0 = '0'; 1 = 'in'; ] ; 
+		'gout' 		= [ 0 = '1'; 1 = 'out';]; 
+		'xin' 		= [ 0 = 'in.0'; ] ;   # ??
+		'xout'		= [ 0 = 'out.1';];    # ??
+		'lang'		= 'C';
+		'pname'    	= 'P';
+		'rect'		= [0=[x=1;y=2;]; 1=[x=3;y=4;]; ];
+		'ncomponent' 	= 'Pass';
+		'component' 	= 'Pass';
+		'nodecolor' = [
+				'sub' 	  = 'gold';
+				'file' 	  = 'limegreen';
+				'filein'  = 'blue';
+				'process' = 'tan1';
+		];
+	];
+
+		# Modifiable values
+	'orphancolor' = [ 0 = 'lightblue'; 1 = 'lightblue1';  ];
+	'higold'  = '#ffff64';
+	'rank'  = 0;
+	'fnseq'	= 0;
+	'idser' = 1;
+	'sizex' = 400;
+	'sizexd' = 400;
+	'sizey' = 400;
+	'size' = 400;
+	'layers' = 'spec:design:code:test:debug:ship';
+	'fileid' = '?';
+        'ndisc'  = 0;     # Number of disconnected file(s).
+	'groupno' = 1;
+	'labelmode' = 1;    # 1 = {<P> P|comp}|...;   2=<P> P|comp|.... 
+	'graphisopen' = 0;
+	      # From Environment:
+	'editor' = 'gedit';
+        'home'   = '/home/tyoung3/go/mod/streamwork/edit/dfd';
+];
+
+#NOTE: MIT colors are 'cardinal red' and 'silver gray'.
+
+	# NOTE: These are added to dotty.protogt */
+sw.protogt = [
+	'graph' = [ 
+		'size' = '4,5';
+#		'size' = '11,18';
+		'fontname'  = 'Times-Roman';
+#		'fontname'  = 'Helvetica';
+		'fontsize'  = '30';
+		'fontcolor' = 'black';
+		'name'	    = 'untitled.ndl';
+               	'style'     = "filled";
+		'margin'	= '0.0';
+		'ranksep'	= 0.6;
+		'nodesep'	= 0.25;
+		'page'		= '4, 5';
+	        'nodeattr' = [
+        	        'shape' = 'record';
+	                'fontsize' = "26";
+                	'fontcolor' = 'black';
+        	        'fontname' = "Times-Roman";
+	                'height' = ".2";
+			'label'  = "na";
+                	'style' = "filled,rounded,bold";
+        	        'fillcolor' = "tan";
+        	        'color' = "black";
+	        ];
+		'edgeattr' = [
+			'arrowsize' = 2.0;
+        	        'fontname' = "Times-Roman";
+	        ];
+		'graphattr' = [
+			'name' = "sw.lefty DataFlow Daemon Network Display";
+	                'fontsize' = "30";
+          	      	'fontcolor' = 'black';
+             		'fontname' = "Times-Roman";
+                	'style' = "filled";
+                	'label' = "1";                
+# This bb caused many problems with adding nodes in a new graph.
+#			'bb' = "0,0,1074,430";
+                	'lp' = "537,30";
+                	'color' = 'black';
+                	'margin' = "2";
+		];
+
+	];  # End of graph
+
+#	'creategraph' = [];  creategraph kills graph display
+	'layoutmode' = 'sync';
+	'lserver' = 'dot';
+ 	##  readgraph error 'lserver' = 'circo';
+	'edgehandles' = 1; 
+ 	'actions' = copy (dotty.protogt.actions);
+
+];
+ 
+	# NOTE: These are added to dotty.protovt 
+	# Try 'showrbg' to list color names.
+	# See .../Tk.../widget.tcl for color chooser example.
+sw.protovt = [
+	'name' = "VDFD Graph";
+		'fillcolor' = 'bisque';
+		'style'     = 'filled';
+	'type' = 'normal';
+	'size'  = [ 'x' = sw.sizex + 20; 'y' = sw.sizey; ];
+	'vsize' = [ 'x' = sw.sizexd; 'y' = sw.size; ];
+	'wrect' = [
+		0 = [ 'x' =  0;   'y' = 0; ];
+		1 = [ 'x' = sw.sizex; 'y' = sw.size; ];
+	];
+	
+	'menus'   = [
+		'general' = [
+# Make single changes
+# Make global graph changes
+# Run 	
+# File
+
+	    # M4NBR saves clerical effort maintaining these menu options, by 
+	    #    serially numbering them for dotty/lefty.  
+
+			0   = "    *** Run/Misc/Quit ***";
+			1   = "Run";
+#			X4NBR = "Run With Arguments";
+      			2   = "Create a File";
+		        3   = "Launch a Shell";
+		        4   = "Statistics";
+		  	5   = "quit"; 
+
+			6   = "      *** Edit/layout ***";
+		        7   = "undo";
+		        8   = "do layout";
+		        9   = "Toggle Delayed Layout";
+			
+			10   = "      *** Processes(Nodes) and Sub-nets ***";
+		        11   = "Add Process";
+			12   = "find node";
+#			M4NBRX = "      Subnet Operations";
+		        13   = "Save Subnet";
+			14   = "Expand Subnets";
+			15   = "Delete Unused Gates";
+
+			16   = "     *** Flows/Edges(Arcs) ***";
+			17   = "Connect Selected Processes";
+			18   = "Expand Edges";
+			19   = "Expand Selected Edges";
+			20   = "Remove Selected Edges";
+			21   = "Remove all Selected Process Connections";
+		        X4NBR = "Link Selected Processes";
+			22   = "Remove all Connections";
+
+			23   = "     *** Network Operations ***";
+		        24   = "Load a Network";
+		        25   = "Save Network";
+		        26   = "Save Network With Arguments";
+
+			27   =     "     *** Selections ***";
+		        28   = "Group Selected Nodes";
+			29   = "Delete Selections";
+			30   = "Select All";
+			31   = "Deselect All";
+
+			32   = "     *** Toggle Switches ***";
+		        33   = "Toggle Debug";
+		        34   = "text view";
+		        35   = "Toggle Flow Handles";
+		        36   = "Toggle Rank Direction";
+#    		        X4NBRX = "Toggle Loose Match";  May not be very useful.
+#   				Leaving code in case desired to re-implement.
+		        X4NBRX = "Toggle Concentrate";
+
+			37   = "     *** View Operations ***";
+#			X4NBRX = "     *** Zoom In/Out ***";
+		        38   = "zoom in";
+		        39   = "zoom out";
+			40   = "zoom in slowly";
+			41   = "zoom out slowly";
+
+			42   = "open view";
+			43   = "close view";
+			44   = "copy view";
+			45   = "clone view";
+			46   = "birdseye view";
+
+			47   = "    ***  Graph Operations ***";
+			48   = "save graph as";
+		        49   = "load graph";
+		        50   = "reload graph";
+			51   = "print graph";
+		        52   = "new graph";
+			53   = "set graph attr";
+
+			54   = "      *** Layers & Visibilty ***";
+			55   = "Hide Selections";
+			# ? if needed. M4NBR = "ShowAll";
+			56   = "Make all nodes and edges Visible";
+			57   = "Show Only nodes with layer attribute";
+
+
+#		       X4NBRX = "Toggle Process Names";    # Destroyed node.fields
+#			# X4NBRX = "Toggle Process Display Mode";  # Has problems with fields.
+		        #1 = "birdseye view";
+		        #8  = "clone view";
+		        #9 = "copy view";
+       			#1 = "Create a Process";
+			#8 = "Delete Unused Gates";
+		        #9 = "Link up Orphan Gates";
+			#4 = "Insert the Same Process in Every Edge";
+#
+#			28 = "Change File Name";
+#  Not done 		29 = "Toggle Process Name Display";
+#		        14 = "cancel layout";
+#		        9 = "track node"; ?? what does this do?
+#		        8 = "find node";  ? doesn't seem to do anything
+#		        20 = "close view"; ??? Crashes program.
+#		        16 = "open view";			
+#		        20 = "play bwd";
+
+       		];
+
+
+
+		'node' = [
+			0   ="    ***  Add/Change/Delete Process ***";
+       			1    = "delete"; # Deletes  process and connected edges
+        		2    = "Delete"; #  Deletes process and downstream components
+			3    = "Change Name";
+			4    = "Change Component";
+			5    = "Edit";
+			6    = "Expand Sub-Net";
+
+			7   = "     *** Gate Operations ***";
+			8   = "Add a Gate";
+			9   = "Reverse Gate Direction";   
+			10   = "Change Gate Name";
+			11   = "delete Gate";
+			12   = "Delete all Gates";  # ?operation
+			13   = "Remove all Links";
+
+			14    = "    *** Attributes ***";
+			15    = "set attr";
+			16    = "print attr";
+
+			17    = "   *** Ranking ***";
+			18    = "Rank Selected Processes";
+			19    = "Clear All Ranks";
+
+			20    = "   *** Development/Debugging ***";
+			21    = "Show Man Page";
+			22    = "Generate Skeleton";
+			23    = "Debug";
+			24    = "Call Graph";
+			25    = "Signal";
+ 		];
+
+		'edge' = [
+       			0    = "delete";
+       			1    = "Delete";
+       			2    = "Insert a Process";
+			3    = "Expand This Edge";
+			4    = "Change Gate IDs";
+       			5    = "Select Edge";
+			6    = "DeSelect Edge";
+			7    = "set attr";
+			8    = "print attr";
+       			#4 = "copy";
+       			#5 = "Copy";
+       			#8 = "group";
+       			#9 = "Group";
+		];
+	];
+];
+
+sw.msg = function( msg ) {
+
+	writeline( 2, concat("VDFD.LEFTY:", msg) );
+};
+
+sw.error = function( msg ) {
+
+	writeline( 2, concat("VDFD.LEFTY/ERROR:", msg) );
+};
+
+sw.debug = function( msg ) {
+
+	if( sw.defaults.debuglevel ~= 0 ) {
+	  writeline( 2, concat("LEFTY/DEBUG:", msg) );
+	}
+};
+
+sw.warn = function( msg ) {
+
+	#@if( sw.defaults.debuglevel ~= 0 ) {
+	  writeline( 2, concat("LEFTY/WARNING:", msg) );
+	#}
+};
+
+
+#sw.assert = function( cond ) {
+
+#	if( ~ (cond) ) {
+#	  writeline( 2, concat("sw.assert error: ", cond) );
+#	}
+#};
+
+sw.layoutgraph = function(gt) {
+
+	if( sw.defaults.delayedlayout ) {
+		return;
+	}
+
+	gt.layoutgraph(gt);
+
+};
+	# Return 1 if process node is highlighted
+sw.isselected = function (node) {
+
+	if ( 
+		( node.attr.fillcolor == sw_default.selectcolor )
+	)  {
+		return 1;
+	}
+
+	return 0;
+};
+
+	# Hide all selected nodes:  
+sw.protogt.actions.general [ "Hide Selections" ] = function (gt, vt, data) {
+	local node, nid, eid;
+
+        for( nid in gt.graph.nodes ) {
+                node = gt.graph.nodes[nid];
+		if ( sw.isselected(node) ) {
+		     node.attr.style = "invis";
+		}
+	}
+
+	sw.debug(concat("Hide Selected Nodes 3"));       
+
+	for( eid in gt.graph.edges ) {  
+#		sw.debug(concat("   Hide Edge? ", eid));
+#		sw.debug(concat("   Hide Edge? ", eid,  
+#			"S:", gt.graph.edges[eid].tail.attr.style
+#		));
+		if( (gt.graph.edges[eid].tail.attr.style == "invis") 
+		                  |
+		    (gt.graph.edges[eid].head.attr.style == "invis")
+		  ) {
+			gt.graph.edges[eid].attr.style = 'invis';
+		}  else {
+			gt.graph.edges[eid].attr.style = 'bold';
+		}
+      }
+
+
+        sw.layoutgraph(gt);
+
+};
+
+	# The inverse of parsegraphlabel -- packlabel creates label from [ fields ].
+sw.packlabel = function ( tbl ) {
+	local label, fid;
+
+	if( tbl[0].fields ) {
+		# sw.debug(concat("sw.packlabel mode=",sw.labelmode));
+		if( sw.labelmode == 1) {
+	 		label = concat( "{<", tbl[0].fields[0].port, "> ",tbl[0].fields[0].text,
+				"|<",tbl[0].fields[1].text, "> ",
+				tbl[0].fields[1].text,"}"
+			);
+		} else {
+	 		label = concat( "<", tbl[0].fields[0].port, "> ",tbl[0].fields[0].text,
+				"|<",tbl[0].fields[1].text, "> ",
+				tbl[0].fields[1].text);
+		} 
+	} else {
+		if( ~tbl[0].port )  return "";
+		label = concat( "<", tbl[0]['port'], ">", tbl[0].text); 
+	}
+
+	fid = 1;
+
+	while ( tbl[fid] ) {
+	    if ( tbl[fid].port ) {
+		label = concat(label,
+			"|<", tbl[fid].port, 
+			"> ", tbl[fid].text);
+	   };
+	   fid = fid + 1;
+ 	};
+	
+	return label;
+};
+
+
+	#Remove all edges connected to node.gname
+sw.removeedge = function ( gt, node, gname) {
+	local etbl, eid, edge, nid;
+
+	etbl = [];
+	nid = node.nid;
+	sw.debug(concat("sw.removeedge ",node.name," ",nid,".",gname));
+
+	for( eid in node.edges ) {
+		edge = node.edges[eid];
+		if(
+			(  sw.portequal(edge.tport,gname ) & 
+				( edge.tail.nid == nid ) )	
+					 |
+			( sw.portequal(edge.hport,gname) & 
+			        ( edge.head.nid == nid ) )	
+		) {
+			etbl[eid] = edge;
+		}
+	}
+
+	for( eid in etbl ) {
+		gt.removeedge(gt,etbl[eid]);
+	}
+};
+
+
+       # Remove all edges attached to this process
+sw.removelinks = function(gt,  nid ) {
+        local  node, eid, fid, etbl;
+
+        node = gt.graph.nodes[nid];
+	fid = 1;
+
+#	while( node.fields[fid].port )  {
+#                node.fields[fid] = [];
+#		fid = fid + 1;  
+#	};
+
+	etbl = [];
+	for(eid in node.edges) {
+		etbl[eid] = node.edges[eid];
+	}
+
+	for( eid in etbl) {
+		gt.removeedge(gt, etbl[eid]);
+	}
+
+	sw.layoutgraph(gt);
+	
+};
+
+       # Remove all gates (and edges) attached to this process
+sw.removeports = function(gt,  nid ) {
+        local  node, eid, fid, etbl;
+
+        node = gt.graph.nodes[nid];
+	fid = 1;
+
+	while( node.fields[fid].port )  {
+                node.fields[fid] = [];
+		fid = fid + 1;  
+	};
+
+	etbl = [];
+	for(eid in node.edges) {
+		etbl[eid] = node.edges[eid];
+	}
+
+	for( eid in etbl) {
+		gt.removeedge(gt, etbl[eid]);
+	}
+
+	if( fid > 1 ) {
+	        node.attr.label = sw.packlabel( node.fields );
+ 		sw.layoutgraph(gt);
+	}
+	
+};
+
+
+			# Compute number of partitions:
+	   # Change the partition number to zero for every node.
+	   # For each node with partition number = 0;
+           # 	add one to nparts and change the 
+           #    partition number for the current and all 
+	   #    connected nodes to nparts.
+	   # SEE: gt.reachablenodes ?? Also gt.getnodesbyattr.
+sw.partition = function (gt, node, nparts) {
+	local nid, edge, nlist, cnode, eid;
+
+	node.attr.partno = nparts;
+ 
+	for(eid in node.edges) {
+		edge = gt.graph.edges[eid];
+		nid = edge.head.nid;
+                cnode = gt.graph.nodes[nid];
+#		sw.debug(concat(edge.tail.name, "> ",	edge.head.name));
+		if( cnode.attr.partno == 0 ) { 
+#			sw.debug(concat(node.name, connected to ", cnode.name));
+			sw.partition( gt, cnode, nparts);
+		}
+		nid = edge.tail.nid;
+                cnode = gt.graph.nodes[nid];
+		if( cnode.attr.partno == 0 ) { 
+#			sw.debug(concat(node.name," connected to ", cnode.name));
+			sw.partition( gt, cnode, nparts);
+		}
+	}
+
+};
+
+			# Compute number of partitions:
+	   # Change the partition number to zero for every node.
+	   # For each node with partition number = 0;
+           # 	add one to nparts and change the 
+           #    partition number for the current and all 
+	   #    connected nodes to nparts.
+sw.npartitions = function (gt) {
+	local node,nid, nparts;
+
+	nparts=0;
+
+        for( nid in gt.graph.nodes ) {
+                gt.graph.nodes[nid].attr.partno = 0;
+	}
+
+        for( nid in gt.graph.nodes ) {
+                node = gt.graph.nodes[nid];
+#		sw.debug(concat("npart ",nparts));
+		if( node.attr.partno == 0)  {
+			nparts = nparts + 1;
+			sw.partition(gt, node, nparts);
+		}
+	}
+	
+	return nparts;
+
+};
+
+	#  Process Modes are: 
+		# 1-full
+		# 2-wo/name
+		# 3-wo/component
+		# 4-wo/arguments		
+
+		# Show Subnet Clusters
+sw.protogt.actions.general [ "Expand Subnets" ] = function (gt, vt, data) {
+	local node, nid1, cgt, n_t,  nodetbl, component;
+
+	sw.debug(concat("Expand Subnets"));
+	nodetbl = [];
+	for( nid1 in gt.graph.nodes ) {      # Cannot change this graph in this loop.
+          	node = gt.graph.nodes[nid1];
+		component = node.attr.component;
+			# If a subnet and no subnet cluster exists, create one 
+		if( sw.isasubnet( component )  ) {
+			cgt = sw.getcluster( gt, component );
+			if( ~ cgt.nodes) {
+				sw.debug(concat("     ", component));
+				nodetbl[component] = 1;
+			}
+		}
+	}
+	
+	for( component in nodetbl) {
+		sw.load.subgraph(gt, component);  # do not include this in loop above.
+	}
+};
+
+
+# replaces dotty function:
+swx.protogt.destroygraph = function (gt) {
+    local vid, vlist;
+
+    sw.debug(concat("sw.protogt. destroygraph ",tablesize(dotty.views)));
+    if (gt.layoutpending > 0)
+        gt.cancellayout (gt);
+    for (vid in gt.views)
+        vlist[vid] = gt.views[vid];
+    for (vid in vlist)
+        gt.destroyview (gt, vlist[vid]);
+    sw.debug(concat("sw.protogt. destroygraph E ",tablesize(dotty.views)));
+    #remove (gt.gtid, dotty.graphs);
+};
+
+swx.destroyview = function (gt, vt) {
+    sw.debug(concat("sw.protogt. destroyview ",tablesize(dotty.views)));
+    destroywidget (vt.canvas);
+    destroywidget (vt.scroll);
+    if (vt.view ~= -1) {
+        destroywidget (vt.view);
+        remove (vt.view, dotty.views);
+    }
+    sw.debug(concat("sw.protogt. destroyview B ",tablesize(dotty.views)));
+    remove (vt.scroll, dotty.views);
+    remove (vt.canvas, dotty.views);
+    if (vt.gtid >= 0)
+        remove (vt.vtid, gt.views);
+    sw.debug(concat("sw.protogt. destroyview C ",tablesize(dotty.views)));
+   # if (tablesize (dotty.views) == 0)
+   #     exit ();
+};
+
+	# Replaces the "Close View" prototype function. MARKIT   Make this 'destroy graph'
+swx.protogt.actions.general [ 'close view' ] = function (gt, vt, data) {
+        local  MARKIT;
+
+	sw.debug(concat("sw.protogt.actions.general close view ",tablesize(gt.views)));
+	sw.protogt.destroygraph(gt); 
+
+	#if (tablesize (gt.views) ~= 1)
+	#	gt.destroyview (gt, vt);
+	#sw.debug(concat("sw.protogt.actions.general close view B",tablesize(gt.views)));
+        #if (tablesize (gt.views) == 0)
+        #    gt.destroygraph (gt);
+	#sw.layoutgraph(gt);
+};
+
+		#Make all nodes and edges Visible
+sw.protogt.actions.general [ "Make all nodes and edges Visible" ] = 
+	function (gt, vt, data) {
+	local nid,eid;	
+
+       for( eid in gt.graph.edges ) {  # Make all edges invisible
+		gt.graph.edges[eid].attr.style = 'bold';
+       }
+
+       for( nid in gt.graph.nodes ) {
+		gt.graph.nodes[nid].attr.style = 'filled,rounded,bold';
+       }
+
+       sw.layoutgraph(gt);
+
+};
+
+
+	# Show only nodes with layer and layer< complete. 
+sw.protogt.actions.general [ "Show Only nodes with layer attribute" ] = function (gt, vt, data) {
+        local node, nid, eid, attr;	
+
+	# Make all nodes and edges invisible. 
+	# Make all nodes w/layer<complete visible.
+	# Make all edges between visible nodes visible.
+
+       for( nid in gt.graph.nodes ) {
+		attr = gt.graph.nodes[nid].attr;
+                attr.style = concat(attr.style,",invis");
+		attr.style = 'invis';	
+		    if(attr.layer){
+		            attr.style = 'filled,rounded,bold'; 
+			    layer = attr.layer;
+			    attr.color = sw_default.color[layer];
+		    }
+       }
+
+       for( eid in gt.graph.edges ) {  
+		attr = gt.graph.edges[eid].attr;
+		attr.style = 'invis';
+		attr = gt.graph.edges[eid].tail.attr;
+		if( attr.style ~= "invis") {
+			attr = gt.graph.edges[eid].head.attr;
+			if(  attr.style ~= "invis" ) { 
+				gt.graph.edges[eid].attr.style = 'bold';
+			}
+		}
+       }
+
+       sw.layoutgraph(gt);
+
+};
+
+
+	# Give all selected nodes the same group number
+sw.protogt.actions.general [ "Group Selected Nodes" ] = function (gt, vt, data) {
+	local node, nid;
+
+	sw.debug(concat("Group no:",sw.groupno));
+
+        for( nid in gt.graph.nodes ) {
+                node = gt.graph.nodes[nid];
+		if ( sw.isselected(node) ) {
+			node.attr.group = sw.groupno;
+			node.z = sw.groupno;
+		}
+	}
+
+	sw.groupno = sw.groupno + 1;
+        sw.layoutgraph(gt);
+
+};
+
+	# Select all nodes and edges:
+sw.protogt.actions.general [ "Select All" ] =  function (gt, vt, data) {
+	local node, nid, eid, edge;
+
+	sw.debug(concat("Select All nodes and edges."));
+
+        for( nid in gt.graph.nodes ) {
+                node = gt.graph.nodes[nid];
+			node.attr.fillcolor = sw_default.selectcolor;
+	}
+
+	for( eid in gt.graph.edges ) {
+		gt.graph.edges[eid].attr.color = sw_default.selectcolor;
+ 	}
+
+        sw.layoutgraph(gt);
+
+};
+
+	# DeSelect all nodes and edges.
+sw.protogt.actions.general [ "Deselect All" ] = function (gt, vt, data) {
+	local node, nid, eid, edge;
+
+	sw.debug(concat("DeSelect All"));
+
+        for( nid in gt.graph.nodes ) {
+                node = gt.graph.nodes[nid];
+		node.attr.fillcolor = "tan";
+	}
+
+	for( eid in gt.graph.edges ) {
+                   edge = gt.graph.edges[eid];
+                   edge.attr.color = "black";
+ 	}
+
+        sw.layoutgraph(gt);
+
+};
+
+
+	# Make all selected nodes visible:
+sw.protogt.actions.general [ "ShowAll" ] = function (gt, vt, data) {
+	local node, nid;
+
+	sw.debug(concat("ShowAll"));
+
+        for( nid in gt.graph.nodes ) {
+                node = gt.graph.nodes[nid];
+		if ( sw.isselected(node) ) {
+			   node.attr.style = "filled,rounded,bold"; 
+		}
+	}
+
+	for( eid in gt.graph.edges ) {  
+			gt.graph.edges[eid].attr.style = 'bold';
+	}
+	
+        sw.layoutgraph(gt);
+
+};
+
+
+	# Return true if node is an orphan node
+sw.isanorphan = function(node) {
+	local n_t;
+
+	if( ~ node.fields[0].text ) return 0;
+	#sw.debug(concat("sw.isanorphan ", node.fields[0].text));
+	n_t = split(node.fields[0].text,"*");
+	if( n_t[1] & (n_t[0] == "") ) {
+		sw.debug(concat("  Yes, orphan!"));
+		return 1;
+	}
+	return 0;
+};
+
+sw.isafile = function (gt, nid) {
+	local node;
+
+        node = gt.graph.nodes[nid];
+	# sw.debug(concat("sw.isafile Q ", node.name));
+	if( node.fields[0].port == sw.fileid ) { return 1; }
+	if( node.fields[0].fields[0].port == sw.fileid ) { return 1; }
+	if( sw.isanorphan(node) ) { return 1; }
+	# sw.debug(concat("sw.isafile: ", node.name, " is not a file "));
+	return 0;
+};
+
+		# Print out some numbers.
+sw.protogt.actions.general [ "Statistics" ] = function (gt, vt, data) {
+	local nnodes, nedges, nfiles, nparts, nstats, ngates, 
+	ncomponents, nclusters, ncycles, norphans, fselected, nselected,
+	complist, node, ngates1, nid, gid, eid, n_t;
+	local statusline;
+
+#	sw.debug("Statistics");
+	nnodes=0; nedges=0; nfiles=0; nparts=0; nstats=0; ngates=0; 
+	ncomponents=0;  norphans=0; nselected=0; fselected=0;
+	complist=[];
+	nclusters = sw.countclusters(gt);
+
+        for( nid in gt.graph.nodes ) {
+                node = gt.graph.nodes[nid];
+		node.attr.partno = 0;
+		# sw.debug(concat("Statistics: ",node.name));
+		if( sw.isafile(gt, nid) ) {
+			if( node.name == "TITLE" ) {
+				ncomponents = ncomponents - 1;
+				sw.debug("TITLE!");
+			} else {
+				nfiles = nfiles + 1;
+				if ( sw.isselected(node) ) {
+					fselected = fselected + 1;
+				}	
+			}
+		} else {
+			n_t = split(node.attr.component," ");
+			complist[n_t[0]] = 1;  
+			nnodes = nnodes + 1;
+			ngates1 = 0;
+			if ( sw.isselected(node) ) {
+				nselected = nselected + 1;
+			}
+			for( gid in node.fields ) {
+				ngates1 = ngates1 + 1;
+			}
+			ngates = ngates + ngates1 - 1;
+			norphans = norphans + norphans1; 
+		}
+	}
+
+	ncomponents = tablesize( complist );
+
+	for( eid in gt.graph.edges ) {
+		nedges = nedges + 1;
+	}
+
+        for( nid in gt.graph.nodes ) {
+               node = gt.graph.nodes[nid];
+		if( 
+ 		          (node.attr.partno == 0 )
+			& (node.name ~= "TITLE" )
+		    )  {
+			nparts = nparts + 1;
+			sw.partition(gt, node, nparts);
+		}
+	}
+
+	ncycles = nparts  - nnodes +  nedges - nfiles;
+
+	writeline(2, concat("# ", 
+		sw.pluralc(nparts," partition"),
+		sw.pluralc(nclusters," cluster"),
+		sw.pluralc(ncycles," cycle"),
+		sw.pluralce(nnodes, concat("\", nselected, " process")),
+		sw.pluralc(ncomponents," component"),
+		sw.pluralc(nfiles, concat("\", fselected, " file")),
+		sw.pluralc(ngates," gate"),
+		sw.plural(nedges," flow"),
+		"."
+	));
+	
+	statusline =  concat( 
+		sw.pluralc(nparts," part"),
+		sw.pluralc(nclusters," cluster"),
+		sw.pluralc(ncycles," cycle"),
+		sw.pluralce(nnodes, " process"),
+		sw.pluralc(ncomponents," component"),
+		sw.pluralc(nfiles,  " file"),
+		sw.pluralc(ngates," gate"),
+		sw.plural(nedges," flow")
+	);
+	
+	sw.control(concat("set status ",statusline) );
+
+};
+
+sw.pluralc = function (n,text) {
+	return(concat(sw.plural(n,text),", "));
+};
+
+sw.pluralce = function (n,text) {
+		
+	if( (n==0) |  n > 1 ) 
+		return(concat (n,text,"es, "));
+
+	return(concat (n,text,", "));
+	
+};
+
+sw.plural = function (n,text) {
+		
+	if( (n == 0) | (n > 1) )  
+		return(concat (n,text,"s"));
+
+	return(concat (n,text));
+	
+};
+
+	# Load subgraph named: sgname... 
+sw.load.subgraph = function (gt, sgname) {
+	local ngt, cngt, node, nnode, nid, i, n_t, eid, edge, g;
+	
+	sw.debug(concat("sw.load.subgraph ",sgname));
+	sw.open(sgname);
+        return;
+	
+};
+
+	# Load network named: fname...
+sw.open = function (fname) {
+	local vt, i, gt, ngt;
+	
+	gt = sw.gt;
+	sw.debug("sw.open");
+	if( sw.graphisopen) {	
+		sw.open1(gt, fname);
+		sw.graphisopen = 0;
+	}  else  {
+		ngt = gt.creategraph(sw.protogt);
+                vt = ngt.createview(ngt,   sw.protovt );
+		#vt.name = fname;
+		for ( i in ngt.views ) {
+                       vt = ngt.views[i];
+                }
+		#ngt[views] = vt;
+	        dotty.graphs[1].zoom(ngt,vt, 1.6,"");
+                sw.open1(ngt,fname);
+	}
+};
+
+sw.open1 = function(gt,fname) {
+	local node, nid, i, n_t, eid, edge, g, vt;
+		
+	#txtview("off");
+	sw.filename=fname;
+	sw.debug(concat("sw.open1 ",fname));
+
+# Temp. Load latest shownet.dot file instead.   
+#  	gt.loadgraph( gt, 
+#		concat("/tmp/shownet.dot"), 
+# 		'file', 
+# 		sw.protogt.graph, 
+# 		1);
+
+# Convert file 'fname'  to dot format:	
+  	gt.loadgraph( gt, 
+ 		concat("/usr/local/bin/showy5.ndl ",fname), 
+ 		'pipe', 
+ 		sw.protogt.graph, 
+ 		1);	
+
+	
+	sw.debug(concat("sw.open1 Graph Loaded"));
+
+	for(i in gt.views) {
+	    #sw.debug(concat("  open1 i=", i));
+	    view      = gt.views[i];
+	    view.name = fname;
+	}
+	
+	for( nid in gt.graph.nodes ) {	
+		node = gt.graph.nodes[nid];
+		# sw.debug(concat("Label:",node.attr.label));
+		#node.fields = parsegraphlabel( node.attr.label, node.attr.rects );
+		if( ~sw.isafile(gt,nid) ) {
+			# node = gt.graph.nodes[nid];
+			# stuvwx(nid,node);
+			#sw.debug(concat("loadgraph:   ",nid," ",node.name ));
+			if(node.fields[0].fields) { 
+				# sw.debug("  T1");
+				node.attr.component = node.fields[0].fields[1].text;
+			} else {
+				# sw.debug("  T2");
+				if( ~node.fields) { 
+					sw.debug(concat("ERR: in node ", node.name));
+					n_t = [];
+				} else {
+					# sw.debug("  T3");
+					n_t = split(node.fields[0].text,"|"); 
+					node.attr.component = n_t[1];
+				}
+			   for( i in n_t ) {
+				if(i>1) {
+					# sw.debug("  T4");
+					node.attr.component = concat(
+						node.attr.component,
+						"|",
+						n_t[i]
+					);
+				}
+			   } 
+			}
+		}
+	}
+
+	# sw.debug(concat("sw.open 2 ",fname));
+
+		# Fix edge port direction:
+	for( eid in gt.graph.edges ) {
+		   edge = gt.graph.edges[eid];
+		   if( edge.tport & ~sw.isafile(gt, edge.tail.nid) ) {
+			node = edge.tail;
+			g = sw.getgate(gt, node.nid, edge.tport);
+			#edge.tport = concat(edge.tport,".1");
+			node.fields[g].port = edge.tport;
+		        node.attr.label = sw.packlabel( node.fields );
+		   } 
+		   if( edge.hport & ~sw.isafile(gt, edge.head.nid) ) {
+			node = edge.head;
+			g = sw.getgate(gt, node.nid, edge.hport);
+			# edge.hport = concat(edge.hport,".0");
+			node.fields[g].port = edge.hport;
+		        node.attr.label = sw.packlabel( node.fields );
+		   }
+		   if( ~edge.hport )  {
+			edge.hport = edge.head.fields[0].port;
+		   } else 
+		   if( ~edge.tport )  {
+			edge.tport = edge.tail.fields[0].port;
+		   }
+	}
+
+	dotty.protogt.graph.graphattr = sw.protogt.graph.graphattr;
+# \todo set window title  =	gt.graph.graphattr.label ;
+# ??   	gt.setgraph( gt, sw.graph);
+
+	for( vt in gt.views) {
+	    vt.name = fname;
+	}
+	    
+	gt.graph.graphattr.label = fname;
+	gt.graph.graphattr.name = fname;
+	sw.layoutgraph(gt);
+
+};
+
+	# Send a line to the control panel 
+sw.control = function (line) {
+
+        sw.debug( concat("sw.control ", line) );
+	writeline( sw.fdctl, line);
+};
+
+sw.protogt.actions.general [ "Load a Network" ] = function (gt, vt, data) {
+	local fname;
+
+	sw.debug("Load a Network");
+
+	fname = 
+		ask( concat(
+			"Filename?[",
+			sw.defaults.filename,
+			"]")
+	);
+
+
+	sw.open(fname);
+#	sw.control(concat("LoadNetwork ",fname));
+};
+
+sw.protogt.actions.general [ "Save Subnet" ] = function (gt, vt, data) {
+
+	sw.debug("Save Subnet");
+	sw.control(concat("SaveSubnet"));
+};
+
+sw.protogt.actions.general [ "Toggle Delayed Layout" ] = function (gt, vt, data) {
+
+	sw.defaults.delayedlayout = 1 - sw.defaults.delayedlayout;
+	sw.layoutgraph(gt);
+};
+
+
+sw.protogt.actions.general [ "Toggle Debug" ] = function (gt, vt, data) {
+
+	sw.defaults.debuglevel = 1 - sw.defaults.debuglevel;
+	sw.debug(concat("Debuglevel=", sw.defaults.debuglevel)); 
+};
+
+sw.protogt.actions.general [ "Toggle Loose Match" ] = function (gt, vt, data) {
+	sw.defaults.loosematchok = 1 - sw.defaults.loosematchok;
+};
+
+sw.protogt.actions.general [ "Toggle Rank Direction" ] = function (gt, vt, data) {
+
+	sw.debug(concat("Toggle Rank Direction ",gt.graph.graphattr.rankdir));
+	if( gt.graph.graphattr.rankdir == "TB" ) {
+		 gt.graph.graphattr.rankdir = "LR";
+	} else {
+		 gt.graph.graphattr.rankdir = "TB";
+	}
+
+	sw.layoutgraph(gt);
+
+};
+
+sw.protogt.actions.general [ "Toggle Concentrate" ] = function (gt, vt, data) {
+
+	sw.debug(concat("Toggle Concentrate ",gt.graph.graphattr.concentrate));
+	if( gt.graph.graphattr.concentrate == "true" ) {
+		 gt.graph.graphattr.concentrate = "false";
+	} else 
+	if( gt.graph.graphattr.concentrate == 1 ) {
+		 gt.graph.graphattr.concentrate = 0;
+	} else	 {
+	if( gt.graph.graphattr.concentrate == "false" ) {
+		 gt.graph.graphattr.concentrate = 1;
+	} else	 {
+	if( gt.graph.graphattr.concentrate == 0  ) {
+		 gt.graph.graphattr.concentrate = "true";
+	} else	 {
+		 gt.graph.graphattr.concentrate = "true";
+	}}}
+
+	sw.layoutgraph(gt);
+
+};
+
+sw.protogt.actions.general [ "Delete Selections" ] = function (gt, vt, data) {
+	
+	sw.deleteselectednodes(gt);
+	sw.deleteselectededges(gt);
+};
+	
+sw.deleteselectednodes = function (gt) {
+	local nid; list; n;
+
+	sw.debug( "DeleteSelected nodes");
+	list = [];
+	n=0;
+
+        for( nid in gt.graph.nodes ) {
+                node = gt.graph.nodes[nid];
+		if ( sw.isselected(node) ) {
+			list[n] = nid; 
+			n = n + 1;
+		}
+	}
+
+        for( nid in list ) {
+                node = gt.graph.nodes[list[nid]];
+		sw.removeports( gt, nid);
+       	 	gt.removenode (gt, node);
+	}
+
+	sw.layoutgraph(gt);
+
+};
+
+	# Return node name wo/hostname
+sw.basename = function( fname ) {
+	local n_t;
+
+	n_t = split(fname,":"); 
+	return n_t[tablesize(n_t)-1];
+};
+
+	# Return the gate direction ( 0=in, 1=out|source)
+sw.direction = function(text) {
+	local n_t;
+
+		sw.debug(concat("direction:  ",text));
+	n_t = split(text,".");
+	if( n_t[1]) { return n_t[1]; };
+	return "";
+};
+
+	# Return the base part of a gate name (Ex.  out = sw.gatebase("out.0").
+sw.gatebase = function(port) {
+	local n_t;
+
+	# sw.debug(concat("sw.gatebase TWY ???",port));
+	n_t = split(port,".");
+	if( n_t[0]) { return n_t[0]; };
+	return "";
+};
+
+	# Return 1, if the base part of two port fields are equal. 
+sw.portequal = function(t1, t2) {
+
+	if( sw.gatebase(t1) == sw.gatebase(t2) )
+		return 1;
+	return 0;
+};
+
+		# Return 1 if gate has been linked; 0 otherwise.
+sw.gatematched = function(gt, node, port) {
+	local eid, nid, edge;
+
+	nid = node.nid;
+	for ( eid in node.edges ) {
+		edge = gt.graph.edges[eid];
+		if( (
+		        ( edge.tail.nid == nid ) &
+		       sw.portequal(edge.tport,port)
+		    ) | (
+			      ( edge.head.nid == nid ) &
+			       sw.portequal(edge.hport, port)
+			)
+		  ) { return 1; }		
+	}
+
+	return 0;
+};
+
+sw.LinkUp = function (gt, vt, g_t, nid, gid, gn, target) {
+	local node, node2, seq, sq2, g2, n2;
+
+        node = gt.graph.nodes[nid];
+
+	for ( seq in g_t) {
+		n2 = g_t[seq].n;
+		g2 = g_t[seq].p;
+		node2 = gt.graph.nodes[n2];
+		sw.debug(concat("Linkup ",node.name,"_",gid,"=>",node2.name,"_",g2));
+		if(       
+			  (node ~= node2) 
+			& (n2 ~= nid)
+			& (sw.direction(g2) == '0')  
+			& (     (g2 == target) | 
+				(sw.loosematch & sw.defaults.loosematchok) 
+			  ) 
+			&  ~sw.gatematched(gt, node2, g2)
+		) {
+			sw.debug(concat("Linkup2 ",node.name,"_",gid,"=>",node2.name,"_",g2));
+			gt.insertedge (
+				gt, 
+				node,   # node a
+				gid, 	     # gate a
+				node2,    # node b
+				g2, 	     # gate b
+				[],        # attr
+				1	     # show
+			);
+			return;
+		};
+	}
+
+};
+
+	# Return gate name with reversed direction. 
+sw.reverse = function(gid) {
+	local n_t;
+
+	n_t = split(gid,".");
+	if( n_t[1] == "1") { 
+		return concat(n_t[0], ".0"); 
+	}
+	return concat(n_t[0], ".1"); 
+};
+
+sw.linkmatches  = function (gt, vt, g_t) {
+	local seq,gn,gid,nid;
+
+		# Link up matching orphans:  
+	sw.loosematch = 0;
+	for ( seq in g_t ) {
+		gid = g_t[seq].p;
+		if( sw.direction(gid) == "1" ) {
+			nid = g_t[seq].n;
+			for ( gn in sw.defaults.xin) {
+				sw.debug(concat("      ", gid, " ",  sw.defaults.xin[gn]  ));
+				if(       ( gid == sw.defaults.xout[gn]) 
+				) {
+					sw.LinkUp( gt, vt, g_t, nid, gid, 
+						gn, sw.defaults.xin[gn] );
+				}
+			}
+				# Now connect matching names with correct direction. 
+			sw.debug(concat("   LU:", gid, " ",  sw.reverse(gid)  ));
+			sw.LinkUp( gt, vt, g_t, nid, gid, gn, sw.reverse(gid) );
+		}
+	}
+
+	# ?? Now connect anything leftover that matches and is unlinked.
+	sw.loosematch = 1;
+	for ( seq in g_t ) {
+                gid = g_t[seq].p;
+                nid = g_t[seq].n;
+		# node = gt.graph.nodes[nid];
+                if( (sw.direction(gid) == "1")
+			&  ~sw.gatematched(gt, gt.graph.nodes[nid], gid)  
+		  ) {
+                        sw.debug(concat("   LUX:", gid, " ",  sw.reverse(gid)  ));
+                        sw.LinkUp( gt, vt, g_t, nid, gid, gn, sw.reverse(gid) );
+                }
+        }
+
+	sw.loosematch = 0;
+	sw.layoutgraph(gt);
+};
+
+	# Connect all matching orphan gates 
+	# On toggle: connect out=>in 1=>0 plus table entries
+	# Do not connect to same node
+	# Future improvement:
+	#	Preferentially connect separate partitions before
+	#	connecting within a partititon.
+
+
+
+#   ***************        Called by sw.linkanorphan();   ********
+sw.sortndtbl = function (ndtbly) {
+     local ndtblx,ndtbl2, maxj, numt, morei,seq, id, k; 
+     
+     ndtbl2=copy(ndtbly);
+     ndtblx = []; 
+     maxj=0;               # ndtbl[ 7,5,2]
+     numt = tablesize(ndtbl2);         # numt = 3
+     morei = 1;
+     seq = 1;
+     
+       # Find  lowest ic and expand.
+     while ( morei > 0 ) { 
+	morei=0;
+	ic = 999;  
+	for( i in ndtbl2 ) {
+	    if( i < ic) ic = i; 
+	}
+	if( ic<999) {
+	    for(k in ndtbl2[ic]) { 
+		morei=1;
+		sw.debug(concat("    ic/k=",ic,"/",k, " ", ndtbl2[ic][k].nid));
+		ndtblx[seq] = ndtbl2[ic][k].nid;
+		seq = seq + 1;
+	    }
+	    remove(ic,ndtbl2);
+	}
+     }	
+	
+     return ndtblx;
+};
+
+
+#   ***************        sw.linkanorphan();   ********
+sw.linkanorphan = function (gt, ndtbl1) {
+   local i, j, k, nid, nid1, gid, gid1;
+   local dir0, dir1,  jtbl, node00, node0, node1, port0, port1;
+   local ndtbls;
+     
+    ndtbls = copy(sw.sortndtbl(ndtbl1));
+    
+    i=1;
+    while( i < (tablesize(ndtbls) +1) ) {
+        nid = ndtbls[i];
+        node0 = gt.graph.nodes[nid];
+	i = i +1;
+        j = tablesize(ndtbls);
+	sw.debug(concat("  nid/i/j=",nid,"/",i,"/",j));
+	while (j) {
+	  nid1=ndtbls[j];
+	  node1 = gt.graph.nodes[nid1];
+	  sw.debug(concat("    nid/nid1 ", nid,"/",nid1));
+	  if( node1.nid ~= nid ) {  # Check for matching 
+		    #match a sink in node0 with a source in node1 or vice versa.  Return after first match.
+		    #if no match continue with rest of nodes in jtbl. 
+		    #if no matches in jtbl.  continue rest of nodes in node0[min]
+		    # For all ports in node0, check for match in node1
+	    sw.debug(concat("linkanorphan2 ", node0.name, " a ",node1.name));
+	    for( gid in node0.fields) {
+		port0 = node0.fields[gid].port;
+		if( (gid >0) & port0 & ~sw.gatematched(gt, node0, port0) ) {
+		    dir0 = sw.direction(port0);
+		    for(gid1 in node1.fields) {
+		      if(gid1>0) {
+			port1 = node1.fields[gid1].port;
+			sw.debug(concat(     node0.name," x ", port1, " , ", node1.name));
+			if( port1 & ~sw.gatematched(gt, node1, port1)  ) {
+			    dir1=sw.direction(port1);
+			    if( dir0 ~= dir1 ) {
+				if( ~sw.gatematched(gt, node1, port1) ) {
+						      #sw.debug(concat("    min-max",min,"-",max," ",node0.name,".",port0," ",
+							#				node1.name,".",port1));
+						      if(dir0 == "1") {
+							  gt.insertedge (
+							  gt, 
+									 node0,   # node a
+									 port0, 	     # gate a
+									 node1,    # node b
+									 port1, 	     # gate b
+									 [],        # attr
+									 1	     # show
+									 );
+						      } else {
+							  gt.insertedge (
+							  gt, 
+									 node1,   # node a
+									 port1, 	     # gate a
+									 node0,    # node b
+									 port0, 	     # gate b
+									 [],        # attr
+									 1	     # show
+									 );
+						      }
+						      return 1; # Make 1 later
+				}
+			    }
+			}
+		      }
+		    }
+		}
+	    }
+	  }
+	  j = j-1;
+	}
+  }
+  
+  
+  return 0;
+  
+};
+# ***************      End of  sw.linkanorphan();   ********
+
+# METHOD:
+#    1. Build table of nodes by number of orphan gates, ndisc(node1) = number orphan gates 
+#       for node1.  Ex.  ndisc[2=[nid1,nid2,...], 3=[nid3,nid4...],...] 
+#    2. Get gate from lowest ndisc node. Ex. nid1  
+#    3. Look for match starting with highest ndisc nodes: ex. nid3,nid4,nid2,...
+#    4. Remove matching nodes from table, say nid1 and nid3. 
+#    5. Add back nodes to table in new locations, unless ndisc=0.    
+#       Ex. ndisc[1=[nid1],2=[nid2,...nid3], 3=[nid4...],...]
+#    6. Repeat 2-5 until table is empty or the last gate cannot be connected.
+#
+# NOTE:
+#    This works fairly well but may not minimize number of partitions in some cases.
+
+sw.protogt.actions.general [ "Link up Orphan Gates" ] = function (gt, vtx, datax) {	
+    local    i, j,k, domore, ndtbl, ndisc, nid, gid, node ;
+        
+    domore=1;
+    
+    sw.debug(concat("Link Orphans new:   ")); 
+    
+    while ( domore > 0 ) {
+     ndtbl=[];
+     for ( nid in gt.graph.nodes ) {            
+	node = gt.graph.nodes[nid];
+	ndisc=0;
+	for ( gid in node.fields )  {
+	    if(  gid > 0 )  {
+		if( ~sw.gatematched(gt, node, node.fields[gid].text) )  {
+		    ndisc = ndisc + 1;
+		}
+	    }
+	}
+	if(ndisc > 0) {   
+	    if(ndtbl[ndisc]) {
+		j = tablesize(ndtbl[ndisc]); 
+		ndtbl[ndisc][j+1] = node;
+		sw.debug(concat("   old disc: ndisc/name ",ndisc,"/",node.name));
+	    } else {
+		ndtbl[ndisc] = [];
+		ndtbl[ndisc][1]  = node;
+		sw.debug(concat("   new ndisc: ndisc/name ",ndisc,"/",node.name));
+	    }
+	}
+      }
+      domore = sw.linkanorphan(gt, ndtbl);
+    }
+    
+  sw.layoutgraph(gt);
+
+};
+
+sw.yankgate = function ( gt, nid, gname) {
+        local node, fid, ftbl;
+   
+	if( gname == sw.fileid ) return;       
+        node = gt.graph.nodes[nid];
+	sw.debug(concat("yankgate:   ", node.name, "/",gname)); 
+
+	ftbl = [];   				
+        for (fid in node.fields) {
+		if (    (fid > 0)
+		     &	(gname == node.fields[fid].port)
+		)  {
+			ftbl[fid] = gname; 
+	        };
+        };
+
+	for( fid in ftbl ) { 
+		sw.removeedge(gt,node,ftbl[fid] );
+        	node.fields[fid] = [];
+       		node.attr.label = sw.packlabel( node.fields );
+	}
+
+};
+
+
+	# See protovt for action menu 
+sw.protogt.actions.general [ "Delete Unused Gates" ] = function (gt, vt, data) {	
+	local nid, node, gid, g_t, text;
+
+	for ( nid in gt.graph.nodes ) {
+		node = gt.graph.nodes[nid];
+		g_t = [];
+
+ 		for ( gid in node.fields )  {
+			text = node.fields[gid].text;
+			if( ( gid > 0 ) 
+				 &
+			    ~sw.gatematched(gt, node, text)
+			)  {
+			    g_t[9999 - gid] = node.fields[gid].port;
+			}
+		}
+		for ( gid in g_t ) {
+			sw.yankgate(gt, nid,  g_t[gid]);
+		}
+	}
+
+	sw.layoutgraph(gt);
+
+};
+
+sw.flashit = function(ln) {
+	# sw.debug(concat("sw.flashit: ",ln));
+
+};
+
+	# Idle Function:
+	# Set by idlerun. Must use this name -- idle 
+sw.dummy.idle = function (var) {  
+
+};
+
+	#   Get 'flash' data and show it. 
+	# Set by idlerun. Must use this name -- idle 
+idle = function (var) {  
+	local ln;
+
+	ln = readline(sw.fdflash);
+	if( ~ln | ~sw.fdflash | ( ln == EOF ) ) {
+		idlerun("off");
+		sw.debug("idle function ended.");
+	} else {
+		sw.flashit(ln);
+		# Do Flash stuff
+	}
+
+};
+
+	#Process commands.  Via monitorfile(). 
+sw.fdcmd = function (fd) {
+	local ln, s;
+
+	sw.debug(concat("sw.fdcmd ", fd));		
+	if( (ln=readline(fd)) == EOF ) {
+		sw.debug(concat("sw.fdcmd EOF:", fd));		
+		monitor("off",fd);
+	} else {
+		if( ln ) {
+                        sw.getcmd(sw.gt, ln);
+                } else {
+                        sw.msg( "VDFD Control Panel connection is broken; quitting" );
+			exit();
+                        #cmd = concat("sleep 2");   # ? Fixed looping problem w/exit()
+                        #system( cmd );
+                }
+	}
+};
+
+	# Send a line to port sw.sendfd 
+sw.send = function (line) {
+
+#	sw.debug( concat("sw.send ", sw.sendfd, ":", line) );
+	writeline( sw.sendfd, line);
+};
+
+sw.timestamp = function () {
+	local timestamp, fdin;
+
+	fdin = openio( "pipe", "/bin/date", "r", concat("%e") ); 
+#	sw.debug(concat("Timestamp fdin=",fdin));
+	timestamp = readline(fdin);
+	closeio(fdin);
+	return timestamp;
+};
+
+sw.writefile1 = function(gt, edge, fname) {
+	local nid, node, tport, nodeid;
+
+	sw.debug(concat("sw.writefile1: ", fname));
+
+	# If Orphan gate and gate name is the same, then
+		#  don't write this out.
+	if( sw.equalorphan( gt, edge, fname, edge.tport )) return;
+
+	sw.debug(concat("sw.writefile1B: ", edge.tport));
+	if( edge.tport ) {
+		tport = sw.gatebase(edge.tport);
+	} else {
+		tport = sw.fileid;
+	}
+
+			###	sw.debug(concat("sw.writefile1:", tport,"-",  fname, "-", hport));
+	
+
+	nid = edge.tail.nid;
+	node = gt.graph.nodes[nid];
+	nodeid = sw.basename(node.name);
+
+	if( sw.isanorphan(node) ) {
+		sw.send(concat( "(",nodeid,")",	 
+			tport," => ",
+			'"',fname,'";'
+		));
+	} else {	
+		sw.send(concat( "(",nodeid,")",	 
+			tport," => ",
+			'"',fname,'";'                 
+		));
+	}
+
+};
+
+sw.writefile2 = function (gt, edge, fname ) {
+	local nodeid1, port;
+
+	sw.debug(concat("sw.writefile2 ", fname));
+
+	# If Orphan gate and gate name is the same, then
+		#  don't write this out.
+	if( sw.equalorphan( gt, edge, fname, edge.hport ) ) return;
+
+	port = sw.gatebase(edge.hport);
+	nodeid1 = sw.basename(edge.head.name);
+
+
+	if( sw.isanorphan(edge.head) ) {
+		sw.send( concat('"',fname,'"', 
+			" => ",port,
+			"(", nodeid1, ");"
+		));
+	} else {
+		sw.send( concat('"',fname,'"',      
+			" => ",port,
+			"(", nodeid1, ");"
+		));
+	}
+};
+
+sw.writefile = function(gt, node) {
+	local i, f_t, eid, fname, edge, tport;
+
+	fname = sw.basename(node.name);
+	sw.debug(concat("sw.writefile ", fname));
+
+        if( tablesize(node.edges)  == 0 ) {
+                      sw.warn(concat(node.name," is not connected."));
+		       sw.ndisc = sw.ndisc +1;
+                       sw.send(
+                                 concat('"',fname,'"',"=>in", 
+                                         '(',"_DISC_",sw.ndisc,
+                                         " ",node.attr.host,":Null",');'
+				 )
+                        );
+        }  else {
+	   for( eid in node.edges ) {   
+	        edge = gt.graph.edges[eid];
+		if(      (~ edge.hport )
+				 |  
+			 ( edge.hport == sw.fileid )
+		  )  {
+			sw.writefile1(gt, edge, fname );
+		} else {
+			sw.writefile2(gt, edge, fname );
+		}
+	   }
+        } 
+};
+
+sw.writeorphan1 = function(gt, edge, fname) {
+	local node, tport, n_t, nodeid;
+
+	writeline(2, concat("WO1: ",fname ));
+	tport = sw.gatebase(edge.tport);
+	nodeid = sw.basename(edge.tail.name);
+	n_t = split(fname,"*");
+
+	if(n_t[1] ~= tport) { 
+		sw.send(concat( 
+			"(",nodeid,")",	 
+			tport," => ", fname,
+			";"
+		));
+	} else {
+		sw.send(concat( 
+			"(",nodeid,")",	 
+			tport," => ",
+			";"
+		));
+	}
+
+};
+
+sw.writeorphan2 = function (gt, edge, fname ) {
+	local n_t, nodeid1, port;
+
+	port = sw.gatebase(edge.hport);
+	nodeid1 = sw.basename(edge.head.name);
+	n_t = split(fname,"*");
+
+	if( port ~= n_t[1]) {
+		sw.send( concat ( 
+			fname, " => ",
+			port,
+			"(", nodeid1, ");"
+		));
+	} else {
+		sw.send( concat ( 
+			" => ",
+			port,
+			"(", nodeid1, ");"
+		));
+	}
+};
+
+sw.writeorphan3 = function (gt, node, field ) { 
+	local n_t, nodeid1, port;
+
+	sw.debug(concat("sw.writeorphan3:",node.name,"-",field.port," is an orphan."));   
+	port = field.port;
+	nodeid1 = node.nid;
+	fname = field.port;
+
+	if(sw.direction(field.port) == "1" ) {
+		sw.send( concat ( 
+			"(", node.name, ")",field.text,"=> ;" 
+		));
+	} else {
+		sw.send( concat ( 
+			" =>",field.text,"(", node.name, ");"
+		));
+	}
+};
+
+sw.writeorphan = function(gt, node) {
+	local i, f_t, eid, fname, edge, tport;
+
+	fname = sw.basename(node.name);
+
+	for( eid in node.edges ) {
+	        edge = gt.graph.edges[eid];
+		if ( ~edge ) {
+			sw.error( concat("VDFD.LEFTY: ", node.name, " ",
+				eid, " ", fname ));
+		}
+		if(      (~ edge.hport )
+				 |  
+			 ( edge.hport == "G" )
+				 |  
+			 ( edge.hport == sw.fileid )
+		  )  {
+			sw.writeorphan1(gt, edge, fname );
+		} else {
+			sw.writeorphan2(gt, edge, fname );
+		}
+	}
+};
+
+	# Return the process name for a sub-net
+sw.subnetname = function(hostname) {
+	local sname, n_t;
+
+	n_t = split( hostname, "." );
+	sname = n_t[0];    # ? Make upper case ?
+  	return sname;
+};
+
+
+sw.subnet = function(node) {
+
+	return( sw.isasubnet( node.attr.host ));
+};
+
+sw.isasubnet = function(hostname) {
+	local n_t, i;
+
+	n_t = split( hostname, "." );
+	i = tablesize(n_t) - 1;
+
+	if( (i>0) & ( ( n_t[i] == "nds" ) 
+		    | ( n_t[i] == "sub" ) )
+	  ) { 
+		sw.debug(concat(hostname, " is a subnet."));
+		return 1; 
+	  }	    
+
+	## sw.debug(concat(hostname, " is not a subnet."));
+	return 0;
+};
+
+		# Find node id by node name. 
+sw.lookupnode = function(gt, pname) {
+	local nid, i, node;
+
+	for (   nid in gt.graph.nodes ) { 
+		node = gt.graph.nodes[nid];
+		if( node.name == pname ) return nid;
+	};
+
+	return -1;
+
+};
+
+	# Write NDL to disk(or to pipe).   
+	# Hostnames with suffixes .nds or .sub  are actually sub-nets.
+sw.createfile = function (gt, fdesc, fname, argq) {         
+	local fdin, nid, n_t, f_t, node, eid, edge, parms, 
+		nodeid1, nodeid2, node1, node2, qmark, arrow,
+		eparts, cgt, gid, fid, isanorphan;
+
+	sw.debug(concat("sw.createfile ",fname));
+	gt.graph.graphattr.label = fname;
+	gt.graph.graphattr.name = fname;
+	
+		# Make eparts = expected # partitions.
+	eparts = sw.npartitions(gt);
+
+	sw.sendfd = fdesc;
+        #sw.debug( concat("sw.createfile ", "Writing definitions:") );
+
+		# Write all subnet definitions 
+	for ( gid in gt.graph.graphs ) {
+		cgt = gt.graph.graphs[gid];
+		if( sw.isasubnet( cgt.name )
+			& ( tablesize( cgt.nodes ) > 0 )
+		  ) {
+			sw.writesubnet(gt, cgt, fname );
+		}
+	}
+
+#	sw.debug( concat("sw.createfile ", "Send ND header:") );
+
+		# Send ND header
+	if( fdesc == sw.fdfile ) {     # Send to File component
+		if( fname == "" ) {
+			sw.error("Missing name ");
+			return;
+		}
+		sw.send(concat( "File: EOFX ", fname, " rwxrwx---" ));
+		if( sw.isasubnet( fname ) ) {
+			sw.send( concat("# ",
+				fname,
+				" generated ", 
+				sw.timestamp(), 
+				" by: sw-", sw.defaults.version
+			));
+		} else {
+			sw.send("#!/bin/bash");
+			sw.send( concat("# ",
+				fname,
+				" generated ", 
+				sw.timestamp(), 
+				" by: sw-",
+				sw.defaults.version,
+				"\"
+			));
+			if( argq ) {
+				parms = concat(" -- ",ask( concat("Arguments for ", fname, "?")) );
+			}   else {
+				parms = " -- ";
+			}
+			sw.send( concat( "exec dfd  -e ",
+ 				eparts," ", '"',
+				"$0",'"'," ",
+				parms," ",
+				'"',"$@",'"'
+				));
+				sw.send("");    # Script may fail wo/this.
+			}
+		}
+
+#	sw.debug( concat("sw.createfile ", "Write PROCESSES:") );
+
+		# Write PROCESS definitions for subnets
+	for ( gid in gt.graph.graphs ) {
+		cgt = gt.graph.graphs[gid];
+		if( sw.isasubnet( cgt.name )
+			& cgt.nodes
+		  ) {
+			sw.writesubprocess( cgt.graphattr.label );
+		}
+	}
+
+#	sw.debug( concat("sw.createfile ", "Write nodes and files:") );
+
+		# Write nodes and file flows then inter-process flows.
+	for (nid in gt.graph.nodes ) {
+		node = gt.graph.nodes[nid];
+		if( (node.fields[0].fields[0].port == "P") 
+			& ~sw.subnet(node)
+		  ){
+			sw.writetask(gt, node);
+		}
+	}
+
+
+			#	sw.debug( concat("sw.createfile ", "Write orphans:") );
+			# NOTE:  Put this with edge output somehow to prsrv. seq.
+	for (nid in gt.graph.nodes ) {
+		node = gt.graph.nodes[nid];
+		if( ~sw.subnet(node) ) {   
+			if( sw.isanorphan(node) ) {
+        	                sw.writeorphan(gt, node );  # Orphan Gate  
+			} else { if( sw.isafile(gt, node.nid) ) {
+				sw.writefile(gt, node );
+			}}
+		}	
+					# Write out forgotten orphans; i.e. no edge created.
+		# For each field, missing a corresponding edge, write out an orphan flow:
+		for (fid in node.fields) {
+			if( fid > 0) {
+				#sw.debug(concat("     Field:",node.name,"-",node.fields[fid].port));
+				isanorphan=1;
+				for( eid in node.edges) {
+					#sw.debug(concat("     edge:",node.edges[eid].head.nid, "-",node.edges[eid].hport));
+					if (  ((node.edges[eid].tport == node.fields[fid].port ) &
+						 (node.edges[eid].tail.nid == node.nid ))	 |
+					       ((node.edges[eid].hport == node.fields[fid].port ) &
+					         (node.edges[eid].head.nid == node.nid))
+					    ) {  isanorphan = 0;  }
+				}
+				if (isanorphan==1) {
+					sw.writeorphan3(gt,node,node.fields[fid]);
+				}
+			}
+		}
+	}
+
+#	sw.debug( concat("sw.createfile ", "Write ()=>() :") );
+
+		# Send process to process flows.
+	for( eid in gt.graph.edges ) {
+		edge = gt.graph.edges[eid];
+		if( 
+		    ( gt.graph.nodes[edge.tail.nid].fields[0].fields[0].port == "P")
+				&
+		    ( gt.graph.nodes[edge.head.nid].fields[0].fields[0].port == "P")
+		  )  {
+			nodeid1 = sw.basename(edge.tail.name);
+			nodeid2 = sw.basename(edge.head.name);
+			node1 = gt.graph.nodes[sw.lookupnode(gt,nodeid1)];
+			node2 = gt.graph.nodes[sw.lookupnode(gt,nodeid2)];
+			if( sw.subnet(node1) & ~sw.subnet(node2) ) {
+				sw.send(concat( "(",
+					sw.subnetname(node1.attr.host), 
+					")", sw.gatebase(edge.tport), 
+					" => ",
+				 	sw.gatebase(edge.hport), 
+					"(", nodeid2, ");" 
+				 ));
+			} else { if( sw.subnet(node2) 
+				& ~sw.subnet(node1) 
+			   ) {
+				sw.send(concat( "(", 
+					nodeid1, ")", sw.gatebase(edge.tport), 
+					" => ",
+				 	sw.gatebase(edge.hport),
+					"(",
+					sw.subnetname(node2.attr.host), 
+					");" 
+				 ));
+			} else {  if( sw.subnet(node2) 
+ 				    & sw.subnet(node1)
+				    & ( node1.attr.host ~= node2.attr.host )
+					 ) {
+					sw.send(concat( "(", 
+					sw.subnetname(node1.attr.host), 
+					")", sw.gatebase(edge.tport), 
+					" => ",
+				 	sw.gatebase(edge.hport),
+					"(",
+					sw.subnetname(node2.attr.host), 
+					");" 
+				 ));
+			} else {  if( ~sw.subnet(node2) 
+ 				    & ~sw.subnet(node1) ) {
+			                qmark="      ";
+					arrow = " => ";
+			                if( edge.attr.style ~= "bold" ) {         
+					        arrow=" ~> ";					# Is a message queue 
+						qmark="QUEUE ";				# DFD parser needs this, unfortunately 
+					}
+					sw.send(concat( qmark, "(", 
+					nodeid1, ")", sw.gatebase(edge.tport), 
+					arrow,               
+				 	sw.gatebase(edge.hport), 
+					"(", nodeid2, ");" 
+				 ));
+			}}}}
+		}
+	}
+
+	if( fdesc == sw.fdfile ) {
+		sw.send( "EOFX");  
+	}
+
+	#sw.debug( concat("sw.createfile ", "FIN!") );
+};
+
+sw.next.rank = function () {
+
+	sw.rank = sw.rank + 1;
+	return sw.rank;
+};
+
+	# Undo all node rankings. 
+sw.protogt.actions.node [ "Clear All Ranks" ] = function (gt, vt, obj, data) {
+	local cgt, gl, n;
+
+	gl = []; n = 0;
+	for( gid in gt.graph.graphs ) {
+		gl[n] = gid;
+		n = n + 1;
+	}
+
+	sw.debug(concat("Clear All Ranks ", gl));
+
+	for( n in gl) {
+		gid = gl[n];
+		# sw.debug(concat("  view  ", gt.graph.graphs[gid].name));
+		if( gt.graph.graphs[gid].name == sw.rank ) {
+			gt.graph.graphs[gid] = null;
+			sw.rank = sw.rank - 1;
+			sw.protogt.actions.node [ "Clear All Ranks" ] (gt, vt, obj, data);
+			return;
+		}
+	} 
+
+	for( eid in gt.graph.edges ) {
+		gt.graph.edges[eid].attr.constraint="true";
+	}
+
+	sw.layoutgraph(gt);    
+};
+
+	# Give all selected processes the same (unique) rank number.
+	# and add to rank subgraph. 
+sw.protogt.actions.node [ "Rank Selected Processes" ] = function (gt, vt, obj, data) {
+	local nl, n, nid, node, rank;
+
+	nl = []; 
+	n = 0;
+	rank = sw.next.rank();
+        for( nid in gt.graph.nodes ) {
+                node = gt.graph.nodes[nid]; 
+		if( sw.isselected(node)) {
+			# sw.debug(concat(" Rank = ", node.name));
+			nl[n] = node;
+			n = n + 1;
+		}
+	}
+
+	sw.rankequal(gt, nl, rank );
+	sw.layoutgraph(gt);    
+
+};
+
+	# Remove this node from old rank=same graph.
+sw.removefromgraph = function ( gt, node, rank ) {
+	local cgt;
+	
+	sw.debug("Remove from graph");
+	for( gid in gt.graph.graphs ) {
+		cgt = gt.graph.graphs[gid];
+		if( cgt.name == rank ) {
+			cgt.nodes[node.nid] = null;
+			return;
+		}
+	}
+	
+};
+
+	# Create a subgraph for = ranked nodes:
+sw.rankequal = function ( gt, nodelist, rank ) {
+	local cgt, node, nname, nid, id, fid, eid;
+
+	for( id in  gt.graph.graphs) {
+		cgt = gt.graph.graphs[id];
+	}
+	
+	if( cgt.name ~= rank ) { 
+		cgt = gt.insertsgraph(gt, 
+			rank, 
+			[
+				'rank' = same;
+			], 
+			0
+		);
+	}  else {    # Remove old nodes:
+		for( nid in cdt.nodes ) {
+			cdt.nodes[nid] = null;
+		}
+	}
+
+	cgt.graphattr  = [];
+	cgt.nodeattr  = [];
+	cgt.graphattr.rank="same"; 
+
+		# Insert nodes:
+	for( fid in nodelist ) {
+		node = nodelist[fid];
+		nname = node.name;
+	   	#sw.debug(concat("Insert ", nname));
+		node = sw.findnode(gt, nname );
+		# sw.debug("Found node");
+		if( node.attr.rank )  {   # Remove from old graph 
+			sw.removefromgraph(gt, node, node.attr.rank );
+		}
+		node.attr.rank = rank;
+		if( cgt.nodes ) {
+			fid = tablesize(cgt.nodes);
+			while( cgt.nodes[fid] ) { fid = fid + 1; }
+		} else { 
+			cgt.nodes = [];
+			fid = 0;
+		};
+	   	# sw.debug(concat("Insert ", nname, " as"));
+		cgt.nodes[node.nid] = node;    
+			# Unconstrain all  same rank node incident edges.
+		for( eid in node.edges ) {
+			node.edges[eid].attr.constraint="false";
+		}
+	};
+
+
+};
+
+	# Find cluster id for this host or add a new cluster.
+sw.getcluster = function ( gt, hostname ) {
+	local cgt, xgt, cid, cname;
+
+	for ( cid in gt.graph.graphs ) {
+		xgt = gt.graph.graphs[cid];
+		if( xgt.graphattr.label == hostname ) {
+			cgt = xgt;
+			break;
+		}
+	}
+
+		# Add cluster if no match.
+	if(  ~cgt  | ( cgt.graphattr.label ~= hostname ) 
+	  ) {
+		cname = concat("cluster", hostname);
+		cid = tablesize(gt.graph.graphs);
+		while( gt.graph.graphs[cid] ) { cid = cid + 1; }
+		sw.debug(concat( "add new cluster",":",cname ));
+		sw.graphisopen=0;
+		cgt = gt.insertsgraph(gt, cname, 
+			['label'=hostname;
+			 'name'=hostname;
+			 'color'     = 'black';
+			 'style'     = 'filled';  
+#	bgcolor and fillcolor have no effect here. 
+#       because attribute are taken from  sw.lefty.dot
+			  #'bgcolor'   = 'ivory';
+			  #'bgcolor'   = 'lightgray';
+			 #'fillcolor' = 'whitesmoke';
+			 #'xdotversion' = '1';      #Trying to make drawing immediate. 
+			], 
+			1 );
+		cgt.graphattr.name = hostname;
+	}
+
+	return cgt;
+
+};
+
+
+# Get first edge.  change to color 1 sleep 1 than color2 sleep again 
+sw.flashedge = function (gt, vt, t1) {
+    local list, n, edge;
+    
+    
+    list = sw.getselectededges(gt);
+    nflash=5;
+    
+    while(nflash > 0) { 
+	nflash = nflash - 1;   
+	for( n in list ) {
+	    edge = gt.graph.edges[list[n]];
+	    edge.attr.color = t1;
+	    gt.drawedge(gt,gt.views,edge);
+	}
+	sw.layoutgraph(gt);
+	#gt.redrawgraph(gt,gt.views);
+	#gt.finishlayout(gt);
+	#sw.debug(concat("sw.flashedge ", t1));
+	sleep(1);
+	for( n in list ) {
+	    edge = gt.graph.edges[list[n]];
+	    edge.attr.color = "orange";
+	    gt.drawedge(gt,gt.views,edge);
+	}
+	sw.layoutgraph(gt);
+	#gt.redrawgraph(gt,gt.views);
+	#sw.debug(concat("sw.flashedge orange"));
+	sleep(1);
+    }
+    
+    sw.layoutgraph(gt);
+};
+
+sw.addtocluster = function (gt, node) {
+	local cgt, fid,lang,n_t,n_u,node2, nid;
+
+	cgt = sw.getcluster( gt, sw.defaults.host );
+	if( cgt.nodes ) {
+		fid = tablesize(cgt.nodes);
+		while( cgt.nodes[fid] ) { fid = fid + 1; }
+	} else { 
+		cgt.nodes = [];
+		fid = 0;
+	};
+	cgt.nodes[node.nid] = node;   
+
+			# Set lang attribute.
+	if( ~sw.isafile(gt, node.nid) & node.attr.component ) {	
+		n_u = split(node.attr.component," ");
+			for( nid in gt.graph.nodes ) {
+                		node2 = gt.graph.nodes[nid];
+				if(node2.attr.component) {
+					n_t = split(node2.attr.component," ");
+					if( n_t[0] == n_u[0]) {
+						lang=node2.attr.lang;
+					}
+				}
+			}
+	}
+	
+	if(lang & lang ~= "C")
+			  node.attr.lang  = lang;
+
+};
+
+		
+sw.addanode = function (gt, data, cname) {
+	local label, rect, rect0, rect1, fields, node, ncolor, rects,
+		ngates, gn, c_t, n, nname,n_t;
+
+	sw.debug(concat("sw.addanode: ",cname));
+	sw.generatenodename(gt);
+	
+	rect=[0=[x=1;y=2;]; 1=[x=3;y=4;]; ];
+
+	label = concat( 
+		"{<P> ",  
+		sw.nodeid, 
+		"|<",cname,"> ",  
+		cname,
+		"}");
+
+	fields = [ 
+		0 = [ 'fields' = 
+			[
+			   0 = ['port' = 'P'; 'rect' = rect; 'text'=node.name;];
+			   1 = ['port' = cname; 'rect' = rect; 'text'=cname;];
+			]; 
+		    ];
+	]; 
+
+	#sw.debug(concat("sw.addanode2: ",cname));
+	ngates  = 1 ;
+	for ( gn in sw.defaults.gin ) {
+		fields[ ngates ] = [
+			'port' = concat(sw.defaults.gin[gn],".0"); 
+			'rect' = rect; 
+			'text'=sw.defaults.gin[gn];
+		];
+		ngates = ngates + 1;
+		label = concat( label, "|<",  
+			sw.dirgate(sw.defaults.gin[gn],".0"),"> ",
+			sw.defaults.gin[gn]
+	       );
+	}	
+
+	for ( gn in sw.defaults.gout ) {
+		fields[ ngates ] = [
+			'port' = concat(sw.defaults.gout[gn],".1"); 
+			'rect' = rect; 
+			'text'=sw.defaults.gout[gn];
+		];
+		ngates = ngates + 1;
+		label = concat( label, "|<",  
+			sw.dirgate(sw.defaults.gout[gn],".1"),"> ",
+			sw.defaults.gout[gn]
+	       );
+	}	
+	
+	gn = 0;
+	#sw.debug(concat("sw.addanode3 ",cname));
+	while ( ngates > 0  ) {      
+		ngates = ngates  - 1;
+		gn = gn + 1;
+	}
+            
+		# Set node.attr.fillcolor from file extension
+	c_t = split( cname, " " );    # Eliminate component arguments 
+	c_t = split( c_t[0], "." );   # Split comp. name by equal('=') 
+	n   = tablesize(c_t);      # number of items in c_t
+
+	if( (n > 1) & 
+		(  (c_t[n-1]  == "sub") 
+		 |  (c_t[n-1] == "nds") 
+		)
+	  ) {
+		ncolor = sw.defaults.nodecolor.sub; 
+	}
+
+	nname = sw.nodeid;
+	
+	#sw.debug(concat("sw.addanode4: ",gt.graph.graphattr.name));
+	node = gt.insertnode (     
+		gt, 
+		data.pos, 
+		null, 	    # size
+		nname,
+			 # Attributes
+		[ 
+                  'lang'      =  sw.default.lang;
+		  'fillcolor' =  ncolor;
+                  'color'     = sw.default.pcolor;
+		  'component' = cname;
+		  'label'  = label;
+		  'host'  = sw.defaults.host;
+		],   
+      		0	  # 1 = show. 0 = invisible
+	);
+
+	
+	#sw.debug(concat("sw.addanode5: ",cname));
+	# N.B. dotty_layout.lefty had to be modified to return node.fields. 
+	sw.addtocluster(gt, node);
+	#sw.debug(concat("sw.addanode6: ",cname));
+	#node.fields = parsegraphlabel( node.attr.label, node.attr.rects );
+	node.fields = fields;
+## ??     sw.layoutgraph(gt);  # Temporary, to fix node.fields. ??
+	return node;
+};
+
+
+	# Locate node by name. Add one if not there.
+sw.findnode = function (gt, nodename) {
+	local node,data,nid;
+
+	data["pos"] = [ x=30; y=30; ];
+	sw.debug(concat("sw.findnode:",nodename));
+	nid = sw.lookupnode(gt,nodename);
+	if( nid > -1 ) {
+		return gt.graph.nodes[nid];
+	}
+
+	return sw.addanode(gt, data, nodename);;
+};
+
+
+	# Add file to graph
+sw.addfile = function (gt, data, fnamein) {
+	local label, rect0, rect1, rect, fields, node;
+	local fname;
+
+	label = concat( "<",sw.fileid,"> ", fnamein);	
+	fname = concat(  sw.defaults.host, ":",  fnamein );
+	sw.debug(concat("sw.addfile:",fnamein));
+	node = gt.insertnode (
+		gt, 
+		data.pos, 
+		null, 	    # size
+		fname,
+		[ 
+		  'label' = label;
+		  'fillcolor' = 'limegreen';
+		  'host'  = sw.defaults.host;
+		],    
+      		0	    
+	);
+
+	if( ~ node ) return;
+	node.attr.style = "filled,bold";
+	# node.fields = parsegraphlabel( node.attr.label, node.attr.rects );
+	if( sw.isanorphan(node) ) {
+		node.attr.fillcolor = sw.orphancolor[0];
+		node.attr.fillcolor = gt.getcolor(gt.views, node.attr.fillcolor);
+		sw.debug(concat("  Change ",node.name," ", node.attr.fillcolor));
+	}
+	sw.addtocluster(gt, node);
+	return node;
+};
+
+
+	# Kill Current Graph  
+sw.killg = function (gt) {	
+	local fdout;
+	
+	sw.debug(sw.killg);
+	
+	if( gt.graph.graphattr.fdout) { 
+	    fdout = gt.graph.graphattr.fdout;
+	    closeio( fdout,"kill" );   
+	    sw.debug(concat("   killed ",fdout));
+            remove(gt.graph.graphattr.fdout);
+	}
+};
+
+	# Process input commands  
+sw.getcmd = function (gt, s) {	
+	local i, t, t2, temp, fid, fname ;
+	local data, vt, node,  cgt;
+
+	# writeline(2, concat("VDFD.GETCMD: ", s ));   #Fix trailing blank
+	sw.debug(concat("sw.getcmd:",s));
+        t = split(s, "|");
+	
+        # ???if(t[1]) {
+	#        t2 = split(t[1], " ");
+	#	t[1] = t2[0];
+	#}
+
+        if ( t[0] == 'quit' ) {
+                monitor('off',0);
+                exit();
+        }
+
+	vt = [];
+	for ( i in gt.views ) {
+	      vt = gt.views[i];
+	}
+        data["pos"] = [ x=30; y=30; ];
+
+        if ( t[0] == 'AddFile' ) {
+                sw.defaults.host = t[2];
+                node = sw.addfile( gt,data,t[1]);
+                sw.layoutgraph(gt);
+                } else  {
+        if ( t[0] == 'N A' ) {
+                fname = t[1];
+                sw.createfile( gt, sw.fdfile, fname, 1 );
+        } else  {
+        if ( t[0] == 'Saveas' ) {
+                gt.graph.graphattr.label = t[1];
+                sw.protogt.actions.general [ "Save Network" ](gt,vt,data);
+        } else  {
+        if ( t[0] == 'Reload' ) {
+                sw.open(gt.graph.graphattr.label);
+        } else  {
+        if ( t[0] == 'Open' ) {
+#               writeline(sw.fdread, concat("Read: ", t[1], " EOF" ));
+#              sw.filename = t[1];
+               sw.open(t[1]);
+        } else  {
+        if ( t[0] == 'V C' ) {
+                sw.protogt.actions.general[ "clone view" ](gt,vt,data);
+        } else  {
+        if ( t[0] == 'V X' ) {
+                sw.protogt.actions.general[ "copy view" ](gt,vt,data);
+        } else  {
+        if ( t[0] == 'new' ) {
+                sw.new(gt,"untitled.ndl");
+        } else  {
+        if ( t[0] == 'Kill Graph' ) {
+                sw.killg(gt);
+        } else  {
+        if ( t[0] == 'CMD' ) {
+	        temp=t[1];
+                sw.debug(concat("   view name=", vt.name));
+		if( t[2]) {
+		    sw.protogt.actions.general [ temp ](gt, vt, t[2]);
+		} else {
+		    sw.protogt.actions.general [ temp ](gt, vt, data);
+		}
+        } else  {
+        if ( t[0] == 'LO' ) {
+                sw.protogt.actions.general[ "Link up Orphan Gates" ](gt,vt,data);
+        } else  {
+        if (    (t[0] == 'nodesep' )
+                &( gt.graph.graphattr.nodesep ~= t[1] )
+        ) {
+                gt.graph.graphattr.nodesep = t[1];
+                gt.graph.graphattr.ranksep = t[1];
+        } else  {
+        if ( t[0] == 'ranksep' )  {
+                gt.graph.graphattr.ranksep = t[1];
+        } else  {
+        if ( t[0] == 'RO' ) {
+                sw.protogt.actions.general[ "Delete Unused Gates" ]
+                        (gt,vt,data);
+	} else  {
+	if ( t[0] == 'FlashEdge' ) {
+	    sw.flashedge(gt, vt, t[1]);    
+	} else  {
+        if ( t[0] == 'RUNDFD' ) {
+#                                      ?? reserved for new command. 
+                sw.rungraph (gt );
+	} else  {
+        if ( t[0] == 'RUNDFD' ) {
+#               sw.rundfd (gt, vt, t[1] );
+                sw.rungraph (gt );
+        } else  {
+        if ( t[0] == 'CG' ) {
+                sw.connectgates(gt, t[1], t[2], t[3], t[4]);
+        } else  {
+        if ( t[0] == 'WSUB' ) {                 # Write SubNet
+	    sw.writeselectedsubnet(gt, vt, t[1]);
+	} else  {
+	if ( t[0] == 'RP' ) {                 # Write SubNet
+	    sw.replaceprocess(gt, vt, s);
+        } else  {
+        if ( t[0] == 'AP' ) {
+                sw.defaults.pname = t[1];
+                sw.component = t[2];
+                sw.defaults.gin  = split(t[3],",");
+                sw.defaults.gout = split(t[4],",");
+                #sw.defaults.ginx  = split(t[3],",");
+                #sw.defaults.goutx = split(t[4],",");
+                sw.defaults.host = t[5];
+                sw.default.lang = t[6];
+                sw.default.pcolor = t[7];
+                node = sw.addanode(gt, data, sw.component);
+                sw.layoutgraph(gt);
+        }}}}}}}}}}}}}}}}}
+	}}}}
+};
+
+sw.protovt.keys['general'] =  [
+	' ' = "redraw"; 
+	'b' = "birdseye view";
+	'd' = "Run DFD";
+	'F' = "Remove Selected Edge";
+       	'f' = "Create a File";
+	'h' = "Help";
+	'H' = "Toggle Flow Handles";
+	'l' = "do layout";
+	'n' = "Clear graph";
+	'N' = "Delete Selected Nodes";
+	'I' = "Insert a Process in Every Edge";
+	'P' = "paste";
+#	'p' = "Create a Process";
+	'q' = "quit";
+	'r' = "Run";
+	'R' = "redraw";
+	's' = "Save Network";
+	't' = "text view";
+	'u' = "undo";
+	'y' = "zoom in slowly";
+	'z' = "zoom out slowly";
+    	'Y' = "zoom in";
+	'Z' = "zoom out";
+];
+
+	# See protovt for action menu
+sw.protogt.actions.general [ "Create a File" ] = function (gt, vt, data) {
+	local fname;
+
+	if (~(fname = 
+		ask( concat(
+			"Filename?[",
+			sw.defaults.filename,
+			"]")
+	))) return;
+
+	if( fname == "" ) {
+		fname = sw.defaults.filename;
+		sw.fnseq = sw.fnseq + 1;
+		sw.defaults.filename = concat(
+			sw.defaults.filename,
+			sw.fnseq);
+	}
+	
+
+	sw.addfile(gt, data, fname);
+
+};
+
+
+sw.protogt.actions.general [  "Clear graph" ]  = function (gt, vt, data) {
+
+        gt.erasegraph (gt, null, null);
+};
+
+sw.rungraph = function (gt ) {
+	local fdout;
+	
+	sw.debug(concat("sw.rungraph dfd  -i -e 0 ",gt.graph.graphattr.label));
+	fdout = openio( "pipe", sw_default.timer, "w", concat("%e dfd -T ",gt.graph.graphattr.label,
+		"   -i -e 0 1>&2" ) 
+		); 
+	sw.createfile( gt, fdout, "", 0 ); 
+	gt.graph.graphattr.fdout = fdout;
+	sw.debug(concat("  opened ", fdout));
+	closeio( fdout );   
+};
+
+sw.rundfd = function (gt, vt, netname ) {
+	local cmd;
+
+        cmd = concat("dfd ", netname, " &");
+	system( cmd );
+};
+
+sw.protogt.actions.general [ "Run DFD" ] = function (gt, vt, data) {
+	local netname, cmd, parms;
+
+	if(~(netname = ask( "Network file?[untitled.ndl]" ))) return;
+	cmd = concat("dfd ", netname, " &");
+	parms = ask( concat("Arguments for ",netname,"?") );
+	system( concat(cmd," ",parms) );
+
+};
+
+		# Generate New Node Name 
+sw.generatenodename = function(gt) {
+
+        if ( sw.lookupnode(gt, sw.defaults.pname) < 0 ) { 
+              sw.nodeid =  sw.defaults.pname; 
+              return sw.nodeid;
+        }
+	
+       while( sw.lookupnode( 
+		gt, 
+		concat(sw.defaults.pname, sw.idser)) >=0
+	){
+		sw.idser = sw.idser + 1;
+	}
+
+	sw.nodeid = concat(sw.defaults.pname, sw.idser);
+	return sw.nodeid;
+};
+
+
+	# Get Argument string from node.attr.component
+sw.getargs = function(comp) {
+	local c_t, s, x, arg, args;
+
+	c_t = split( comp, " ");
+	s = tablesize(c_t);
+	if(s < 2) 
+		return "";
+	args=' "'; 
+	args=concat(args,c_t[1]); 
+	x = 2; 
+
+	while( x < s ) {
+		arg = c_t[x];
+		args= concat( args, " ",arg);
+		x = x + 1;
+	}
+	args=concat(args,'"');
+	# sw.debug(concat("sw.getargs ",args));
+	return args;
+};
+
+	# Write out subnet definition
+sw.writesubnet = function(gt, cgt, fname ) {
+	local dir, d_t, s, x, el, node, eid, edge, nid, nodeid1, nodeid2, node1, node2,c_t ;
+
+	# dir = directory from fname.  sw.fdesc = output file #.
+	d_t = split( fname, "/");
+	s = tablesize(d_t) - 1;
+	remove( d_t[s], d_t);  # This might empty the table
+	dir = "";   
+
+	x = 0; 
+	while( x < s ) {
+		el = d_t[x];
+		dir= concat( dir, el, "/" );
+		x = x + 1;
+	}
+
+#	sw.sendfd = fdesc;
+#	if( sw.sendfd ~= sw.fdfile ) return;
+	sw.sendfd = sw.fdfile;
+	filename = concat( dir, cgt.graphattr.label);
+	sw.send(concat( "File: EOFX ", filename, " rw-rw----" ));
+
+	sw.send( concat("# ",
+		cgt.graphattr.label,
+		" generated ", 
+		sw.timestamp(), 
+		" by: sw-", sw.defaults.version
+	));
+
+		# Write nodes and file flows for this sub-net.
+	for (nid in cgt.nodes ) {
+		node = gt.graph.nodes[nid];     	# ?????
+		if( (node.fields[0].fields[0].port == "P")  ){
+			if( node.attr.component ) {
+				c_t = split(node.attr.component, " ");
+			}
+			sw.send(concat( "PROCESS ", 
+				node.name,
+				" ", 
+				c_t[0],
+				sw.getargs(node.attr.component),
+				";"
+			));
+		}
+	}
+
+		# NOTE:  Put this with edge output somehow to prsrv. seq.
+	for (nid in cgt.nodes ) {
+		node = cgt.nodes[nid];
+		if( sw.isafile(gt, node.nid) ) {
+			sw.writefile(gt, node );
+		} else { 
+		if( sw.isanorphan(node) ) {
+       	                sw.writeorphan(gt, node );  # Orphan Gate
+		}}
+	}
+
+	for( eid in gt.graph.edges ) {
+		edge = gt.graph.edges[eid];
+		if( 
+		    ( gt.graph.nodes[edge.tail.nid].fields[0].fields[0].port == "P")
+				&
+		    ( gt.graph.nodes[edge.head.nid].fields[0].fields[0].port == "P")
+		  )  {
+			nodeid1 = sw.basename(edge.tail.name);
+			nodeid2 = sw.basename(edge.head.name);
+			node1 = gt.graph.nodes[sw.lookupnode(gt,nodeid1)];
+			node2 = gt.graph.nodes[sw.lookupnode(gt,nodeid2)];
+			if(      ~cgt.nodes[node1.nid] 
+				& cgt.nodes[node2.nid] ) {
+				sw.send(concat( 
+					" => ", 
+					sw.gatebase(edge.hport), 
+					"(", nodeid2, ");" 
+				 ));
+			} else { if( cgt.nodes[node1.nid]
+				&   ~cgt.nodes[node2.nid] ) {
+				sw.send(concat( 
+					"(", nodeid1, ")", 
+					sw.gatebase(edge.tport), " => ;"
+				 ));
+			} else { if( cgt.nodes[node1.nid]
+				&    cgt.nodes[node2.nid] ) {
+					sw.send(concat( "(", 
+					nodeid1, ")",  
+					sw.gatebase(edge.tport), 
+					" => ",
+				 	sw.gatebase(edge.hport), 
+					"(", nodeid2, ");" 
+				 ));
+			}}}
+		}
+	}
+
+	sw.send( "EOFX");  
+
+};
+
+	# Run current graph  ?? Error output
+sw.protogt.actions.general [ "Run" ] = function (gt, vt, data) {
+
+	sw.rungraph(gt);
+
+};
+
+sw.protogt.actions.general [ "Launch a Shell" ] = function (gt, vt, data) {
+
+#	 system( "xiterm -bg brown -fg white -fn 9x15 & " );  
+	sw.cmd = concat( "kstart --title 'KONSOLE/VDFD-'",
+			   sw.defaults.version, 
+			   " --desktop 3 xterm",
+			   " -bg brown -fg white & " );
+	system( sw.cmd );
+#	system( "xterm -bg brown -fg white -fn 9x15 & " );  
+};
+
+	# Run current graph with dfd arguments
+sw.protogt.actions.general [ "Run With Arguments" ] = function (gt, vt, data) {
+	local parms, fdout;
+
+	parms = ask( "Arguments? " );
+	sw.debug(concat("run w/arg: ", parms));
+	fdout = openio( "pipe", "sw_default.timer /usr/bin/dfd", "w", concat("%e dfd ", parms, " -i") ); 
+	sw.createfile( gt, fdout, "", 1 );
+	gt.graph.graphattr.fdout = fdout;
+	closeio( fdout );   
+};
+
+
+	# Write out PROCESS definition for a subnet  ???
+sw.writesubprocess = function( sname ) {
+
+	pname = sw.subnetname( sname );
+	#sw.debug(concat( "sending: PROCESS ", 
+	#	pname, " ", sname
+	#));
+	#sw.send(concat( "PROCESS ", 
+	#	pname, " ", sname
+	#));
+};
+
+	# Write PROCESS definitions to ndl file.
+sw.writetask = function (gt, node) {
+	local f_t, n_t, arg, nodeid1, stdattr, vattr, attr, 
+		attrn, attrv, c_t;
+
+	sw.debug( concat("sw.writetask ", node.name) );
+	if( node.attr.component ) {
+		c_t = split(node.attr.component, " ");
+	}
+	if( node.attr.host == "localhost" ) {
+		sw.send(concat( "PROCESS ", 
+			node.name,
+			" ", 
+			c_t[0],
+			sw.getargs(node.attr.component),
+			";"
+		));
+	} else {
+		sw.send(concat( "PROCESS ", 
+			node.name,
+			" ", node.attr.host, ":",
+			c_t[0],
+			sw.getargs(node.attr.component),
+			";"
+		));
+	}
+
+		# ?? This is a hack. Get from std input.
+		# Do not write out these attributes:
+	stdattr = [
+		"component" = "Pass ";
+		"fillcolor" = "tan";
+		"host" = "localhost";
+		"label" = "";
+		"width" = "";
+		"height" = "";
+		"pos" = "";
+		"len" = "";
+		"dist" = "";
+		"partno" = 1;
+		"shape" = "record";
+];
+
+		# Write these out if not defaults:
+	vattr = [
+"group" = "0";
+"fontcolor" = "black";
+"color" = "black";
+         # "color" = "#000000" ;
+"fontname" = "Helvetica";
+"fontsize" = "26";
+"lang" = "na";
+"style" = "filled,rounded,bold";
+ ];	
+
+	for( attr in node.attr ) {
+		attrn = node.attr[attr];
+		if( attrn ~= "" ) {
+		   if(  vattr[attr] ) {
+			attrv = vattr[attr];
+			#sw.debug(concat("  attr1: ", 	node.name,":", attr, "=",attrn,":",attrv));
+		        if(  (concat(attrv,"x") ~= concat(attrn,"x"))
+			  ) {
+				#sw.debug(concat("  attr2: ",node.name,":", attr, "=",attrn,":",attrv));
+				sw.send(concat("ATTR ", 
+					node.name," ",
+					attr,'="', 
+					attrn,
+					'";'));
+			}
+		   }  else {
+			if( ~ stdattr[attr] ) {
+				sw.send(concat("ATTR ", 
+					node.name," ",
+					attr,'="', 
+					attrn,
+					'";'));
+			}
+		   }
+		}
+	}
+};
+
+	# Return true if orphangate filename = gate name.
+sw.equalorphan = function (gt, edge, fname, port ) {
+	local f_t;
+
+	f_t = split(fname, "*");
+	if( ~f_t[1] ) return 0;
+	if( f_t[0] ~= "" ) return 0;
+	if( f_t[1] == port ) return 1;
+	return 0;
+};
+
+sw.writerename = function(gt, node, gatename) {
+	local i, eid, fname, edge, tport, n_t;
+
+	fname = sw.basename(node.name);
+
+	for( eid in node.edges ) {
+	        edge = gt.graph.edges[eid];
+		if ( ~edge ) {
+			sw.error( concat("VDFD.LEFTY: NE: ", node.name, " ",
+				eid, " ", fname ));
+		}
+		if(      (~ edge.hport )
+				 |  
+			 ( edge.hport == sw.fileid )
+		  )  {
+			sw.writeorphan1(gt, edge, fname );
+		} else {
+			sw.writeorphan2(gt, edge, fname );
+		}
+	}
+};
+
+sw.protogt.actions.general [ "Change New Component Default" ] = function (gt, vt, data) {
+
+	sw.defaults.ncomponent = ask( "New Component Default? " );
+};
+
+sw.protogt.actions.general [ "Change Process Name Default" ] = function (gt, vt, data) {
+
+	sw.defaults.pname   = ask( "Default Process Name? " );
+	#sw.idser = 1; 
+};
+
+sw.protogt.actions.general [ "Change Default Gate Names" ] = function (gt, vt, data) {
+	local gnx;
+	
+	sw.debug("Change Default Gate Names");
+	sw.defaults.gin  =  [];
+	sw.defaults.gout  =  [];
+
+	gn = 0;
+	while ( 1 ) {
+		sw.defaults.gin[gn]  = ask( "Default Sink Gate Name? ");
+		sw.defaults.gout[gn] = ask( "Default Source Gate Name? " );
+		if ( ~sw.defaults.gin[gn] ) { return; };
+		gn = gn + 1;
+	}
+};
+
+
+	#  Add a process to cluster 
+sw.protogt.actions.general [ "Add Process" ] 	= function (gt, vt, data) {
+	local cgt, fid, node, cname, hostname;
+
+	sw.debug("sw.protogt.actions.general");
+
+	data["pos"] = [ x=30; y=30; ];
+	cgt = gt.graph.graphs[0];
+	hostname = sw.defaults.host;
+	cgt = sw.getcluster( gt, hostname );
+	cname = sw.defaults.component;
+	node = sw.addanode(gt, data, cname);
+	sw.layoutgraph(gt);    # Show outside clusters initially??
+	if( cgt.nodes ) {
+		fid = tablesize(cgt.nodes);
+		while( cgt.nodes[fid] ) { fid = fid + 1; }
+	} else { 
+		fid = 0;
+	};
+	cgt.nodes[fid] = copy(node); #	move inside cluster here. 
+
+};
+
+
+sw.protogt.actions.general [ "Save Network With Arguments" ] = function (gt, vt, data) {
+	local fname;
+
+	fname=gt.graph.graphattr.label;
+	if(~(fname = ask( concat( 
+			"Network file?[",
+			fname,
+			"]" 
+		)
+	))) return;
+	if( fname == "" ) fname = "untitled.ndl";
+	sw.createfile( gt, sw.fdfile, fname, 1 );
+	
+	sw.layoutgraph(gt);
+};
+
+
+    # Recolor all selected objects
+sw.protogt.actions.general [ "Color Selected" ] = function (gt, vt, data) {
+	    local nid, node, eid, edge;
+
+	    sw.debug("Color Selected");
+	    
+	    for( nid in gt.graph.nodes ) {
+		node = gt.graph.nodes[nid]; 
+		if( sw.isselected(node)) {
+		    node.attr.color = data;
+		    sw.debug(concat("      color ", node.name));
+		    #sw.removelinks( gt, nid);
+		}
+	    }
+	    
+	    for( eid in gt.graph.edges) {
+		edge = gt.graph.edges[eid];
+		if( edge.attr.color == sw_default.selectcolor) {
+		    # sw.debug(concat("DSF:",edge.attr.color));
+		    edge.attr.color = data;
+		}
+	    }
+	    
+	    sw.layoutgraph(gt);
+};
+
+sw.protogt.actions.general [ "Save Network" ] = function (gt, vt, data) {
+     local fname;
+     
+     fname=gt.graph.graphattr.label;
+     
+     if( ~fname) {
+       if(~(fname =  ask( concat( 
+	"Network file?[",
+			     fname,
+			     "]" 
+			     )
+	))) return;
+     }
+     
+	sw.debug(concat("sw Save Network ",
+		sw.fdfile," ",fname));
+	sw.createfile( gt, sw.fdfile, fname, 0 );
+	vt.name = fname;
+	sw.layoutgraph(gt);
+};
+
+sw.protogt.actions.general [ "Toggle Flow Handles" ] = function (gt, vt, data) {
+       		gt.edgehandles  = 1 - gt.edgehandles;
+			sw.layoutgraph(gt);
+};
+
+sw.setdirect = function ( gt, gname, nid, direction) {
+	local  node, fid, rect;
+
+	node = gt.graph.nodes[nid];
+	if( sw.direction(gname)  ~= "" ) {
+		return;
+	}
+	if( sw.isafile(gt, nid) )  return;
+	sw.debug(concat("sw.setdirect ",node.name,".",gname,direction));	
+	fid = 1;
+
+	while( 
+		node.fields[fid].text
+		       &
+		(node.fields[fid].text ~= gname )
+	     )  
+		{ 
+		fid = fid + 1; 
+	};
+		
+	if(    ( node.fields[fid] ) 
+	) {
+		sw.debug(concat("   ",node.name,".",gname," ",
+			 direction));	
+		node.fields[fid].port = concat( gname, direction);
+		node.attr.label = sw.packlabel( node.fields );
+	}
+};
+
+sw.addgate = function ( gt, gname1, nid, dir) {
+	local  node, fid, rect, gname;
+
+	node = gt.graph.nodes[nid];
+	if( sw.isafile(gt, nid) )  return;
+
+	if( gname1 ) { 
+		gname = gname1; 
+	} else {
+		if(dir == ".0") {
+			gname = sw.defaults.gin[0];
+		} else {
+			gname = sw.defaults.gout[0];
+		}
+	}
+
+	# gname=concat(gname,dir);
+	sw.debug(concat("sw.addgate ",node.name,".",gname, dir));	
+	fid = 1;
+
+	while( 
+		node.fields[fid].text
+		       &
+		(node.fields[fid].text ~= gname )
+	     )  
+		{ 
+		# sw.debug(concat("  ..",node.fields[fid].port));	
+		fid = fid + 1; 
+	};
+		
+	if(     ~node.fields[fid].text  ) {
+		node.fields[fid].text = gname;
+		node.fields[fid].rect = sw.defaults.rect;
+		node.fields[fid].port = concat(gname, dir);
+		node.attr.label = sw.packlabel( node.fields );
+		sw.controlnode(gt, node);
+		sw.layoutgraph(gt);
+	}
+
+	# sw.debug(concat("  fid=",fid, " ",gname));	
+	# return sw.gatebase(node.fields[fid].port);
+};
+
+		# Insert node between  source and sink nodes.
+sw.linkedges = function ( gt, edge1, node, gin, gout ) {
+	local i, nid, sink, source, ginr, ginl, edge2, eidm, eid, edges_t;
+
+	eid = edge1.eid;
+	sw.debug(concat("   EdgeId=",edge1.eid));
+	sink = gt.graph.nodes[edge1.head.nid];
+	source = gt.graph.nodes[edge1.tail.nid];
+	ginr  = sw.gatebase(edge1.hport);
+	ginl  = sw.gatebase(edge1.tport);
+
+	if( sw.isafile(gt, sink.nid) ) ginr = sw.fileid;
+	if( sw.isafile(gt, source.nid) ) ginl = sw.fileid;
+
+#	sw.debug(concat("LE: (",source.name,")",ginl,"=>(",sink.name,")",ginr));
+		# Remove the extra edge pointer from the sink node.  
+		# This will be the edge linked back to the source node.
+	edges_t = [];  
+	for( i in sink.edges ) {     
+		if(  i ~= eid ) {
+			edges_t[i] = sink.edges[i];
+		}
+	}
+	gout = concat(gout,'.1');
+	ginr = concat(ginr,'.0');
+	sink.edges = edges_t;
+	node.edges[eid] = edge1;
+	nid = node.nid;
+	edge1.head =  node;
+	edge1.hport = concat(sw.defaults.gin[0],".0");
+
+		# Create new (righthand) edge
+	sw.debug(concat("	NewEdge: (",node.name,")",
+		gout,"=>(",sink.name,")",ginr));
+        edge2 =  gt.insertedge (
+		gt, 
+		node,  	     # middle node
+		gout, 	     # gate a
+		sink,        # sink node
+		ginr, 	     # gate right
+		null,        # attr
+		1	     # show
+	 );
+
+};
+
+
+
+	# Remove all Connections 
+sw.protogt.actions.general [ "Remove all Connections" ] = function (gt, vt, data) {
+	local nid, node;
+
+        for( nid in gt.graph.nodes ) {
+                node = gt.graph.nodes[nid]; 
+			sw.debug(concat("      Remove ", node.name," connections."));
+			sw.removelinks( gt, nid);
+	}
+};
+
+	# Remove all highlighted process connections  
+sw.protogt.actions.general [ "Remove all Selected Process Connections" ] = function (gt, vt, data) {
+	local nid, node;
+
+        for( nid in gt.graph.nodes ) {
+                node = gt.graph.nodes[nid]; 
+		if( sw.isselected(node)) {
+			sw.debug(concat("      Remove ", node.name," connections."));
+			sw.removelinks( gt, nid);
+		}
+	}
+};
+
+
+	# Connect highlighted processes via unused gates.  
+sw.protogt.actions.general [ "Connect Selected Processes" ] = function (gt, vt, data) {
+	local nid, node, gid, g_t, text, port, seq, sq2, gn;
+
+        g_t = [];
+	seq=1;      
+	sw.debug(concat("Connect Selected Processes:   "," ")); 
+
+        for( nid in gt.graph.nodes ) {
+                node = gt.graph.nodes[nid]; 
+		if( sw.isselected(node)) {
+			sw.debug(concat("      Connect:", node.name));
+        	        for ( gid in node.fields )  {
+                	        if(  gid > 0 )  {
+					port = node.fields[gid].port;
+					text = node.fields[gid].text;
+	                                if( ~sw.gatematched(gt, node, text) )  {
+				    		sw.debug(concat("       ", node.name, "/",port)); 
+                	            		g_t[seq] = ['t' = text; 'p' = port; 'n' = nid; ];
+				    		seq = seq + 1;
+					}
+                        	}
+                	}
+		}
+	}
+
+	sw.linkmatches(gt, vt, g_t);
+};
+
+
+	# for every edge in gt, insert a defined process   
+sw.protogt.actions.general [ "Expand Edges" ] = function (gt, vt, data) {
+	local i, gin, gout, cname, eid, eid_t, sink, source, node,  edge;
+
+
+	cname = "";
+	sw.debug("Expand Edges");
+	if( cname == "" )  { 
+		cname = sw.component;
+		gin   = sw.defaults.gin[0];
+		gout  = sw.defaults.gout[0];
+	} else {
+		if(~(gin = ask( concat(
+			"Sink gate name?[", 
+			sw.defaults.gin[0],
+			"]"
+		)))) gin =sw.defaults.gin[0];
+		if(~(gout = ask( concat(
+			"Source gate name?[",
+			sw.defaults.gout[0],
+			"]"
+		)))) gout = sw.defaults.gout[0];
+		if( gout == "" ) gout = sw.defaults.gout[0];
+		if( gin  == "" ) gin = sw.defaults.gin[0];
+	}
+
+	eid_t = [];
+
+        for( eid in gt.graph.edges ) {
+		eid_t[ eid ] = gt.graph.edges[eid]; 
+	}
+
+#		edge = gt.graph.edges[eid];
+# 		sw.layoutgraph(gt);  #?? Fix label
+
+	for( eid in eid_t ) {
+		edge = eid_t[eid];
+		node = sw.addanode(gt, data, cname);
+		sw.linkedges( gt, edge, node, gin, gout );
+	}
+
+	sw.layoutgraph(gt);
+
+};
+
+	# Remove every selected edge in the current graph, gt.    
+sw.protogt.actions.general [ "Remove Selected Edges" ] = function (gt, vt, data) {
+	local list, n, edge;
+
+	sw.debug("Remove Selected Edges"); 
+	list = sw.getselectededges(gt);
+
+        for( n in list ) {
+                edge = gt.graph.edges[list[n]];
+		gt.removeedge(gt, edge);
+	}
+
+	sw.layoutgraph(gt);
+
+};
+
+	# for every selected edge in gt, insert a defined process   
+sw.protogt.actions.general [ "Expand Selected Edges" ] = function (gt, vt, data) {
+	local i,n,list, gin, gout, cname, eid, eid_t, sink, source, node,  edge;
+
+	cname = "";
+	sw.debug("Expand Selected Edges");
+	list = sw.getselectededges(gt);
+
+	if( cname == "" )  { 
+		cname = sw.component;
+		gin   = sw.defaults.gin[0];
+		gout  = sw.defaults.gout[0];
+	} else {
+		if(~(gin = ask( concat(
+			"Sink gate name?[", 
+			sw.defaults.gin[0],
+			"]"
+		)))) gin =sw.defaults.gin[0];
+		if(~(gout = ask( concat(
+			"Source gate name?[",
+			sw.defaults.gout[0],
+			"]"
+		)))) gout = sw.defaults.gout[0];
+		if( gout == "" ) gout = sw.defaults.gout[0];
+		if( gin  == "" ) gin = sw.defaults.gin[0];
+	}
+
+        for( n in list ) {
+                edge = gt.graph.edges[list[n]];
+		node = sw.addanode(gt, data, cname);
+		sw.linkedges( gt, edge, node, gin, gout );
+	}
+
+	sw.layoutgraph(gt);
+};
+
+	# Get List of selected edges.
+sw.getselectededges = function (gt) {
+	local list,eid,n;
+
+	list = [];
+	n=0;
+	for( eid in gt.graph.edges) {
+		edge = gt.graph.edges[eid];
+		if( edge.attr.color == sw_default.selectcolor) {
+			# sw.debug(concat("DSF:",edge.attr.color));
+			list[n] = eid;
+			n = n + 1;
+		}
+	}
+	return list;
+};
+
+
+	# Delete all selected edges.
+sw.deleteselectededges = function (gt) {
+   	local edge, list, n;
+
+	list = sw.getselectededges(gt);
+	
+	for( n in list ) {
+		edge = gt.graph.edges[list[n]];
+		gt.removeedge(gt, edge);
+	}
+};
+
+sw.highlight.an.edge  = function (gt, edge1) {
+
+        sw.debug(concat("sw.highlight.an.edge  " ));
+        if(~edge1) return;
+	if( edge1.attr.color == sw_default.selectcolor) {
+		edge1.attr.color = 'black';
+	} else  {
+		edge1.attr.color = sw_default.selectcolor;
+	}  
+
+	edge1.color = gt.getcolor(gt.views, edge1.attr.color); 
+	sw.layoutgraph(gt);
+};
+
+	# Highlight an edge 
+sw.protogt.actions.edge [ "Select Edge" ] = function (gt, vt, obj,
+data) {
+   	local node, edge1;
+
+	if( obj.eid < 0 ) return;
+	edge1 = gt.graph.edges[obj.eid];
+
+	if(edge1) sw.highlight.an.edge(gt, edge1);
+};
+
+	# Remove highlight from edge 
+sw.protogt.actions.edge [ "DeSelect Edge" ] = function (gt, vt, obj,
+data) {
+	
+	sw.protogt.actions.edge [ "Select Edge" ] (gt, vt, obj,
+		data);
+};
+
+
+	# Replace a=>b with a=>x(P)y=>b  
+sw.protogt.actions.edge [ "Insert a Process" ] = function (gt, vt, obj,
+data) {
+   	local gin, gout, cname, node, nid, edge1;
+
+	if( obj.eid < 0 ) return;
+	cname = "";
+
+	if (~(cname = ask( concat(
+		"Component?[",
+		sw.defaults.component,  
+		"]" 
+	)))) return;
+
+	if( cname == "" ){
+		cname = sw.defaults.component;
+		gout = sw.defaults.gout[0];
+		gin = sw.defaults.gin[0];
+	} else {
+		if(~(gin = ask( concat(
+			"Sink gate name?[",
+			sw.defaults.gin[0],
+			"]"
+		)))) gin = sw.defaults.gin[0];
+		if(~(gout = ask( concat(
+			"Source gate name?[",
+			sw.defaults.gout[0],
+			"]" 
+		)))) gout = sw.defaults.gout[0];
+		if( gin == "" ) gin = sw.defaults.gin[0];
+		if( gout == "" ) gout = sw.defaults.gout[0];
+	};
+
+	sw.defaults.gin[0] = gin;
+	sw.defaults.gout[0] = gout;
+	node = sw.addanode(gt, data, cname);
+	nid = node.nid;
+	#sw.addgate(gt, gout, nid, ".1");	
+	#sw.addgate(gt, gin, nid, ".0");
+	edge1 = gt.graph.edges[obj.eid];
+	sw.debug(concat( "  Insert Process ", gin," ", gout));
+	sw.linkedges( gt, edge1, node, gin, gout );
+	sw.layoutgraph(gt);
+
+};
+
+	# Replace a=>b with a=>x(P)y=>b  
+sw.protogt.actions.edge [ "Expand This Edge" ] = function (gt, vt, obj,
+data) {
+   	local gin, gout, cname, node, nid, edge1;
+
+	if( obj.eid < 0 ) return;
+
+	cname = sw.component;
+	gout = sw.defaults.gout[0];
+	gin = sw.defaults.gin[0];
+	node = sw.addanode(gt, data, cname);
+	nid = node.nid;
+	edge1 = gt.graph.edges[obj.eid];
+	sw.debug(concat( "  Expand This Edge ", gin," ", gout));
+	sw.linkedges( gt, edge1, node, gin, gout );
+	sw.layoutgraph(gt);
+};
+
+
+sw.protogt.actions.edge [ "Change Gate IDs" ] = function (gt, vt, obj, data) {
+
+	if( obj.eid >= 0 ) {
+		sw.editids(gt, vt, obj.eid);
+	};
+};
+
+sw.editids = function ( gt, vt, eid) {
+	local node, nid, edge, gname;
+
+	edge = gt.graph.edges[eid];
+
+	if ( gname = ask( "Source gate name? " )) {
+		nid = edge.tail.nid;
+		node = gt.graph.nodes[nid];
+		edge.tport = concat(gname,".1");
+	};
+
+	if (gname = ask( "Sink gate name? " )) {
+		nid = edge.head.nid;
+		node = gt.graph.nodes[nid];
+		edge.hport = concat(gname,".0");
+	};
+
+	sw.layoutgraph(gt);
+};
+
+sw.protogt.actions.node [ "Change Component" ] = function (gt, vt, obj, data) {
+
+	if( obj.nid >= 0 ) {
+		sw.editcomp(gt, vt, obj.nid, data);
+	};
+
+};
+
+sw.protogt.actions.node [ "Delete all Gates" ] = function (gt, vt, obj, data) {
+	local nid;
+	
+        if( obj.nid >= 0 ) sw.removeports( gt, obj.nid);
+};
+
+sw.protogt.actions.node [ "Remove all Links" ] = function (gt, vt, obj, data) {
+	local nid;
+	
+        if( obj.nid >= 0 ) sw.removelinks( gt, obj.nid);
+};
+
+sw.protogt.actions.node [ "Generate Skeleton" ] = function (gt, vt, obj, data) {
+		local cname, c_t, node, cmd, pname, fid, ingates,outgates,lang, field;             
+	
+	sw.debug(concat("Generate Skeleton") );
+	
+	if( obj.nid >= 0 ) {
+	        node = gt.graph.nodes[obj.nid];
+			# Get program name
+		if( node.attr.component ) {
+			c_t = split(node.attr.component, " ");
+			if(~node.attr.lang |  node.attr.lang == "C" ) {
+				lang = "c";
+			} else {
+				lang = node.attr.lang;
+			}
+			pname =  c_t[0]; 
+		}
+		if( pname ) {
+			sw.debug(concat("Generate Skeleton for  ", pname) );
+			ingates=" -in ";
+			outgates=" -out ";
+				for(fid in node.fields) {
+					if( fid > 0) {
+						field=node.fields[fid];
+						if( sw.direction(field.port) == "1" )
+							outgates=concat(outgates," ",field.text);
+						else
+							ingates=concat(ingates," ",field.text);
+					}
+				}
+			cmd = concat(
+				"nohup /var/lib/dfd/bin/swskel.sh  ",
+				"./",pname, " OPTIONS ",lang, ingates,outgates, " &"
+			);  
+			sw.debug(concat("	CMD:", cmd) );
+			system( cmd );
+		}
+	}
+};
+
+sw.protogt.actions.node [ "Call Graph" ] = function  (gt, vt, obj, data) {
+	local cname, c_t, node, cmd, fname;
+          
+	if( obj.nid >= 0 ) {
+	        node = gt.graph.nodes[obj.nid];
+			# Figure out what to graph.
+		if( node.attr.component ) {
+			c_t = split(node.attr.component, " ");
+			cname = concat(c_t[0], ".c"); 
+		}
+		if( cname ) {
+			#sw.debug(concat("Call Graph of ", node.cname) );
+			cmd = concat(
+				"calltree -dot -g ",
+				"/var/lib/dfd/component/",cname, 
+				" | dotty -  & "
+			);  
+			sw.debug(concat("	CMD:", cmd) );
+			system( cmd );
+		}
+	}
+
+};
+
+sw.protogt.actions.node [ "Edit" ] = function  (gt, vt, obj, data) {
+	local cname, c_t, node, cmd, fname;
+          
+	if( obj.nid >= 0 ) {
+	        node = gt.graph.nodes[obj.nid];
+			# Figure out what to edit.
+		# sw.debug(concat("   nodem: ",  node.name) );
+		if( node.attr.component ) {
+			c_t = split(node.attr.component, " ");
+			if(~ node.attr.lang | node.attr.lang=="C") {
+				cname = concat(c_t[0], ".c"); 
+			} else {	
+				cname=c_t[0];
+			}
+		} else {
+			if( node.fields[0].port == sw.fileid ){
+				# sw.debug(concat("   ", node.fields[0].text) );
+				fname = node.fields[0].text;
+			} else {
+				 cname = node.fields[0].fields[0].text;
+			}
+		}
+		if( fname ) {
+			cmd = concat(
+				"xterm -bg blue -fg white -fn 9x15 -e nano ",
+				fname, 
+				" & "
+			);  
+			cmd = concat(
+				sw.editor,
+				" ",
+				fname, 
+				" & "
+			);  
+			# sw.debug(   concat("Fname: ",fname," System: ",  cmd) );
+			system( cmd );
+		} else {
+		if( cname ) {
+			cmd = concat(
+                                'nohup ',
+			        sw.editor,
+				" ",
+				"./",cname, 
+				"   & "
+			);  
+			writeline(2, cmd);
+			system( cmd );
+		}}
+	}
+
+};
+
+	# Create a new, empty graph   (Was clear graph).
+sw.new = function (gt, fname) {
+        
+        gtvt = [];
+	sw.debug(concat("sw.new ", gt.graph.graphattr.label));
+	
+	gtvt = dotty.createviewandgraph ('/home/tyoung3/go/mod/streamwork/edit/dfd/sw.lefty.dot', 'file', 
+				 sw.protogt, sw.protovt);
+				 
+	sw.debug(concat("sw.new 2 ", gt.graph.graphattr.label));
+	vid = gtvt.vt.vtid; 
+	vt  = dotty.views.vid;
+	sw.debug(concat("sw.new 2.1 ", gt.graph.graphattr.label));
+	gid = gtvt.gt.gtid;
+	sw.debug(concat("sw.new 2.1 ", gt.graph.graphattr.label));
+	ngt = dotty.graphs.gid;  #gt.graph.graphs[gid];
+	vt.name = fname;
+	sw.filename = fname;
+	sw.gt=ngt;	
+	
+	ngt.graph.maxnid = 0;
+	ngt.graph.maxgid = 0;
+	ngt.graph.maxeid = 0;
+	ngt.graph.edges = [];
+	ngt.graph.drawcolor = 3;
+	ngt.graph.edgedict = [];
+	ngt.graph.fillcolor = 4;
+	ngt.graph.nodedict = [];
+	ngt.graph.graphattr.label = fname;
+	ngt.graph.graphattr.name = fname;
+	sw.debug(concat("sw.new 3 ", ngt.graph.graphattr.label));
+	sw.layoutgraph(ngt);
+	sw.debug(concat("sw.new 4 ", ngt.graph.graphattr.label));
+	
+
+};
+
+sw.editwid = function (data, attr) { 
+	local pwid, wid;
+
+	pwid = 3;
+	if( ~(wid = createwidget( pwid, attr )) )
+		sw.error("VDFD.LEFTY: CreateWidget failed.");
+
+	return wid;
+};
+
+sw.editcomp = function ( gt, vt, nid, data) { 
+	local cmd, cname, comp_t, node, wid;
+	
+	node = gt.graph.nodes[nid];
+
+	sw.edit = [
+		'type' = 'text';
+		'borderwidth' = 2;
+		'size' = [ 'x'=140; 'y'=12; ];
+		'text' = node.attr.component;
+		'mode' = 'input';
+		#		'appendtext' = "";
+	];
+
+	wid = sw.editwid( data, sw.edit ); 
+	if (~(cname = ask( "Component? " ))) {
+		destroywidget(wid);
+		return;
+	}
+	if ( cname == "" ) cname = node.attr.component;
+
+	if ( node.attr.component) {  # ???	
+		sw.debug(concat("sw.editcomp:",node.name,
+			".",node.attr.component));
+		node.attr.component = cname;
+		node.fields[0].fields[1].text = cname;
+		node.attr.label = sw.packlabel( node.fields );
+		sw.control(concat("set component ",'"',cname,'"'));
+	};
+
+	destroywidget(wid);
+	gt.drawnode(gt, gt.views, node);
+	sw.layoutgraph(gt);
+};
+
+sw.protogt.actions.node [ "Add a Gate" ]  = function (gt, vt, obj, data){
+	local gname;
+
+	sw.debug( "Add a Gate" );
+	if( obj.nid >= 0 ) {
+		# sw.debug( "	ask name" );
+		if (~(gname = ask( concat(
+			"New gate name[",
+			sw.defaults.gin[0],   # ???
+			"]?"
+		)))) { return; } 
+		if( gname == "" ) gname = sw.defaults.gin[0];
+		sw.addgate(gt, gname, obj.nid, ".0");
+	};
+};
+
+sw.gatebypos = function(gt, node, rp ) {
+	local rect, fid, field;
+
+	if( ~ rp ) sw.error("gatebypos: Missing rp");
+	sw.debug(concat("Gatebypos: ",node.name));
+			# ! node.fields works only with dotty_layout.lefty change! 
+	for( fid in node.fields ) { 	
+		if( fid > 0 )  {
+			field =  node.fields[fid];
+			rect  = field.rect;
+			if( 
+				(rect[1].x >= rp.x ) &
+				(rect[0].x <= rp.x ) &
+				(rect[1].y >= rp.y ) &
+				(rect[0].y <= rp.y ) 
+			)  { 
+				sw.debug( concat( "Got gatebypos/",node.name,"/",node.fields[fid].port," ",rp.x,"-",rp.y ));
+				return node.fields[fid].port;   
+			}	
+		}
+	}
+
+	return null;
+};
+
+	#  Reverse gate sense 
+sw.protogt.actions.node [ "Reverse Gate Direction" ] = function (gt, vt, obj, data) {
+	local pid,rp1, rp2, node, gdef;
+
+	pid   = data.obj.nid;
+
+	if( pid >= 0 ) {
+		rp1 = data.pos;
+		node = gt.graph.nodes[pid];
+		if( rp1 ) { 
+			gdef = sw.gatebypos( gt, node, rp1 );
+			sw.debug(concat("reversing: ", gdef,
+				" ", sw.direction(gdef) ));
+			if( sw.direction(gdef) == "0" ) {
+				sw.setdirect(gt, 
+					sw.gatebase(gdef),  
+					node.nid, ".1");
+			} else {
+				sw.setdirect(gt, 
+					sw.gatebase(gdef),  
+					node.nid, ".0");
+			}
+		}
+
+	}	
+
+	sw.controlnode(gt, node);
+
+};
+
+	# delete gate 
+sw.protogt.actions.node [ "delete Gate" ] = function (gt, vt, obj, data) {
+	local pid, rp1, rp2, node, gdef;
+
+	pid   = data.obj.nid;
+
+	sw.debug(concat("sw.deletegate1 "));
+
+	if( pid >= 0 ) {
+		rp1 = data.pos;
+		node = gt.graph.nodes[pid];
+		if( rp1 ) { 
+			sw.debug(concat("sw.deletegate2 ",node.name));
+			gdef = sw.gatebypos( gt, node, rp1 );
+	        	sw.yankgate( gt, pid, gdef );
+			sw.layoutgraph(gt);   
+		}
+	}	
+
+};
+
+sw.removegate = function ( gt, vt, nid) {
+        local gname, node, fid;
+
+	if (~(gname = ask( "Gate name? " ))) return;
+        sw.yankgate( gt, nid, gname );
+
+};
+
+	# Return edgeid no. for gate name in process.
+sw.edgeforgate = function(node, gname) {
+	local eid, edge;
+
+	for ( eid in node.edges ) {
+		edge = node.edges[eid];
+		if(  sw.portequal(edge.hport,gname) 
+		   | sw.portequal(edge.tport,gname) 
+		  ) { return eid; }
+	}
+
+	return -1;
+};
+
+	# Replace w/ change gate name?
+	# Add the RenameGate process and linkages.
+sw.obsolete.protogt.actions.node [ "Rename Gate" ] = function (gt, vt, obj, data) {
+	local nid, eid, rp1, node, gname, edge, cname, node2;
+
+	nid   = data.obj.nid;
+	sw.defaults.pname = "RENAME";
+
+	sw.debug("Rename Gate ?defaults.gin");		
+	if( nid >= 0 ) {
+		rp1 = data.pos;
+		node = gt.graph.nodes[nid];
+		sw.defaults['hostname'] = node.attr.host;
+		if( rp1 ) { 
+			gname = sw.gatebypos( gt, node, rp1 );
+			if( gname == "" ) return;
+			eid = sw.edgeforgate(node, gname);
+			if( eid < 0 ) return; # Don't know direction. Quit
+			if (~(cname = ask( "Renamed Gate name? " )))  return;
+			if( cname == gname ) return;
+			edge = gt.graph.edges[eid];
+			if(  sw.gatebase(edge.tport) == gname ) {
+				sw.error(concat("VDFD.LEFTY: Rename ",gname, 
+					"=> ",cname));
+					# add rename process
+				sw.defaults.ncomponent = "RenameGate";
+				sw.defaults.gin  = [0=gname;];
+				sw.defaults.gout = [0=cname;];
+				node2 = sw.addanode(gt, data, 
+					concat("RenameGate ",
+						gname, " ", 
+						cname
+					)
+				);
+				sw.addtocluster(gt, node2);
+				# fix up current edge
+				gt.insertedge(gt, 
+                                 	node2, cname,
+					edge.head,edge.hport,
+					[],0);
+				remove( eid, edge.head.edges);
+				# add new edge
+				gt.insertedge (gt,
+					node,gname,
+					node2,gname,
+					[],0);
+			} else { if( sw.portequal(edge.hport,gname) ) {
+				sw.error( concat("VDFD.LEFTY: Rename ", cname, 
+					"<== ",gname));
+					# add rename process
+				sw.defaults.ncomponent = "RenameGate";
+				sw.defaults.gin  = [0=cname;];
+				sw.defaults.gout = [0=gname;];
+				node2 = sw.addanode(gt, data, 
+					concat("RenameGate ",
+						cname, " ", 
+						gname
+					)
+				);
+				sw.addtocluster(gt, node2);
+				gt.insertedge(gt, 
+					edge.tail,edge.tport,
+                                 	node2, cname,
+					[],0);
+				remove( eid, edge.tail.edges);
+				# add new edge
+				gt.insertedge (gt,
+					node2,gname,
+					node,gname,
+					[],0);
+			}}
+			remove( eid, node.edges);
+			remove( eid, gt.graph.edges);
+			sw.layoutgraph(gt);
+		}
+	}	
+
+};
+
+sw.changegatename = function ( gt, vt, nid, data) {
+	local cname, gname, node, fid, pic, gdef, rp1;
+	
+	pid = nid;
+
+	if( pid >= 0 ) {
+		sw.debug("sw.changegatename" ); 
+		rp1 = data.pos;
+		if( rp1 ) { 
+			node = gt.graph.nodes[pid];
+			gdef = sw.gatebypos( gt, node, rp1 );
+			if( ~ gdef ) return;
+			fid = 1;
+			sw.debug(concat("   node/port=",node.name,"/",gdef )); 
+			while( node.fields[fid] ) {
+	   		   #sw.debug(concat("   fid=", fid )); 
+			   if ( node.fields[fid].port == gdef) {
+				if (~(gname = ask( "New Gate name? " ))) return;
+				node.fields[fid].port = concat(gname,".",sw.direction(gdef));
+				node.fields[fid].text = gname;
+				node.attr.label = sw.packlabel( node.fields );
+				sw.fixedges(node, gdef, node.fields[fid].port);
+			   };
+			   fid = fid + 1;
+			}
+			sw.layoutgraph(gt); 
+		}
+	}
+};
+
+	# Update all changed edges connected to this port
+sw.fixedges = function (node, gdef, port) {
+	local i, nid;
+
+	nid = node.nid;
+
+	for ( i in node.edges) {
+		if( 
+			( node.edges[i].tail.nid == nid ) 
+					&
+			  sw.portequal(node.edges[i].tport, gdef) 
+    		  ) {
+			  node.edges[i].tport = port;
+	          }
+  		if ( 	
+			( node.edges[i].head.nid == nid ) 
+					&
+			  sw.portequal(node.edges[i].hport,gdef)
+		  ) {
+			  node.edges[i].hport = port;
+		  }
+        }  
+};
+
+sw.protogt.actions.node [ "Change Gate Name" ] = function (gt, vt, obj, data) {
+
+	if( obj.nid >= 0 ) {
+		sw.changegatename(gt, vt, obj.nid, data);
+	};
+};
+
+
+sw.protogt.actions.node [ "Change Name" ] 
+	= function (gt, vt, obj, data) {
+
+	sw.debug("Change Process or File Name" );
+	if( obj.nid >= 0 ) {
+		sw.editprocess(gt, vt, obj.nid);
+	};
+};
+
+sw.editprocess = function ( gt, vt, nid) {
+	local cmd, newname,  node;
+	
+	#sw.debug("sw.editprocess" );
+	if (~(newname = ask( "Name? " ))) return;
+	node = gt.graph.nodes[nid];
+
+	sw.debug(concat("sw.editprocess",  node.name,   "->",       newname) );
+	if ( node.fields[0].fields[0].port) {	
+		#sw.debug(concat("sw.editprocess(",
+		#		node.fields[0].fields[0].port,")"
+		#	  ));   
+		gt.graph.nodedict[node.name]=null;
+		node.name = newname;
+		node.fields[0].fields[0].text = concat(newname);
+		node.attr.label = sw.packlabel( node.fields );
+		sw.control(concat("set processname ", node.name));
+		gt.graph.nodedict[newname] = nid;
+		sw.layoutgraph(gt); 
+	} else {
+	   if( node.fields[0].port ) {
+		sw.debug(concat("sw.editprocess",
+				node.fields[0].port
+			  ));
+		node.name = concat(newname);
+		node.fields[0].text = node.name;
+		node.attr.label = sw.packlabel( node.fields );
+		sw.control(concat("set filename2 ", newname));
+		gt.graph.nodedict[newname] = nid;
+		sw.layoutgraph(gt); 
+	   }
+	};
+
+};
+
+	# If object is a subnet, create a new partition for it
+	# and expand into the new partition.  
+	# ?? Later, change links to the expanded net. 
+sw.expandsubnet = function(gt, obj) {
+	local nid,node;
+
+	nid = obj.nid;
+	if(~gt.graph.nodes[nid]) return;
+	sw.debug(concat("sw.expandsubnet"));
+	node = gt.graph.nodes[nid];
+	if( ~sw.isasubnet(node.attr.component) ) return; 
+	sw.load.subgraph(gt, node.attr.component);
+};
+
+
+        #cmd = concat("sw ", node.attr.component, " &");
+	#sw.debug(concat("expandsubnet: "));
+	#system( cmd );
+
+	#hostname = node.attr.component;
+	#return;
+
+	#cgt = sw.getcluster( gt, hostname );
+
+		 # Ensure cluster is empty
+	#if( cgt.nodes ) { return; } 
+
+	#cgt.nodes = [];
+
+	#sw.error( concat(hostname,
+	#	 " is a new sub-net.  This function will be added later."  # ??? 
+	#));
+
+sw.protogt.actions.node [ "Expand Sub-Net" ] = function (gt, vt, obj, data) {
+	if( obj.nid >= 0 ) { sw.expandsubnet(gt, obj); };
+};
+
+sw.protogt.actions.node [ "Signal" ] = function (gt, vt, obj, data) {
+	if( obj.nid >= 0 ) { sw.signal(gt, obj); };
+};
+
+sw.protogt.actions.node [ "Debug" ] = function (gt, vt, obj, data) {
+	if( obj.nid >= 0 ) { sw.gdb(gt, obj); };
+};
+
+sw.protogt.actions.node [ "Show Man Page" ] = function (gt, vt, obj, data) {
+	if( obj.nid >= 0 ) {
+		sw.manpage(gt, obj);
+	};
+};
+
+	# Return true if gate 'gout' is connected somewhere; 
+	#        false otherwise.
+sw.isaport = function ( node, gout ) {
+	local i, nid;
+
+	for ( i in node.edges) {
+		nid = node.nid;
+		if( (
+			( node.edges[i].tail.nid == nid ) 
+					&
+			  sw.portequal(node.edges[i].tport, gout) 
+		    )
+		  		| 
+		    (	
+			( node.edges[i].head.nid == nid ) 
+					&
+			sw.portequal(node.edges[i].hport,gout) 
+	            )
+		  )
+			return 1;
+	};
+
+        return 0;
+
+};
+
+	# ??? h/t port 
+sw.filematch = function (gt, node, port) {
+	local i, eid, edge; 
+
+	for( eid in node.edges ) {  
+	        edge = gt.graph.edges[eid];
+		if( 
+			( (edge.tport == sw.fileid )& sw.portequal(edge.hport,port) ) 
+					|
+			( (edge.hport == sw.fileid )& sw.portequal(edge.tport,port) ) 
+		  ) {
+		       return 1;
+		}
+		if( sw.portequal(edge.tport,port) ) return 1;
+	};
+
+	return 0;
+};
+
+	# ???  is this used?
+sw.uniqueifile = function (gt, node, gin) {
+	local serial, port;
+
+	port = gin;
+	serial = 0;
+
+	while(  sw.filematch(gt, node, port ) ) {
+		serial = serial + 1;
+		port = concat( gin, serial );
+	}
+
+	return port;
+};
+
+#sw.uniqueport = function (node, sourceorsink, gin ) {
+#	local serial, port, gout;
+
+#	if( gin == "" ) {
+#		gout = ask( concat(
+#			sourceorsink, 
+#			" gate name?[",
+#			gin,
+#			"]"
+#		) );
+#	} else {
+#		gout = gin;
+#	}
+
+#	serial = 0;
+#	port = gout;
+
+#        if( sourceorsink == "Source" ) {
+# #               while( sw.isaport( node, port )) {
+#                        serial = serial + 1;
+#                        port   = concat( gout, serial);
+#                }
+#        }
+#
+#	return port;
+#};
+
+	# Invoke gdb for this running process or return error.
+sw.signal = function ( gt, obj) {
+	local node, pname, cmd;
+
+	# sw.debug("sw.signal");
+	node = gt.graph.nodes[obj.nid];
+
+		# Return if not a process
+	if( ~(node.fields[0].fields[0].port == "P" ) ) return;
+
+	if( node.attr.signal == "no" ) {
+		writeline(concat("Cannot signal ",node.name,";  node.attr.signal = no."));
+		return; 
+	}
+	
+		# Locate process and send SIGHUP:
+        cmd = concat("/var/lib/dfd/bin/swkill ", 
+		node.name, " ",
+		node.attr.component,
+		" &");
+#	writeline(2, concat("VDFD.LEFTY CMD: ", cmd ));
+	system( cmd );
+};
+
+	# Invoke gdb for this running process or return error.
+sw.gdb = function ( gt, obj) {
+	local node, pname, cmd;
+
+	node = gt.graph.nodes[obj.nid];
+
+		# Return if not a process
+	if( ~(node.fields[0].fields[0].port == "P" ) ) return;
+
+		# Return if running remotely  ?? 	
+
+		# Locate process and invoke the debugger:
+        cmd = concat("/var/lib/dfd/bin/swgdb ", 
+		node.name, " ",
+		node.attr.component,
+		" &");
+#	writeline(2, concat("VDFD.LEFTY CMD: ", cmd ));
+	system( cmd );
+};
+
+sw.manpage = function ( gt, obj) {
+	local cmd, cname, nid, label_t, comp_t;
+
+	node = gt.graph.nodes[obj.nid];
+	sw.debug(concat("Man Page for ",node.name, " ", node.attr.component));
+#	nid = obj.nid;
+#	label_t = split( gt.graph.nodes[nid].attr.label, "|");
+#	if ( label_t[1] ) {
+#		comp_t = split( label_t[1], ' ');
+#		cname = comp_t[1];
+			# lefty normally waits for system completion 
+			# Use & to bg the process and return immediately.
+		if ( node.attr.component ) {	
+			cmd = concat(
+				# ? Gnome or other
+				#  "/usr/bin/kdehelp man:",   
+				"/usr/bin/man 1 ",   
+				node.attr.component,
+				" &"
+			);
+			system( cmd );
+			#cmd = concat("echo ", cmd );
+			#system( cmd );
+		}
+};
+
+	# Update node display.
+sw.controlnode = function(gt, node) {
+	local field, n_t, c, i, nid, inputs, outputs, insep, outsep;
+
+	nid = node.nid;
+	sw.gt = gt;
+        if(~gt.graph.graphattr.label) {
+              sw.debug("sw.controlnode missing gt.graph.graphattr.label");
+              gt.graph.graphattr.label = "/tmp/untitled.ndl";  
+        }
+	sw.control(concat("set ndname ",  gt.graph.graphattr.label));
+	sw.debug(concat("sw.controlnode: ",node.name, " ", nid));   
+	if( sw.isafile(gt, nid) ) {
+		sw.debug(concat("sw.controlnode: isafile "));   
+		sw.control(concat("set filename2 ",node.fields[0].text));
+	} else {
+	        sw.debug(concat("sw.controlnode: notafile "));   
+		sw.control(concat("set hostname ",   node.attr.host));
+		#sw.control(concat("set processname [ eval string trimright ",
+		#	node.name, " 0123456789 ] "));
+		sw.control(concat("set processname ", node.name));
+                sw.quote = '"';
+		c = "";
+		n_t = split(node.attr.component," "); 
+		if( n_t[1] ) c = n_t[1];		
+		i = 2;
+		while( n_t[i]) {
+			c = concat(c," ", n_t[i]);
+			i = i + 1;
+		}
+		outputs = ""; inputs = ""; outsep = ""; insep="";
+		for ( i in node.fields ) {
+			if ( i > 0 ) {
+				field=node.fields[i];
+				if( sw.direction(field.port) == "1" ) {
+					outputs = concat(outputs, 
+						outsep, 
+					field.text);
+					outsep=", ";
+				}  else {
+					inputs = concat(inputs, 
+						insep, 
+					field.text);
+					insep=", ";
+				}  
+			}
+		}
+		sw.control(concat("set component ", 	n_t[0]));
+		sw.control(concat("set options ",	c));
+		sw.control(concat("set inputs ",	inputs));
+		sw.control(concat("set outputs ",	outputs));
+                sw.control(concat("set pcolor ",	node.attr.color));
+                if( node.attr.lang == '') {
+		    sw.control("set lang na"); 
+                } else {
+                    sw.control(concat("set lang ",	node.attr.lang));
+                }
+	}
+
+};
+
+	# Highlight a node
+sw.highlightnode = function( gt, node ) {
+
+	sw.controlnode(gt, node);
+
+	#%$%if( node.attr.fillcolor == 'gold' ) 
+	#	node.attr.fillcolor = sw_default.selectsubcolor;
+	#else
+        #    if( node.attr.fillcolor == sw_default.selectsubcolor )
+	#	node.attr.fillcolor ='gold';
+
+	sw.debug(concat("sw.highlightnode1: ",node.nid," ",node.attr.fillcolor));
+
+	if( sw.isafile(gt, node.nid) ) {
+		if( sw.isanorphan(node) ) {
+			sw.debug(concat("sw.highlight2 an Orphan."));
+			if( node.attr.fillcolor ==  sw.orphancolor[0] ) {
+			     node.attr.fillcolor = sw.orphancolor[1];  
+			} else {
+			     node.attr.fillcolor = sw.orphancolor[0];  
+			}			
+		} else {
+			if( node.attr.fillcolor == 'limegreen' ) {
+			     node.attr.fillcolor = 'palegreen';  
+			} else {
+		     	node.attr.fillcolor = 'limegreen';  
+			}
+		}
+	} else {
+	    # sw.debug(concat("sw.highlightnode3: not a file"));
+	    if(  node.attr.fillcolor ~=  sw_default.selectcolor ) {
+		    node.attr.fillcolor = sw_default.selectcolor;
+	    } else {
+		node.attr.fillcolor = "tan";
+	    }
+	}
+
+	gt.drawnode(gt, gt.views, node);
+	sw.layoutgraph(gt);   # ??? Should not be necessary
+	return; 
+};
+
+	# Get gate by name.
+sw.getgate = function( gt, nid, name ) {
+	local id;
+	
+	#sw.debug(concat( "getgate: ", name));
+	for( id in gt.graph.nodes[nid].fields ) {
+		if( 
+			( id > 0 ) &
+			( gt.graph.nodes[nid].fields[id].port == name ) 
+		) {
+			return id;
+		}
+	}
+
+	return -1;
+};
+
+	# Swap two gates in node.
+sw.swapgates = function( gt, nid, name1, name2 ) {
+	local node, g1, g2;
+
+	# sw.debug(concat("Swap: ",name1," ", name2));
+	node   = gt.graph.nodes[nid];
+	g1 = sw.getgate(gt, nid, name1);
+	g2 = sw.getgate(gt, nid, name2);
+	sw.debug(concat("Swap: ",name1,"/",g1," ",name2,"/", g2));
+	if( (g1 < 1 ) | (g2 < 1) ) {return;};
+
+	sw.tempf = node.fields[g1];
+	node.fields[g1] = node.fields[g2];
+	node.fields[g2] = sw.tempf;
+
+        node.attr.label = sw.packlabel( node.fields );
+	sw.layoutgraph(gt);
+};
+
+		# If not a file:
+		# gout should not be in  a tail edge and
+		# gin should not be in a head edge.
+sw.baddirection = function(gt, gout, source, gin, sink) {
+	local eid,tport,hport;
+
+	#sw.debug(concat("?sw.baddirection?: ", source.name, ".", gout, 
+	#	"=>", sink.name, ".",gin));
+
+#	for( eid in source.edges) {
+#		if( sw.gatebase(source.edges[eid].hport) == gout ) {
+#			sw.debug("Source Conflict!");
+#			return 1; 
+#		}  
+#	}
+
+	if(  ( sw.direction( gout ) == "0" ) 
+	    |( sw.direction( gin ) == "1" ) 
+	  ) {
+		sw.debug("Direction Conflict!");
+		return 1;
+	}
+	
+		# hport and tport are reversed. So are head and tail.
+	if( sw.isafile(gt, source.nid)  ) {
+		for( eid in source.edges) {
+			if( source.edges[eid].head == source ) {
+				sw.debug("Source Conflict!");
+				return 1; 
+			}  
+		}
+	} 
+	else { 
+		for( eid in source.edges) {
+			if( sw.portequal(source.edges[eid].hport, gout) ) {
+				sw.debug(concat("Source Conflict!",source.edges[eid].hport,gout));
+				return 1; 
+			}  
+		}
+	}
+
+	if( sw.isafile(gt, sink.nid)  ) {
+		for( eid in sink.edges) {
+			dotty.message(0,"Sink Conflict!");
+			return 1; 
+		}		
+	} else {
+		for( eid in sink.edges) {
+			if( sw.portequal(sink.edges[eid].tport, gin) )  {
+				dotty.message(0,"Sink Conflict!");
+				return 1; 
+			}  
+		}
+	}
+
+	return 0;
+};
+
+	#  Move node and its files to new cluster.
+sw.newcluster = function (gt, cgt, node) {
+	local cgtold, nid;
+
+	nid = node.nid;
+
+		# Remove from old cluster
+	if( node.attr.host ) {
+		cgtold = sw.getcluster( gt, node.attr.host);
+		if( cgtold.nodes[nid] ) remove( nid, cgtold.nodes);
+	}
+
+		# Add to new cluster
+	cgt.nodes[nid] = node;
+	node.attr.host = cgt.graphattr.name; 
+	sw.debug(concat("sw.newcluster: ", cgt.graphattr.name,"-",node.name));
+# ???	sw.dragfile(gt, node, node.attr.host);
+};
+
+	# Build port id.
+sw.dirgate = function( text, dir ) {
+
+	if( text == sw.fileid ) {
+		return text;
+	}
+	#  sw.debug(concat("sw.dirgate TWY ???",text));
+
+	return concat(sw.gatebase(text),dir);
+};
+
+
+	# Highlight node.
+sw.selectnode = function( gt, data ) {	
+	local sinkid, sourceid, sink, source, gin, gout, eid,  edge,
+		sinkname, sourcename, rp1, rp2, xeid, xedge;
+
+			# sw.data = data;   			# ??? remove later
+	sw.debug("sw.selectnode");
+	rp1 = dotty.rp1; rp2 = dotty.rp2;
+	sinkid   = data.obj.nid;
+	sink   = gt.graph.nodes[sinkid];
+	sourceid = data.pobj.nid;
+	source = gt.graph.nodes[sourceid];
+
+	#sw.debug(concat("sw.selectnoee:  ", sourcename,  sinkname));
+	sw.highlightnode(gt, source);
+};
+
+	# Create a new edge or highlight an object.
+sw.leftup = function( gt, data ) {
+	local sinkid, sourceid, sink, source, gin, gout, eid,  edge,
+		sinkname, sourcename, rp1, rp2, xeid, xedge;
+
+			# sw.data = data;   			# ??? remove later
+	sw.debug("sw.leftup");
+	rp1 = dotty.rp1; rp2 = dotty.rp2;
+	sinkid   = data.obj.nid;
+	sink   = gt.graph.nodes[sinkid];
+	sourceid = data.pobj.nid;
+	source = gt.graph.nodes[sourceid];
+	gout = sw.gatebypos( gt, source, rp1);
+	gin  = sw.gatebypos( gt, sink, rp2);
+	
+	if( gout ) {
+	  if( sw.direction( gout ) == '0' )  {
+	    sw.debug("    Swap gates.");
+	    wdata = gin;
+	    gin = gout;
+	    gout = wdata;
+	    wdata = source;
+	    source = sink;
+	    sink = wdata;
+	  }
+	}
+	
+	sinkname = sink.name;
+	sourcename = source.name;
+
+	sw.debug(concat("sw.leftup:  ", sourcename,"*",gout, ">",gin,"*", sinkname));
+	
+	if( sourceid == sinkid ) {   		# If two different gates, then swap gates.
+		sw.debug(concat("Mid sw.leftup: src: ", sourcename, 
+					          " snk: ", sinkname));
+		if( 
+			( sourcename == sinkname) &
+			( gin == gout)   
+		 ) {
+			#sw.highlightnode(gt, sink);
+			sw.debug(concat("sw.leftup:  No Highlight "));
+		} else {
+			sw.swapgates(gt, sinkid, gout, gin);
+		}
+		sw.debug(concat("sw.leftup:  End ", sourceid, " ", sinkid));
+		return;
+	}
+
+#		Actually, (P1)=>"file"=>(P2) works, 
+#				even if 'file' is not a pipe!
+#               Verify this wo/VDFD.
+
+	if( sw.isafile(gt, source.nid) ) {
+			# ??? Prevent duplicate links
+		sw.debug(concat(  source.nid, "=>", sink.nid));
+			# Prevent linking to a busy sink.
+		for ( eid in sink.edges ) {      
+			edge = gt.graph.edges[eid];
+			sw.debug(concat(  edge.tail.nid, "->",edge.head.nid));
+			if( (edge.head.nid == sink.nid) &
+				(sinkname == edge.hport)
+			  ) {
+				sw.debug(concat(sinkname,"---",edge.hport ));
+				 return;
+			}
+		}
+		#for ( eid in source.edges ) {
+		#	edge = gt.graph.edges[eid];
+		#	sw.debug(concat(  edge.tail.nid, "->",edge.head.nid));
+		#	if( edge.head.nid == sink.nid ) return;
+		#	if( edge.head.nid == source.nid ) return;
+		#	if( edge.tail.nid == source.nid ) return;
+		#	if( edge.tail.nid == sink.nid ) return;
+		#}
+		if(sw.isafile(gt, sink.nid) ) {
+			sw.error("Cannot link two files");
+			return;
+		}
+		gout = sw.fileid;
+		# sourcename = gout;
+		sourcename = gt.graph.nodes[source.nid].name;
+		# sinkname = gin;
+	} else {	#Must be a process.
+		sourcename = gout;
+		sw.debug(concat(  sourcename, ": ", source.nid, "=>",sink.nid));
+		if( ~sourcename ) return;
+		for ( eid in source.edges ) {    # Do not fan out from a process
+			edge = gt.graph.edges[eid];
+			sw.debug(concat(  edge.tail.nid, ":", edge.tport, "->", edge.head.nid, ":", edge.hport));
+			if(  (edge.tail.nid == source.nid ) &
+			      ( sourcename == edge.tport )
+			   )	 return;
+			   #  Do not fan in to a process along with a file.
+		}
+		for ( xeid in sink.edges ) {
+		        xedge = gt.graph.edges[xeid];
+		        if( sw.isafile(gt, xedge.tail.nid) &
+				( sinkname == xedge.hport )
+			  ) { 
+				sw.debug(concat(  " Y:", sinkname,":", xedge.hport, ":",
+					xedge.tail.nid, "->", xedge.head.nid));
+				return;
+			}
+		}
+		if( sink.fields[0].port == sw.fileid ) { 
+			 for ( eid in sink.edges ) {
+				edge = gt.graph.edges[eid];
+				if( edge.head == sink) {
+					return;  # Cannot fan in to file
+				}
+			 } 
+			gin = sw.fileid;
+		} else {
+			sinkname = gin;
+		}
+	}
+
+		# If direction conflict, return w/error.
+	sw.debug(concat( "chkdir: ",sourcename,"*",gout, "=>",gin,"*", sinkname) );
+	if( sw.baddirection(gt, gout, source, gin, sink) ) {return;}
+
+	sw.setdirect(gt, gin,  sinkid, ".0");
+	sw.setdirect(gt, gout, sourceid,".1");
+        sw.debug(concat("     Connect: (",data.pobj.name,")",gout,"=>",gin,"(",data.obj.name,")"));
+	gt.insertedge (
+		gt, 
+		data.pobj,   	   # node a
+		sw.dirgate(gout,".1"), # gate a
+		data.obj,    	   # node b
+		sw.dirgate(gin,".0"),   # gate b
+		[],          	   # attr
+		0	     	   # show
+	);
+
+		# Move files to the same cluster as attached process.
+	if( ( sw.isafile(gt, source.nid) ) ) {
+		sw.dragprocess(gt, source, sink.attr.host);
+	}  
+	
+	if( ( sw.isafile(gt,sink.nid) )  ) {
+		sw.dragprocess(gt, sink, source.attr.host);   
+	}
+
+	sw.layoutgraph(gt);
+
+};
+
+sw.setgt = function(data) {
+	local gt;
+	
+	gt = dotty.graphs[dotty.views[data.widget].gtid];
+	sw.gt=gt;	
+	sw.control(concat("set ndname ", gt.graph.graphattr.label));
+	#sw.control(concat("set hostname ",   node.attr.host));
+	#$#sw.debug("sw.setgt");
+	return gt;
+};
+
+sw.dist = function ( rp, rect)  {
+	local x,y,dist;
+	
+	x = 0.5 * (rect[0].x + rect[1].x);
+	y = 0.5 * (rect[0].y + rect[1].y);
+	return (x - rp.x) *  (x - rp.x)  + (y - rp.y) *  (y - rp.y);
+};
+
+sw.closestnode = function (gt, rp2) {
+	local dist,nid,nnid;
+			
+	dist=9999999.0;	
+	for( nid in gt.graph.nodes ) {
+			if( dist > sw.dist(rp2,gt.graph.nodes[nid].rect) ) {
+                		nnid = nid;
+				dist = sw.dist(rp2,gt.graph.nodes[nid].rect);
+			}
+	}
+	return nnid;
+};
+
+
+
+
+	# Replaces the Insert edge prototype function
+	# /// \todo need to specify (use coords?) ports > 1.
+	# Until DFD is fixed, do not try to fan in or out (multiplex).
+dotty.protovt.normal.uifuncs['middleup'] = function (data) {
+        local gt, rp1, rp2, gid, dist, node, nnid;
+
+	gt = sw.setgt(data);
+	sw.debug("dotty.protovt.normal.uifuncs middleup ");
+	rp1 = data.ppos; rp2 = data.pos;   # pobj = previous object
+	#if(data & (tablesize(data) > 0) ) 
+		sw.debug( concat("uifuncs:middleup name x,y "," ", rp2.x,",",rp2.y ));
+			# Use cluster from nearest node,nnid. 
+		nnid = -1;
+		nnidx = sw.closestnode(gt,data.pos);
+		if(nnidx > -1) {
+# 		    sw.debug(concat("    A",nnid));
+		    sw.control(concat("set hostname ",  gt.graph.nodes[nnidx].attr.host ));
+		    sw.control(concat("set pcolor ",    gt.graph.nodes[nnidx].attr.color));
+			sw.controlnode(gt,gt.graph.nodes[nnidx]); # 6/2/2013 twy.  Send all node data to C/P.
+		} else {
+ 		    sw.debug("    B");
+		    sw.control(concat("set hostname ",  sw.defaults.host ));
+		}
+# 	sw.debug("    C");
+	
+        if (dotty.rubberband ~= 1)  {   #  If pointing to an edge handle toggle selection.
+		if( data.obj.eid < 0 ) {
+			return;
+		}  
+        	edge1 = gt.graph.edges[data.obj.eid];
+		if(edge1)sw.highlight.an.edge(gt, edge1);
+		return; 	
+	}
+
+	
+# 	sw.debug("    D");
+        dotty.rubberband = 0;
+        line (dotty.movewidget, null, rp1, rp2, ['color' = 1;]);
+        setgfxattr (dotty.movewidget, ['mode' = 'src';]);
+
+        if (dotty.movewidget ~= data.widget 	|
+                ~(data.pobj.nid >= 0) 		| 
+		~(data.obj.nid >= 0)
+	   ) { 
+		sw.debug("    Empty target; Select process(sw.highlightnode1) and return.");
+		sw.selectnode(gt, data);
+		return;
+	     }	
+		
+
+# 	sw.debug("MU 1");
+        if (data.pobj.attr.support)
+            gt.groupnodes (
+		gt, 
+		[
+                	data.obj.nid = data.obj;
+                	data.pobj.nid = data.pobj;
+            	], 
+		data.obj, 
+		null, null, null, 1, 1
+	    );
+        else if (data.obj.attr.support)
+            gt.groupnodes (
+		gt, 
+		[
+                	data.obj.nid = data.obj;
+                	data.pobj.nid = data.pobj;
+            	], 
+		data.pobj, null, null, null, 1, 1
+	   );
+        else
+ 	    sw.debug("MU 2X");
+	    sw.leftup( gt, data);
+
+# 	sw.debug("MU 3");
+
+}; 
+
+	# Count clusters
+sw.countclusters = function ( gt ) {
+	local cid, cgt, nclusters, nid, nnodes;
+
+	nclusters = 0;
+	for ( cid in gt.graph.graphs ) {
+		cgt = gt.graph.graphs[cid];
+#		sw.debug(concat(cgt.name));
+		nnodes = 0;
+		for( nid in cgt.nodes ) {
+#			sw.debug(cgt.nodes[nid].name);
+			nnodes = nnodes + 1;
+		}
+		if( nnodes > 0 ) {
+			nclusters = nclusters + 1;
+		}
+	}
+
+    return nclusters;
+}; 
+
+
+# Replace all selected nodes with the new node. 
+sw.replaceprocess = function (gt, vt, cmd) {
+     local t,nid,node,data,oldnode,snid,seq;
+     
+    data["pos"] = [ x=30; y=30; ];
+    sw.debug(concat("replaceprocess ", cmd));
+    t = split(cmd, "|");
+    
+    snid = [];
+    seq = 1;
+    
+    for( nid in gt.graph.nodes ) {
+	oldnode = gt.graph.nodes[nid];
+	if ( sw.isselected(oldnode) ) {
+	    snid[seq] = nid;
+	    sw.debug(concat("      node  ",oldnode.name," is selected."));
+	    seq = seq + 1;
+	}
+    }
+    
+    if( seq == 1) {
+	sw.warn("There must be at lease one selected process to be replaced.");
+	return;
+    }
+	
+  for(i in snid) {
+    oldnid = snid[i];  
+    sw.defaults.pname = t[1];
+    sw.component = t[2];
+    sw.defaults.gin  = split(t[3],",");
+    sw.defaults.gout = split(t[4],",");
+    sw.defaults.host = t[5];
+    sw.default.lang = t[6];
+    sw.default.pcolor = t[7];
+    node = sw.addanode(gt, data, sw.component);
+    sw.highlightnode(gt,node);
+    oldnode = gt.graph.nodes[oldnid];
+    sw.replacenode(gt,node,oldnode);
+    gt.removenode (gt, oldnode);
+  }  
+    sw.layoutgraph(gt);
+}; 
+
+
+	# Build temporary list of selected  nodes.
+	# Highlight all files connected to highlighted nodes.
+	# Build temporary cluster graph and  write out subnet. 
+sw.writeselectedsubnet = function (gt, vt, filename) {
+	local nid,node, node1, node2, nodeid1, nodeid2, fdin, 
+	sflist, edge, eid, f_t, n_t, list, n, fid, id,  fn;
+
+	sw.debug(concat("Write SubNet:",filename));
+	list = [];  
+	sflist = [];  
+	n=0;
+	fn=0;
+	sw.sendfd = sw.fdfile;
+	sw.send(concat( "File: EOFX ", filename, " rw-rw----" ));
+
+	sw.send( concat("# ",
+		filename,
+		" generated ", 
+		sw.timestamp(), 
+		" by: sw-", sw.defaults.version
+	));
+
+		# Create lists of selected processes and connected files.
+        for( nid in gt.graph.nodes ) {
+                node = gt.graph.nodes[nid]; 
+		if( sw.isselected(node)) {
+			list[n] = nid;
+			n = n + 1;
+			if( 1 ) {  # Write connected files.
+			   for( eid in node.edges) {
+				fid = node.edges[eid].tail;
+				if(   (node.edges[eid].tport == sw.fileid)
+				    & ( fid.attr.fillcolor == 'palegreen' )
+				    ) {
+				    fid.fillcolor = gt.getcolor(gt.views, fid.attr.fillcolor); 
+				    sflist[fn] = fid.nid;
+				    fn = fn + 1;
+				} else  { 
+				     fid = node.edges[eid].tail;
+				     if( (node.edges[eid].hport== sw.fileid ) 
+				      & ( fid.attr.fillcolor == 'palegreen' )
+				   ) {	
+				    fid = node.edges[eid].head;
+				    fid.attr.fillcolor = 'palegreen';
+				    fid.fillcolor = gt.getcolor(gt.views, fid.attr.fillcolor); 
+				    sflist[fn] = fid.nid;
+				    fn = fn + 1;
+				}}
+			   }  # End for...
+			}  # if(1)
+		} # if selected..
+	}  # for nid...	
+
+
+		#Write list of selected processes.
+        for( id in list ) {
+		nid = list[id];
+                node = gt.graph.nodes[nid]; 
+		sw.debug(concat("Select:",node.name," ",nid));
+		if( (node.fields[0].fields[0].port == "P")  ){
+			sw.writetask(gt, node);
+		}
+	}
+
+		#Write files and orphans
+        for( id in sflist ) {
+		nid = sflist[id];
+                node = gt.graph.nodes[nid]; 
+		sw.writefile(gt, node );
+	}
+
+		# This can be sped up.
+	for( eid in gt.graph.edges ) {
+		edge = gt.graph.edges[eid];
+		if( 
+		    ( gt.graph.nodes[edge.tail.nid].fields[0].fields[0].port == "P")
+				&
+		    ( gt.graph.nodes[edge.head.nid].fields[0].fields[0].port == "P")
+		  )  {
+			nodeid1 = sw.basename(edge.tail.name);
+			nodeid2 = sw.basename(edge.head.name);
+			node1 = gt.graph.nodes[sw.lookupnode(gt,nodeid1)];
+			node2 = gt.graph.nodes[sw.lookupnode(gt,nodeid2)];
+			if(     ~sw.isselected(node1) 
+				& sw.isselected(node2) ) {
+				sw.send(concat( 
+					" => ", sw.gatebase(edge.hport), 
+					"(", nodeid2, ");" 
+				 ));
+			} else { if( sw.isselected(node1) 
+				&   ~sw.isselected(node2) ) {
+				sw.send(concat( 
+					"(", nodeid1, ")", 
+					sw.gatebase(edge.tport), " => ;"
+				 ));
+			} else { if( sw.isselected(node1)
+				&    sw.isselected(node2) ) {
+					sw.send(concat( "(", 
+					nodeid1, ")", 
+					sw.gatebase(edge.tport), 
+					" => ",
+				 	sw.gatebase(edge.hport), 
+					"(", nodeid2, ");" 
+				 ));
+			}}}
+		}
+	}
+
+	sw.send( "EOFX");  
+	return;
+};
+
+sw.connectgates = function (gt, p1, p2, head, tail) {
+	local source, sink, gin, gout, sourcenid, sinknid,
+		defin,defout;
+
+	sw.debug(concat("ConnectGates: ", p1, ".",head, "=>", p2,".",tail));
+	source = sw.findnode(gt, p1);
+	sink   = sw.findnode(gt, p2);
+	sourcenid = source.nid;
+	sinknid   = sink.nid;
+	sw.addgate( gt, head, sourcenid,".0");
+	sw.addgate( gt, tail, sinknid,".1");
+
+	gt.insertedge (
+		gt, 
+		source,    
+		head, 	    
+		sink,   
+		tail, 	     
+		[],        
+		1	     # show
+	);
+
+	sw.layoutgraph(gt);
+};
+
+	# Actually, this is middle down.
+dotty.protovt.normal.uifuncs['leftdown'] = function (data) {
+
+	if( ~data.obj.nid)   return;
+	#sw.debug(concat( "uifuncs:leftdown ",data.obj.nid ));
+	dotty.movewidget = data.widget;
+};
+
+	# Replace oldnode w/node
+	# All old edges will be connected to the new node if a new gate exists.
+	# All new node edges will remain unless there is a corresponding
+	# old node edge, in which case the connections will be swapped. 
+	# Edges connecting the new node directly to the old node will be 
+	#   removed (or swapped).
+	# Remove the old node.
+sw.replacenode = function(gt, node, oldnode ) {
+	local eid, nid, e_t, e2_t;
+
+	nid = node.nid;
+	e2_t = [];
+
+	sw.debug( concat("Replace node ", oldnode.name, " with ",node.name) );
+
+	# Remove all edges common to both node and oldnode.
+	for( eid in newnoldnodeode.edges) {
+	    if( ( oldnode.edges[eid].head.nid == nid) 
+		| ( oldnode.edges[eid].tail.nid == nid)
+		  ) {
+			e2_t[eid] = eid;
+		}
+	}
+
+		# Make this a  swap later.
+	for( eid in e2_t) {
+		remove( eid, oldnode.edges);
+		remove( eid, node.edges);
+		remove( eid, gt.graph.edges);
+	}
+
+		# For each remaining oldnode edge:
+			# If there is a matching node gate
+			# move the gate/edge to node
+			# Otherwise add the gate/edge to node
+	e_t = [];
+	for( eid in oldnode.edges ) {
+		e_t[eid].t = oldnode.edges[eid].tport;
+		e_t[eid].h = oldnode.edges[eid].hport;
+	}
+	for( eid in e_t) {
+		if(oldnode.edges[eid].tail.nid ~= oldnode.nid) {
+			sw.addgate( gt, sw.gatebase(e_t[eid].h), nid, ".0");
+			gt.insertedge (
+				gt,   
+				oldnode.edges[eid].tail, 	    
+				e_t[eid].t,
+				node,     
+				e_t[eid].h,
+				[],        # attr
+				0	     # show
+			);
+			remove( eid, oldnode.edges[eid].tail.edges);
+		} 
+		if(oldnode.edges[eid].head.nid ~= oldnode.nid) {
+			sw.addgate( gt, sw.gatebase(e_t[eid].t), nid, ".1");
+			gt.insertedge (
+				gt, 
+				node,
+				e_t[eid].t, 	    
+				oldnode.edges[eid].head,
+				e_t[eid].h,
+				[],        # attr
+				0	   # show
+			);
+			remove( eid, oldnode.edges[eid].head.edges);
+		}
+		remove( eid, oldnode.edges);
+		remove( eid, gt.graph.edges);
+	}
+
+	if( sw_default.removeonswap) {
+		gt.removenode (gt, oldnode);	# ??  Remove oldnode
+	}
+
+	sw.layoutgraph(gt);
+
+};
+
+	# Actually, this is middle up.
+	# Move node around (even if files collide)
+dotty.protovt.normal.uifuncs['leftup'] = function (data) {
+	local oldhost, newhost, newnode, nid, node, newnid, cgt;
+	local gt;
+
+	gt = dotty.graphs[dotty.views[data.widget].gtid];
+	sw.gt = gt;
+	
+	if( data.obj.nid) {
+		newnid = data.obj.nid;
+	}   else {
+		newnid = sw.closestnode(gt, data.pos);
+	}
+	
+	newnode = gt.graph.nodes[newnid];
+	sw.debug(concat("   newname=" ,newnode.name));
+	nid    = data.pobj.nid;
+	if( nid == newnid ) return;
+	node = gt.graph.nodes[nid];
+
+		# Don't move orphan nodes -- not directly anyway.
+       	if( ~node |  sw.isanorphan(node) ) { return ; }
+
+	sw.debug( concat("uifuncs:leftup:", node.name, " ") );
+
+	if( newnode.attr.host ) {
+		newhost = newnode.attr.host;
+	} else {
+		newhost = "localhost";
+	}
+
+	if(~node.attr.host) return;
+	oldhost = node.attr.host;
+
+	if( ( newhost == oldhost) & newnode )  {
+		sw.replacenode(gt, node, newnode);
+		return;
+	}
+
+		# Remove from old cluster
+	cgt = sw.getcluster( gt, oldhost);
+	if( cgt.nodes[nid] ) remove( nid, cgt.nodes);
+
+		# Add to new cluster
+	cgt = sw.getcluster( gt, newhost);
+	cgt.nodes[nid] = node;
+
+	if( sw.isafile(gt, node.nid)  ) {
+		sw.dragprocess(gt, node, newhost );
+	} else {
+		sw.dragfile(gt, node, newhost );
+	}
+	sw.controlnode(gt, node);
+	sw.layoutgraph(gt);
+};
+
+	# Drag a file's associated processes and all their files
+	# and those files associated processes to the same cluster. 
+	# This is a recursive function.
+sw.dragprocess = function (gt, node1, newhost) {
+	local eid, edge, nid, node, lnode;
+
+	if( newhost == node1.attr.host ) return;  # Sanity check
+	cgt = sw.getcluster( gt, newhost);
+	sw.newcluster(gt, cgt, node1);
+
+		# A collision might change the node id.
+	nid = sw.collide(gt, node1, 1);  
+        node = gt.graph.nodes[nid];
+
+	for( eid in node.edges ) {
+		edge = gt.graph.edges[eid];
+		if( ~(edge.tail.nid == nid ) ) {
+		        lnode = gt.graph.nodes[edge.tail.nid];
+			if( edge.tport == sw.fileid ) {
+				sw.dragprocess(gt, lnode, newhost);
+			} else {
+	                        sw.dragfile(gt, lnode, newhost);
+			}
+		}
+		if( ~(edge.head.nid == node.nid ) ) {
+		        lnode = gt.graph.nodes[edge.head.nid];
+			if( edge.hport == sw.fileid ) {
+				sw.dragprocess(gt, lnode, newhost);
+			} else {
+	                        sw.dragfile(gt, lnode, newhost);
+			}
+                }
+	}
+};
+
+
+	#  Move a process's associated files (and their processes )
+	#  to the new cluster.
+	#  This is recursive.
+sw.dragfile = function (gt, node, newhost) {
+	local eid, cgt, fnode, edge;
+
+	if( newhost == node.attr.host ) return;  # Sanity check
+	cgt = sw.getcluster( gt, newhost);
+	sw.newcluster(gt, cgt, node);
+
+	for( eid in node.edges ) {
+		edge = gt.graph.edges[eid];
+		if( ~(edge.tail.nid == node.nid ) 
+			& sw.isafile(gt, edge.tail.nid)
+		   ) {
+		        fnode = gt.graph.nodes[edge.tail.nid];
+			sw.dragprocess(gt, fnode, newhost);  
+		}
+		if( ~(edge.head.nid == node.nid ) 
+			& sw.isafile(gt, edge.head.nid)
+		  ) {
+		        fnode = gt.graph.nodes[edge.head.nid];
+			sw.dragprocess(gt, fnode, newhost);  
+                }
+	}
+
+};
+
+
+	# Change file node name for new cluster.
+	# If collision with old file, but its mode is ok, 
+	# move its edges to this node and delete it.
+	# Otherwise just delete it. 
+	# If linkq==1, create a link to the old file on a collision.
+sw.collide = function (gt, fnode, linkq) {
+	local newname, oldnode, eid, edge;
+
+#	sw.debug(concat("sw.collide ", fnode.name));
+	newname = concat( fnode.attr.host, ":", sw.basename(fnode.name) );
+	sw.debug(concat("sw.collide ", fnode.name,"-", newname));
+	sw.oldid = sw.lookupnode(gt, newname);
+	if( sw.oldid == fnode.nid ) return fnode.nid;
+
+	remove( fnode.name, gt.graph.nodedict);  # Remove old name
+	fnode.name = newname;
+
+	if( (sw.oldid >= 0 ) ) {
+			# Collision!
+		sw.error( "Collision!"); 
+		oldnode = gt.graph.nodes[sw.oldid];
+				# Move the old edges to the new node.
+		for ( eid in oldnode.edges ) {
+		        edge = gt.graph.edges[eid];
+			if( sw.isafile(gt, edge.tail.nid) ) {
+				gt.insertedge (
+					gt, 
+					fnode,     
+					sw.fileid, 	     # gate b
+					edge.head,
+					edge.hport, 	    
+					[],        # attr
+					0	     # show
+				);
+			}
+		}
+			# Remove the old source node and any edges.
+       	 	gt.removenode (gt, oldnode);
+	}
+
+	gt.graph.nodedict[newname] = fnode.nid;
+	return fnode.nid;
+
+};
+
+sw.fixproto = function () {
+
+	sw.protovt.birdseye = [
+            'orig' = ['x' = 1; 'y' = 540;];
+            'size' = ['x' = 260; 'y' = 220;];
+            'wrect' = [
+                0 = ['x' = 0; 'y' = 0;];
+                1 = ['x' = 250; 'y' = 200;];
+            ];
+            'vsize' = ['x' = 250; 'y' = 200;];
+	];
+
+		# Swap left and middle mousekeys
+	sw.swap('leftdown', 'middledown');
+	sw.swap('leftmove', 'middlemove');
+	sw.swap('leftup',   'middleup');
+
+};
+
+sw.swap = function( l, m ) {
+
+	sw.temp 			= dotty.protovt.normal.uifuncs[l];
+#	dotty.protovt.normal.uifuncs[l] = null;
+	dotty.protovt.normal.uifuncs[l] = dotty.protovt.normal.uifuncs[m];
+#	dotty.protovt.normal.uifuncs[m] = null;
+	dotty.protovt.normal.uifuncs[m] = sw.temp;
+};
+
+#	*****	Initialize prototypes & sw editor ******
+sw.init = function () {
+ 
+	sw.debug("sw.init");
+	dotty.init ();
+	sw.fixproto();
+	sw.filename = "untitled.ndl";
+	monitorfile = dotty.monitorfile;
+	sw.normalcolor = 'black';
+	sw.highlightcolor = 'light_grey';
+	sw.trackcur = 0;
+};
+
+		# - not executed
+sw.commandsx = function () {   
+        local ln, mfd, table1;
+    
+	sw.debug("sw.commands.");
+#        mfd = sw.fdcmd;
+	if( sw.nocommands == 1 ) return;   # Shut down if problems 
+
+        while( (ln = readline(mfd)) ~= EOF ) {
+		sw.debug(concat("sw.commands:",ln));
+		if( ln ) {
+			table1 = split( ln, ' ');
+			if ( table1[0] ~= '#' ) {
+			     run(ln);
+			}
+		} else {
+			sw.error("Bad command read");
+			sw.error("\tClosing command port");
+			sw.nocommands = 1;
+		}
+	}
+};
+
+sw.main = function () {
+    	local  gt, i, mfd, vt;
+
+	## writeline( 2, concat("VDFD.MAIN:") );
+	sw.msg( concat(sw.defaults.version, " starting" ));
+	sw.defaults.debuglevel = sw_default.debuglevel;
+	sw.init();
+
+#	idlerun("off");
+	dotty.protogt.graph.nodeattr = sw.protogt.graph.nodeattr;
+	dotty.protogt.graph.graphattr = sw.protogt.graph.graphattr;
+
+	#sw.protogt.graph.graphattr.bb=[0,0,100,200];
+ 	# sw.debug(concat("sw.main/2: color=",dotty.protogt.graph.nodeattr.color));
+     	gtvt = dotty.createviewandgraph ('/home/tyoung3/go/mod/streamwork/edit/dfd/sw.lefty.dot', 'file', 
+		sw.protogt, sw.protovt);
+	sw.graphisopen=1;
+        sw.gt = dotty.graphs[1];
+	sw.gt.graph.graphattr.label=sw.filename;
+	# sw.protogt.graph.graphattr.xdotversion=1; 
+
+        # Grab environment variables:
+	sw.editor = getenv('EDITOR');
+        sw.home = getenv('HOME');
+
+        sw.edit5 = getenv('VDFD_EDIT_5');
+        sw.edit2 = getenv('VDFD_EDIT_2');
+        sw.edit7 = getenv('VDFD_EDIT_7');
+	sw.fdctl  = openio( "file", concat("/proc/self/fd/", sw.edit5), "w" );   
+        ##sw.fdctl  = openio( "pipe", "/usr/local/bin/Pass", "w" );
+	sw.fdfile = openio( "file", concat("/proc/self/fd/", sw.edit7), "w" );  
+	# sw.fdflash = openio( "pipe", "/var/lib/dfd/bin/GetFlash", "r" ); 
+
+	for ( i in dotty.views ) {
+		vt = dotty.views[i];
+	}
+
+	txtview("off");   
+	dotty.graphs[1].zoom(sw.gt,vt, 1.6,"");
+	sw.monitorfile = monitorfile;  
+
+	monitorfile = function(data) { 
+		if(data.fd == 0) {
+			sw.debug("    data.fd == 0");
+			sw.fdcmd(data.fd);
+		} else {
+			sw.debug("    data.fd != 0");
+			sw.fdcmd(data.fd);
+		}
+		return 0;
+	};
+
+	sw.debug("     monitor on");
+	monitor("on",0);
+	# idlerun("on");
+
+	##  Had no effect:  sw.protogt.actions.general [ "Toggle Concentrate" ];
+};
+
+sw.main ();
+
+# NOTES:
+#	. Use record, not mrecord.  Mrecord causes dot to drop rects and therefore dotty fails creating fields. 
+#	. Dotty_layout.lefty needed to be modified to create fields. 
+#   COMMANDS =>0(EDIT lefty -el 2 ./sw.lefty)sw.fdctl=>TCL_COMMANDS
+#   GRAPH(s) =>7??(EDIT)6=> READFILE_COMMAND(s)?>FILES
+#                (EDIT)sw.fdfile=> WRITEFILE_COMMAND(s)	
+#
+
+# To highlight a cycle at node, N:
+#	. Clear all highlights
+#	Make a list of all nodes downstream from N
+#	All nodes in N which flow to N are in the cycle.
+#	Highlight all related flows.
+
+# End of lefty.

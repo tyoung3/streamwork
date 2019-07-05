@@ -1,0 +1,17 @@
+lin=/home/tyoung3/vdfd/bin/vdfd.lefty.in
+
+export LEFTYPATH=./ 
+export LEFTYOPTIONS=
+
+case $1 in 
+	gv)	cc     gv.c -lgvc -lcgraph  -o gv 
+		./gv collate.dot 
+	   ;;
+	   
+	 r)echo $lin 
+		;;
+		
+	 t)shift; lefty "-el" "2"  $*  sw.lefty
+	    ;;
+esac	 
+	 

@@ -1,0 +1,119 @@
+#########   Expanded Network Definition   ######### 
+# (Miss1 poc.Print1)0		<- 5(C poc.Collate) 
+# (Miss0 poc.Print1)0		<- 4(C poc.Collate) 
+# (Match1 poc.Print1)0		<- 3(C poc.Collate) 
+# (Match0 poc.Print1)0		<- 2(C poc.Collate) 
+# (M poc.Merge)1		<- 0(G2 poc.Gen1) 
+# (M poc.Merge)2		<- 0(G1 poc.Gen1) 
+# (C poc.Collate)0		<- 0(G0 poc.Gen1) 
+# (C poc.Collate)1		<- 0(M poc.Merge) 
+
+#Prefix here. 8 streams
+digraph "collate.sw" {graph [
+	name="Streamwork/swgraph:  v0.9.4",
+fontcolor=black,
+	label="https://github.com/tyoung3/sw",
+fontname="Helvetica"
+]
+node [ shape=record,
+fontsize="18",
+fontcolor=black,
+fontname="Helvetica",
+color=black,
+fillcolor=powderblue,
+style=filled,
+height=.2
+];
+edge [ color=blue,
+style=bold,
+fontsize="18",
+labelfontcolor=black,
+fontcolor=blue,
+]
+subgraph "clustercollate.sw" {
+label = "collate.sw"; name="collate.sw";
+URL="collate.sw.html";
+
+#(Miss1 poc.Print1) 1 ports
+       "Miss1" [ shape=record,
+color="black",
+  URL="/home/tyoung3/go/mod/sw/html/Print1.html"
+ host="taos_" 
+ tooltip="poc.Print1 "
+label="{<P> Miss1  Print1 }"
+];
+#(Miss0 poc.Print1) 1 ports
+       "Miss0" [ shape=record,
+color="black",
+  URL="/home/tyoung3/go/mod/sw/html/Print1.html"
+ host="taos_" 
+ tooltip="poc.Print1 "
+label="{<P> Miss0  Print1 }"
+];
+#(Match1 poc.Print1) 1 ports
+       "Match1" [ shape=record,
+color="black",
+  URL="/home/tyoung3/go/mod/sw/html/Print1.html"
+ host="taos_" 
+ tooltip="poc.Print1 "
+label="{<P> Match1  Print1 }"
+];
+#(Match0 poc.Print1) 1 ports
+       "Match0" [ shape=record,
+color="black",
+  URL="/home/tyoung3/go/mod/sw/html/Print1.html"
+ host="taos_" 
+ tooltip="poc.Print1 "
+label="{<P> Match0  Print1 }"
+];
+#(G2 poc.Gen1) 1 ports
+       "G2" [ shape=record,
+color="black",
+  URL="/home/tyoung3/go/mod/sw/html/Gen1.html"
+ host="taos_" 
+ tooltip="poc.Gen1  \"8\" \"2\" \"3\""
+label="{<P> G2  Gen1 \"8\" \"2\" \"3\" }"
+];
+#(G1 poc.Gen1) 1 ports
+       "G1" [ shape=record,
+color="black",
+  URL="/home/tyoung3/go/mod/sw/html/Gen1.html"
+ host="taos_" 
+ tooltip="poc.Gen1  \"5\" \"5\" \"1\""
+label="{<P> G1  Gen1 \"5\" \"5\" \"1\" }"
+];
+#(G0 poc.Gen1) 1 ports
+       "G0" [ shape=record,
+color="black",
+  URL="/home/tyoung3/go/mod/sw/html/Gen1.html"
+ host="taos_" 
+ tooltip="poc.Gen1  \"12\" \"1\" \"2\""
+label="{<P> G0  Gen1 \"12\" \"1\" \"2\" }"
+];
+#(C poc.Collate) 6 ports
+       "C" [ shape=record,
+color="black",
+  URL="/home/tyoung3/go/mod/sw/html/Collate.html"
+ host="taos_" 
+ tooltip="poc.Collate "
+label="{<P> C  Collate }"
+];
+#(M poc.Merge) 3 ports
+       "M" [ shape=record,
+color="black",
+  URL="/home/tyoung3/go/mod/sw/html/Merge.html"
+ host="taos_" 
+ tooltip="poc.Merge "
+label="{<P> M  Merge }"
+];
+
+}
+"C"  -> "Miss1"  [label="7",headlabel="",taillabel="5",tooltip="7"];
+"C"  -> "Miss0"  [label="6",headlabel="",taillabel="4",tooltip="6"];
+"C"  -> "Match1"  [label="5",headlabel="",taillabel="3",tooltip="5"];
+"C"  -> "Match0"  [label="4",headlabel="",taillabel="2",tooltip="4"];
+"G2"  -> "M"  [label="3",headlabel="1",taillabel="",tooltip="3"];
+"G1"  -> "M"  [label="2",headlabel="2",taillabel="",tooltip="2"];
+"G0"  -> "C"  [label="1",headlabel="",taillabel="",tooltip="1"];
+"M"  -> "C"  [label="0",headlabel="1",taillabel="",tooltip="0"];
+}
